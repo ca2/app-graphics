@@ -11,8 +11,8 @@
 #include "aura/message/user.h"
 #include "axis/platform/application.h"
 #include "impact.h"
-#include "app-core/gcom/backimpact/main.h"
-#include "app-core/gcom/backimpact/gcom.h"
+#include "app-graphics/gcom/backimpact/main.h"
+#include "app-graphics/gcom/backimpact/gcom.h"
 
 
 namespace gcom

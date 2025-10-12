@@ -15,7 +15,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/frame_interaction.h"
-#include "app-core/gcom/gcom/space.h"
+#include "app-graphics/gcom/gcom/space.h"
 #include "acme/prototype/geometry2d/_defer_bounding_box.h"
 
 #include <math.h>
