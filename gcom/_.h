@@ -5,8 +5,8 @@
 #include "axis/_.h"
 
 
-#include "app-core/gcom/backimpact/_.h"
-#include "app-core/gcom/gcom/_.h"
+#include "app-graphics/gcom/backimpact/_.h"
+#include "app-graphics/gcom/gcom/_.h"
 
 
 namespace gcom
