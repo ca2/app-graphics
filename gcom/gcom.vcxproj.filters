@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{e3eafaa1-0e7b-45cc-8d3a-9c70cf94f5a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{825f07c2-7190-4280-a078-4fb9b82bd17f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\backimpact">
+      <UniqueIdentifier>{91d74d22-1101-468f-8720-0f6325100b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gcom">
+      <UniqueIdentifier>{9a1f75a9-d2b0-47d6-b858-5df2fc3da4e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\backimpact">
+      <UniqueIdentifier>{388f9fcb-7cdc-4aef-ada2-40f7a45f6539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gcom">
+      <UniqueIdentifier>{fdad7b34-32be-411d-b7ee-b2f30007028e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{60a77fa4-563e-486b-b40f-341fdeef08eb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\_constant.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\helper.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\image_change.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\thread.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\user_interaction.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\visual_effect.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\_.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\double3d_point.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\pixel_explosion.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\slide.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\space.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\space_util.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\util.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\impact.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\_.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\_gcom.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\_constant.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\slide_drawer.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\gcom.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\data.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\main.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\transition_effect.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="_library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\_library.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="image_show.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\helper.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\image_change.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\thread.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\transition_effect_tool001.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\user_interaction.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\visual_effect.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\ipp.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\pixel_explosion.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\slide.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\space.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\space_util.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\util.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\impact.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\gcom.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\data.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\main.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\transition_effect.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="image_show.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="deployment.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

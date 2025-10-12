@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1be33a06-89a3-4f23-a5d8-800b6fd8a2fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gcom">
+      <UniqueIdentifier>{aeb65504-c136-454a-9424-b0d836965b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\backimpact">
+      <UniqueIdentifier>{ecedac80-5862-4c5f-8741-81b7f70e0a2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{ed71b372-5d9e-4471-8af0-65959dfe6fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{a05924b7-e9f6-459a-a59a-544ad976773c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\backimpact">
+      <UniqueIdentifier>{19df1223-f72e-402d-bd61-81d7f6859e80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gcom">
+      <UniqueIdentifier>{4f59315e-2e11-4070-834c-ead8015c3ff1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\gcom.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\gcom_double3d_point.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\gcom_enum.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\gcom_pixel_explosion.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\gcom_rect.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\gcom_space.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\gcom_space_util.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="gcom\gcom_util.h">
+      <Filter>Header Files\gcom</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backimpact.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_enum.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_graphics.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_helper.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_image_change.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_interface.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_interface_data.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_main.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_thread.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_transition_effect.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_user_interaction.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+    <ClInclude Include="backimpact\backview_visual_effect.h">
+      <Filter>Header Files\backimpact</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\graphics.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\helper.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\image_change.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\interface.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\interface_data.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\main.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\thread.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\transition_effect.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\transition_effect_tool001.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\user_impact.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\user_interaction.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="backimpact\visual_effect.cpp">
+      <Filter>Source Files\backimpact</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\ipp.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\pixel_explosion.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\slide.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\space.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\space_util.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\util.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\impact.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gcom.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
