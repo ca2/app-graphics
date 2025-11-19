@@ -939,46 +939,46 @@ namespace backimpact
       m_iGrowColor,
       m_iGrowMax);
 
-      m_pointColorTrack.x() += (int)(fabs(m_rndgrowVelocity.i) * dcos);
-      m_pointColorTrack.y() += (int)(fabs(m_rndgrowVelocity.i) * dsin);
+      m_pointColorTrack.x += (int)(fabs(m_rndgrowVelocity.i) * dcos);
+      m_pointColorTrack.y += (int)(fabs(m_rndgrowVelocity.i) * dsin);
 
-      if(m_pointColorTrack.x() > cx1 - 10)
+      if(m_pointColorTrack.x > cx1 - 10)
       {
          //      m_dDirection += 180 + ((int) m_dDirection % 360);
          m_dDirection = -m_dDirection;
       }
-      else if(m_pointColorTrack.y() > cy1 - 10)
+      else if(m_pointColorTrack.y > cy1 - 10)
       {
          //    m_dDirection += 180 + ((int) m_dDirection % 360);
          m_dDirection = -m_dDirection;
       }
-      else if(m_pointColorTrack.x() < 0)
+      else if(m_pointColorTrack.x < 0)
       {
          //  m_dDirection += 180 + ((int) m_dDirection % 360);
          m_dDirection = -m_dDirection;
       }
-      else if(m_pointColorTrack.y() < 0)
+      else if(m_pointColorTrack.y < 0)
       {
          //m_dDirection += 180 + ((int) m_dDirection % 360);
          m_dDirection = -m_dDirection;
       }
 
-      if(m_pointColorTrack.x() > cx1 - 10)
+      if(m_pointColorTrack.x > cx1 - 10)
       {
-         m_pointColorTrack.x() = cx1 - 10;
+         m_pointColorTrack.x = cx1 - 10;
       }
-      else if(m_pointColorTrack.x() < 0)
+      else if(m_pointColorTrack.x < 0)
       {
-         m_pointColorTrack.x() = 0;
+         m_pointColorTrack.x = 0;
       }
 
-      if(m_pointColorTrack.y() > cy1 - 10)
+      if(m_pointColorTrack.y > cy1 - 10)
       {
-         m_pointColorTrack.y() = cy1 - 10;
+         m_pointColorTrack.y = cy1 - 10;
       }
-      else if(m_pointColorTrack.y() < 0)
+      else if(m_pointColorTrack.y < 0)
       {
-         m_pointColorTrack.y() = 0;
+         m_pointColorTrack.y = 0;
       }
 
 
@@ -1039,8 +1039,8 @@ namespace backimpact
 
 
       {
-         int x1 = m_pointColorTrack.x();
-         int y1 = m_pointColorTrack.y();
+         int x1 = m_pointColorTrack.x;
+         int y1 = m_pointColorTrack.y;
          int x2 = cx1 - x1;
          int y2 = cy1 - y1;
 
@@ -1531,42 +1531,42 @@ namespace backimpact
 
 
 
-      m_pointColorTrack.x() += (int)(fabs(m_rndgrowVelocity.i) * dcos);
-      m_pointColorTrack.y() += (int)(fabs(m_rndgrowVelocity.i) * dsin);
+      m_pointColorTrack.x += (int)(fabs(m_rndgrowVelocity.i) * dcos);
+      m_pointColorTrack.y += (int)(fabs(m_rndgrowVelocity.i) * dsin);
 
-      if(m_pointColorTrack.x() > cx1 - 10)
+      if(m_pointColorTrack.x > cx1 - 10)
       {
          m_dDirection += 180 + ((int) m_dDirection % 360);
       }
-      else if(m_pointColorTrack.y() > cy1 - 10)
+      else if(m_pointColorTrack.y > cy1 - 10)
       {
          m_dDirection += 180 + ((int) m_dDirection % 360);
       }
-      else if(m_pointColorTrack.x() < 0)
+      else if(m_pointColorTrack.x < 0)
       {
          m_dDirection += 180 + ((int) m_dDirection % 360);
       }
-      else if(m_pointColorTrack.y() < 0)
+      else if(m_pointColorTrack.y < 0)
       {
          m_dDirection += 180 + ((int) m_dDirection % 360);
-      }
-
-      if(m_pointColorTrack.x() > cx1 - 10)
-      {
-         m_pointColorTrack.x() = cx1 - 10;
-      }
-      else if(m_pointColorTrack.x() < 0)
-      {
-         m_pointColorTrack.x() = 0;
       }
 
-      if(m_pointColorTrack.y() > cy1 - 10)
+      if(m_pointColorTrack.x > cx1 - 10)
       {
-         m_pointColorTrack.y() = cy1 - 10;
+         m_pointColorTrack.x = cx1 - 10;
       }
-      else if(m_pointColorTrack.y() < 0)
+      else if(m_pointColorTrack.x < 0)
       {
-         m_pointColorTrack.y() = 0;
+         m_pointColorTrack.x = 0;
+      }
+
+      if(m_pointColorTrack.y > cy1 - 10)
+      {
+         m_pointColorTrack.y = cy1 - 10;
+      }
+      else if(m_pointColorTrack.y < 0)
+      {
+         m_pointColorTrack.y = 0;
       }
 
 
@@ -1631,8 +1631,8 @@ namespace backimpact
       {
          int d = c3;
          int r = d / 2;
-         int x1 = m_pointColorTrack.x() - r;
-         int y1 = m_pointColorTrack.y() - r;
+         int x1 = m_pointColorTrack.x - r;
+         int y1 = m_pointColorTrack.y - r;
          int x2 = cx1 - x1 - r;
          int y2 = cy1 - y1 - r;
          auto pbrush = øcreate < ::draw2d::brush >();
@@ -1747,8 +1747,8 @@ namespace backimpact
          ct1.m_rndgrowDirectionLatency);
          ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
          ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
-         ct1.m_pointColorTrack.x() += (int)(fabs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos);
-         ct1.m_pointColorTrack.y() += (int)(fabs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin);
+         ct1.m_pointColorTrack.x += (int)(fabs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos);
+         ct1.m_pointColorTrack.y += (int)(fabs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin);
          Constraint001(
          ct1.m_pointColorTrack,
          rcTrackBox,
@@ -1919,8 +1919,8 @@ namespace backimpact
          for(int i = 0; i < m_colortrack1a.get_size(); i++)
          {
             color_track1 & ct1 = m_colortrack1a[i];
-            int x1 = ct1.m_pointColorTrack.x();
-            int y1 = ct1.m_pointColorTrack.y();
+            int x1 = ct1.m_pointColorTrack.x;
+            int y1 = ct1.m_pointColorTrack.y;
             int d = (int) ct1.m_dSize;
             switch(i % 5)
             {
@@ -2004,39 +2004,39 @@ namespace backimpact
 
    void visual_effect::Constraint001(int_point & point, const ::int_rectangle & rectangle, double & direction)
    {
-      if(point.x() > rectangle.right())
+      if(point.x > rectangle.right())
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.y() > rectangle.bottom())
+      else if(point.y > rectangle.bottom())
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.x() < rectangle.left())
+      else if(point.x < rectangle.left())
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.y() < rectangle.top())
+      else if(point.y < rectangle.top())
       {
          direction  += 180 + ((int) direction  % 360);
       }
 
-      if(point.x() > rectangle.right())
+      if(point.x > rectangle.right())
       {
-         point.x() = rectangle.right();
+         point.x = rectangle.right();
       }
-      else if(point.x() < rectangle.left())
+      else if(point.x < rectangle.left())
       {
-         point.x() = rectangle.left();
+         point.x = rectangle.left();
       }
 
-      if(point.y() > rectangle.bottom())
+      if(point.y > rectangle.bottom())
       {
-         point.y() = rectangle.bottom();
+         point.y = rectangle.bottom();
       }
-      else if(point.y() < rectangle.top())
+      else if(point.y < rectangle.top())
       {
-         point.y() = rectangle.top();
+         point.y = rectangle.top();
       }
 
    }
@@ -2126,8 +2126,8 @@ namespace backimpact
             ct1.m_rndgrowDirectionLatency);
          ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
          ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
-         ct1.m_pointColorTrack.x() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
-         ct1.m_pointColorTrack.y() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
+         ct1.m_pointColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
+         ct1.m_pointColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
          Constraint001(
             ct1.m_pointColorTrack,
             rcTrackBox,
@@ -2319,8 +2319,8 @@ namespace backimpact
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                color_track1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_pointColorTrack.x();
-               int y1 = ct1.m_pointColorTrack.y();
+               int x1 = ct1.m_pointColorTrack.x;
+               int y1 = ct1.m_pointColorTrack.y;
                int d = ct1.m_dSize;
                switch(i % 5)
                {
@@ -2417,58 +2417,58 @@ namespace backimpact
 
          direction  += 180 + ((int) direction  % 360);
 
-         if(point.x() > pointCenter.x())
+         if(point.x > pointCenter.x)
          {
-            point.x() = rectangleIn.right();
+            point.x = rectangleIn.right();
          }
          else
          {
-            point.x() = rectangleIn.left();
+            point.x = rectangleIn.left();
          }
 
-         if(point.y() > pointCenter.y())
+         if(point.y > pointCenter.y)
          {
-            point.y() = rectangleIn.bottom();
+            point.y = rectangleIn.bottom();
          }
          else
          {
-            point.y() = rectangleIn.left();
+            point.y = rectangleIn.left();
          }
       }
 
-      if(point.x() > lpcrectOut->right())
+      if(point.x > lpcrectOut->right())
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.y() > lpcrectOut->bottom())
+      else if(point.y > lpcrectOut->bottom())
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.x() < lpcrectOut->left())
+      else if(point.x < lpcrectOut->left())
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.y() < lpcrectOut->top())
+      else if(point.y < lpcrectOut->top())
       {
          direction  += 180 + ((int) direction  % 360);
       }
 
-      if(point.x() > lpcrectOut->right())
+      if(point.x > lpcrectOut->right())
       {
-         point.x() = lpcrectOut->right();
+         point.x = lpcrectOut->right();
       }
-      else if(point.x() < lpcrectOut->left())
+      else if(point.x < lpcrectOut->left())
       {
-         point.x() = lpcrectOut->left();
+         point.x = lpcrectOut->left();
       }
 
-      if(point.y() > lpcrectOut->bottom())
+      if(point.y > lpcrectOut->bottom())
       {
-         point.y() = lpcrectOut->bottom();
+         point.y = lpcrectOut->bottom();
       }
-      else if(point.y() < lpcrectOut->top())
+      else if(point.y < lpcrectOut->top())
       {
-         point.y() = lpcrectOut->top();
+         point.y = lpcrectOut->top();
       }
 
    }
@@ -2548,8 +2548,8 @@ namespace backimpact
             ct1.m_rndgrowDirectionLatency);
          ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
          ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
-         ct1.m_pointColorTrack.x() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
-         ct1.m_pointColorTrack.y() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
+         ct1.m_pointColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
+         ct1.m_pointColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
          Constraint001(
             ct1.m_pointColorTrack,
             rcTrackBox,
@@ -2763,8 +2763,8 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pointNow.x()=i;
-         pointNow.y() = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
+         pointNow.x=i;
+         pointNow.y = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
          pimage1->get_graphics()->line(pointLast, pointNow);
          pointLast = pointNow;
          j++;
@@ -2779,36 +2779,36 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pointNow.x() = i;
-         pointNow.y() = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
+         pointNow.x = i;
+         pointNow.y = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
          pimage1->get_graphics()->line(pointLast, pointNow);
          pointLast = pointNow;
          j--;
       }
 
-      pointLast.x() =margin;
-      pointLast.y() =cy1-margin;
+      pointLast.x =margin;
+      pointLast.y =cy1-margin;
       //pimage1->get_graphics()->set_current_point(margin, cy1 - margin);
 
       for(i = margin; i < jmax; i++)
       {
-         pointNow.x() = i;
-         pointNow.y() = cy1 - margin + ((rand() - rhalf) * j * w / rmax);
+         pointNow.x = i;
+         pointNow.y = cy1 - margin + ((rand() - rhalf) * j * w / rmax);
          pimage1->get_graphics()->line(pointLast, pointNow);
          pointLast = pointNow;
          j++;
       }
       for(; i < imax; i++)
       {
-         pointNow.x() = i;
-         pointNow.y() = cy1 - margin + ((rand() - rhalf) * j * w / rmax);
+         pointNow.x = i;
+         pointNow.y = cy1 - margin + ((rand() - rhalf) * j * w / rmax);
          pimage1->get_graphics()->line(pointLast, pointNow );
          pointLast = pointNow;
          j--;
       }
 
-      pointLast.x() = margin;
-      pointLast.y() = margin;
+      pointLast.x = margin;
+      pointLast.y = margin;
       //pimage1->get_graphics()->set_current_point(margin, margin);
 
       // vertical
@@ -2829,8 +2829,8 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pointNow.x() = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
-         pointNow.y() = i;
+         pointNow.x = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
+         pointNow.y = i;
          pimage1->get_graphics()->line(pointLast, pointNow);
          pointLast = pointNow;
          j++;
@@ -2845,29 +2845,29 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pointNow.x() = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
-         pointNow.y() = i;
+         pointNow.x = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
+         pointNow.y = i;
          pimage1->get_graphics()->line(pointLast, pointNow);
          pointLast=pointNow;
          j--;
       }
 
-      pointLast.x ()=cx1-margin;
-      pointLast.y() = margin;
+      pointLast.x=cx1-margin;
+      pointLast.y = margin;
       //pimage1->get_graphics()->set_current_point(cx1 - margin, margin);
 
       for(i = margin; i < jmax; i++)
       {
-         pointNow.x()=cx1 - margin + ((rand() - rhalf) * j * w / rmax);
-            pointNow.y()=i;
+         pointNow.x=cx1 - margin + ((rand() - rhalf) * j * w / rmax);
+            pointNow.y=i;
          pimage1->get_graphics()->line(pointLast, pointNow);
          pointLast=pointNow;
          j++;
       }
       for(; i < imax; i++)
       {
-         pointNow.x()=cx1 - margin + ((rand() - rhalf) * j * w / rmax);
-         pointNow.y()=i;
+         pointNow.x=cx1 - margin + ((rand() - rhalf) * j * w / rmax);
+         pointNow.y=i;
          pimage1->get_graphics()->line(pointLast, pointNow);
          pointLast=pointNow;
          j--;
@@ -2910,8 +2910,8 @@ namespace backimpact
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                color_track1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_pointColorTrack.x();
-               int y1 = ct1.m_pointColorTrack.y();
+               int x1 = ct1.m_pointColorTrack.x;
+               int y1 = ct1.m_pointColorTrack.y;
                int d = ct1.m_dSize;
                switch(i % 5)
                {
@@ -3183,9 +3183,9 @@ namespace backimpact
 
             for(int i = 0; i < cx1; i++)
             {
-               m_pointa[i].y() = cy1 / 2;
-               m_pointa1[i].y() = 0;
-               m_pointa1[i].y() = 0;
+               m_pointa[i].y = cy1 / 2;
+               m_pointa1[i].y = 0;
+               m_pointa1[i].y = 0;
             }
          }
       }
@@ -3256,12 +3256,12 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 2 / rmax;
          }*/
-         m_pointa[i].x() = i;
+         m_pointa[i].x = i;
          //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
          jres = j * jmul;
          offset = (rand() - rhalf) * j * delta / rmax;
-         m_pointa[i].y() = (int) maximum(margin2 - jres, minimum(margin2 + jres, m_pointa[i - 1].y() + offset));
-         m_pointa[i].y() = (m_pointa[i].y() + margin2) / 2;
+         m_pointa[i].y = (int) maximum(margin2 - jres, minimum(margin2 + jres, m_pointa[i - 1].y + offset));
+         m_pointa[i].y = (m_pointa[i].y + margin2) / 2;
          j++;
       }
       j = 0;
@@ -3275,12 +3275,12 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 2 / rmax;
          }*/
-         m_pointa[i].x() = i;
+         m_pointa[i].x = i;
          //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
          jres = j * jmul;
          offset = ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y() = (int) maximum(margin2 - jres, minimum(margin2 + jres, m_pointa[i + 1].y() + offset));
-         m_pointa[i].y() = (m_pointa[i].y() + margin2) / 2;
+         m_pointa[i].y = (int) maximum(margin2 - jres, minimum(margin2 + jres, m_pointa[i + 1].y + offset));
+         m_pointa[i].y = (m_pointa[i].y + margin2) / 2;
          j++;
       }
 
@@ -3452,9 +3452,9 @@ namespace backimpact
 
             for(int i = 0; i < cx1; i++)
             {
-               m_pointa[i].y() = cy1 / 2;
-               m_pointa1[i].y() = 0;
-               m_pointa1[i].y() = 0;
+               m_pointa[i].y = cy1 / 2;
+               m_pointa1[i].y = 0;
+               m_pointa1[i].y = 0;
             }
          }
       }
@@ -3495,8 +3495,8 @@ namespace backimpact
             ct1.m_rndgrowDirectionLatency);
          ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
          ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
-         ct1.m_pointColorTrack.x() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
-         ct1.m_pointColorTrack.y() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
+         ct1.m_pointColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
+         ct1.m_pointColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
          Constraint001(
             ct1.m_pointColorTrack,
             rcTrackBox,
@@ -3754,9 +3754,9 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 2 / rmax;
          }
-         m_pointa[i].x() = i;
+         m_pointa[i].x = i;
          offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y() = maximum(- j * w, minimum( j * w, m_pointa[i].y() + offset));
+         m_pointa[i].y = maximum(- j * w, minimum( j * w, m_pointa[i].y + offset));
          j++;
       }
       for(; i < imax; i++)
@@ -3769,22 +3769,22 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 2 / rmax;
          }
-         m_pointa[i].x() = i;
+         m_pointa[i].x = i;
          offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y() = maximum(- j * w, minimum( j * w, m_pointa[i].y() + offset));
+         m_pointa[i].y = maximum(- j * w, minimum( j * w, m_pointa[i].y + offset));
          j--;
       }
       pimage1->get_graphics()->set(ppenWhite);
-      pimage1->get_graphics()->set_current_point(m_pointa[margin1].x(), m_pointa[margin1].y());
+      pimage1->get_graphics()->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       for(i = margin1; i < imax; i++)
       {
-         pimage1->get_graphics()->line_to(m_pointa[i].x(), m_pointa[i].y());
+         pimage1->get_graphics()->line_to(m_pointa[i].x, m_pointa[i].y);
       }
       pimage1->get_graphics()->set(ppen1);
-      pimage1->get_graphics()->set_current_point(m_pointa[margin1].x(), m_pointa[margin1].y());
+      pimage1->get_graphics()->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       for(i = margin1; i < imax; i++)
       {
-         pimage1->get_graphics()->line_to(m_pointa[i].x(), m_pointa[i].y());
+         pimage1->get_graphics()->line_to(m_pointa[i].x, m_pointa[i].y);
       }
 
       pimage1->g()->fill_rectangle({ 0, 0, cx1, cy1, argb(255, 34, 34, 34), 10);
@@ -3884,8 +3884,8 @@ namespace backimpact
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                color_track1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_pointColorTrack.x();
-               int y1 = ct1.m_pointColorTrack.y();
+               int x1 = ct1.m_pointColorTrack.x;
+               int y1 = ct1.m_pointColorTrack.y;
                int d = ct1.m_dSize;
                switch(i % 5)
                {
@@ -4543,8 +4543,8 @@ namespace backimpact
             ct1.m_rndgrowDirectionLatency);
          ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
          ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
-         ct1.m_pointColorTrack.x() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
-         ct1.m_pointColorTrack.y() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
+         ct1.m_pointColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
+         ct1.m_pointColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
          Constraint001(
             ct1.m_pointColorTrack,
             rcTrackBox,
@@ -4767,8 +4767,8 @@ namespace backimpact
       }
 
       //pimage1->get_graphics()->set_current_point(marginx, cy1 - marginy);
-      pointLast.x()= marginx;
-      pointLast.y() = cy1-marginy;
+      pointLast.x= marginx;
+      pointLast.y = cy1-marginy;
 
       for(i = marginx; i < jmax; i++)
       {
@@ -4782,8 +4782,8 @@ namespace backimpact
       }
 
       //pimage1->get_graphics()->set_current_point(marginx, marginy);
-      pointLast.x()=marginx;
-      pointLast.y() =marginy;
+      pointLast.x=marginx;
+      pointLast.y =marginy;
 
       // vertical
       //   imax = cy1 - margin;
@@ -4866,8 +4866,8 @@ namespace backimpact
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                color_track1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_pointColorTrack.x();
-               int y1 = ct1.m_pointColorTrack.y();
+               int x1 = ct1.m_pointColorTrack.x;
+               int y1 = ct1.m_pointColorTrack.y;
                int d = ct1.m_dSize;
                switch(i % 5)
                {
@@ -5011,8 +5011,8 @@ namespace backimpact
             ct1.m_rndgrowDirectionLatency);
          ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
          ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
-         ct1.m_pointColorTrack.x() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
-         ct1.m_pointColorTrack.y() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
+         ct1.m_pointColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
+         ct1.m_pointColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
          Constraint001(
             ct1.m_pointColorTrack,
             rcTrackBox,
@@ -5204,8 +5204,8 @@ namespace backimpact
       int margin = 10;
       int w = margin * 2;
       ::int_point pointLast;
-      pointLast.x()=margin;
-      pointLast.y()=margin;
+      pointLast.x=margin;
+      pointLast.y=margin;
       //pimage1->get_graphics()->set_current_point(margin, margin);
 
       int imax = cx1 - margin;
@@ -5243,8 +5243,8 @@ namespace backimpact
          j--;
       }
 
-      pointLast.x()=margin;
-      pointLast.y() = cy1-margin;
+      pointLast.x=margin;
+      pointLast.y = cy1-margin;
       //pimage1->get_graphics()->set_current_point(margin, cy1 - margin);
 
       for(i = margin; i < jmax; i++)
@@ -5258,8 +5258,8 @@ namespace backimpact
          j--;
       }
 
-      pointLast.x()=margin;
-      pointLast.y()=margin;
+      pointLast.x=margin;
+      pointLast.y=margin;
       //pimage1->get_graphics()->set_current_point(margin, margin);
 
       // vertical
@@ -5297,8 +5297,8 @@ namespace backimpact
          j--;
       }
 
-      pointLast.x() = cx1-margin;
-      pointLast.y() =margin;
+      pointLast.x = cx1-margin;
+      pointLast.y =margin;
       //pimage1->get_graphics()->set_current_point(cx1 - margin, margin);
 
       for(i = margin; i < jmax; i++)
@@ -5349,8 +5349,8 @@ namespace backimpact
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                color_track1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_pointColorTrack.x();
-               int y1 = ct1.m_pointColorTrack.y();
+               int x1 = ct1.m_pointColorTrack.x;
+               int y1 = ct1.m_pointColorTrack.y;
                int d = ct1.m_dSize;
                switch(i % 5)
                {
@@ -5482,9 +5482,9 @@ namespace backimpact
 
             for(int i = 0; i < cx1; i++)
             {
-               m_pointa[i].y() = cy1 / 2;
-               m_pointa1[i].y() = 0;
-               m_pointa1[i].y() = 0;
+               m_pointa[i].y = cy1 / 2;
+               m_pointa1[i].y = 0;
+               m_pointa1[i].y = 0;
             }
          }
       }
@@ -5555,12 +5555,12 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 2 / rmax;
          }*/
-         m_pointa[i].x() = i;
+         m_pointa[i].x = i;
          //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
          jres = j * jmul;
          offset = (rand() - rhalf) * j * delta / rmax;
-         m_pointa[i].y() = (int) maximum(margin2 - jres, minimum(margin2 + jres, m_pointa[i - 1].y() + offset));
-         m_pointa[i].y() = (int) (m_pointa[i].y() + margin2) / 2;
+         m_pointa[i].y = (int) maximum(margin2 - jres, minimum(margin2 + jres, m_pointa[i - 1].y + offset));
+         m_pointa[i].y = (int) (m_pointa[i].y + margin2) / 2;
          j++;
       }
       j = 0;
@@ -5574,12 +5574,12 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 2 / rmax;
          }*/
-         m_pointa[i].x() = i;
+         m_pointa[i].x = i;
          //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
          jres = j * jmul;
          offset = ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y() = (int) maximum(margin2 - jres, minimum(margin2 + jres, m_pointa[i + 1].y() + offset));
-         m_pointa[i].y() = (int) (m_pointa[i].y() + margin2) / 2;
+         m_pointa[i].y = (int) maximum(margin2 - jres, minimum(margin2 + jres, m_pointa[i + 1].y + offset));
+         m_pointa[i].y = (int) (m_pointa[i].y + margin2) / 2;
          j++;
       }
 
@@ -5588,14 +5588,14 @@ namespace backimpact
       if(m_iVisual == VisualEffectRotateEx5)
       {
          pimage1->get_graphics()->set(ppenWhite);
-//         pimage1->get_graphics()->set_current_point(m_pointa[margin1].x(), m_pointa[margin1].y());
+//         pimage1->get_graphics()->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
          //for(i = margin1+1; i < imax; i++)
          //{
             pimage1->get_graphics()->polyline(&m_pointa[margin1], imax-margin1-1);
          //}
       }
       pimage1->get_graphics()->set(ppen1);
-      //pimage1->get_graphics()->set_current_point(m_pointa[margin1].x(), m_pointa[margin1].y());
+      //pimage1->get_graphics()->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       //for(i = margin1; i < imax; i++)
       //{
          pimage1->get_graphics()->polyline(&m_pointa[margin1], imax-margin1-1);
@@ -5755,9 +5755,9 @@ namespace backimpact
 
             for(int i = 0; i < cx1; i++)
             {
-               m_pointa[i].y() = cy1 / 2;
-               m_pointa1[i].y() = 0;
-               m_pointa1[i].y() = 0;
+               m_pointa[i].y = cy1 / 2;
+               m_pointa1[i].y = 0;
+               m_pointa1[i].y = 0;
             }
          }
       }
@@ -5798,8 +5798,8 @@ namespace backimpact
             ct1.m_rndgrowDirectionLatency);
          ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
          ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
-         ct1.m_pointColorTrack.x() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
-         ct1.m_pointColorTrack.y() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
+         ct1.m_pointColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
+         ct1.m_pointColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
          Constraint001(
             ct1.m_pointColorTrack,
             rcTrackBox,
@@ -6055,9 +6055,9 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 2 / rmax;
          }
-         m_pointa[i].x() = i;
+         m_pointa[i].x = i;
          offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y() = maximum(- j * w, minimum( j * w, m_pointa[i].y() + offset));
+         m_pointa[i].y = maximum(- j * w, minimum( j * w, m_pointa[i].y + offset));
          j++;
       }
       for(; i < imax; i++)
@@ -6070,19 +6070,19 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 2 / rmax;
          }
-         m_pointa[i].x() = i;
+         m_pointa[i].x = i;
          offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y() = maximum(- j * w, minimum( j * w, m_pointa[i].y() + offset));
+         m_pointa[i].y = maximum(- j * w, minimum( j * w, m_pointa[i].y + offset));
          j--;
       }
       pimage1->get_graphics()->set(ppenWhite);
-      //pimage1->get_graphics()->set_current_point(m_pointa[margin1].x(), m_pointa[margin1].y());
+      //pimage1->get_graphics()->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       //for(i = margin1; i < imax; i++)
       //{
          pimage1->get_graphics()->polyline(&m_pointa[margin1], imax-margin1-1);
       //}
       pimage1->get_graphics()->set(ppen1);
-      //pimage1->get_graphics()->set_current_point(m_pointa[margin1].x(), m_pointa[margin1].y());
+      //pimage1->get_graphics()->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       //for(i = margin1; i < imax; i++)
       //{
          pimage1->get_graphics()->polyline(&m_pointa[margin1], imax-margin1-1);
@@ -6186,8 +6186,8 @@ namespace backimpact
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                color_track1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_pointColorTrack.x();
-               int y1 = ct1.m_pointColorTrack.y();
+               int x1 = ct1.m_pointColorTrack.x;
+               int y1 = ct1.m_pointColorTrack.y;
                int d = ct1.m_dSize;
                switch(i % 5)
                {
@@ -6365,8 +6365,8 @@ namespace backimpact
             ct1.m_rndgrowDirectionLatency);
          ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
          ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
-         ct1.m_pointColorTrack.x() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
-         ct1.m_pointColorTrack.y() += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
+         ct1.m_pointColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
+         ct1.m_pointColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
          Constraint001(
             ct1.m_pointColorTrack,
             rcTrackBox,
@@ -6588,8 +6588,8 @@ namespace backimpact
          j--;
       }
 
-      pointLast.x() = marginx;
-      pointLast.y() = cy1-marginy;
+      pointLast.x = marginx;
+      pointLast.y = cy1-marginy;
       //pimage1->get_graphics()->set_current_point(marginx, cy1 - marginy);
 
       for(i = marginx; i < jmax; i++)
@@ -6605,8 +6605,8 @@ namespace backimpact
 
       //pimage1->get_graphics()->set_current_point(marginx, marginy);
 
-      pointLast.x()= marginx;
-      pointLast.y() = marginy;
+      pointLast.x= marginx;
+      pointLast.y = marginy;
 
       // vertical
       //   imax = cy1 - margin;
@@ -6689,8 +6689,8 @@ namespace backimpact
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                color_track1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_pointColorTrack.x();
-               int y1 = ct1.m_pointColorTrack.y();
+               int x1 = ct1.m_pointColorTrack.x;
+               int y1 = ct1.m_pointColorTrack.y;
                int d = ct1.m_dSize;
                switch(i % 5)
                {

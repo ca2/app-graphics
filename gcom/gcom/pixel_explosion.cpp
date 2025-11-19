@@ -112,8 +112,8 @@ namespace gcom
       {
          for(x = 0, i = imin; i < imax; i++, x++)
          {
-            m = m_pointa[k].x();
-            n = m_pointa[k].y();
+            m = m_pointa[k].x;
+            n = m_pointa[k].y;
 
 
             dr = sqrt(m * m + n * n);
@@ -139,12 +139,12 @@ namespace gcom
             //d = sqrt(d);
 
             // i = x + y * width
-            m_pointa[k].x() = dr * dcos * (rand() * density * d / RAND_MAX + 1.0);
-            m_pointa[k].y() = dr * dsin * (rand() * density * d / RAND_MAX + 1.0);
-            //m_pointa[k].x() = dr * dcos * (1000 * 0.2 * d / RAND_MAX + 1.0);
-            //m_pointa[k].y() = dr * dsin * (1000 * 0.2 * d / RAND_MAX + 1.0);
-            //m_pointa[k].x() = dr * dcos * 1.2 * d;
-            //m_pointa[k].y() = dr * dsin * 1.2 * d;
+            m_pointa[k].x = dr * dcos * (rand() * density * d / RAND_MAX + 1.0);
+            m_pointa[k].y = dr * dsin * (rand() * density * d / RAND_MAX + 1.0);
+            //m_pointa[k].x = dr * dcos * (1000 * 0.2 * d / RAND_MAX + 1.0);
+            //m_pointa[k].y = dr * dsin * (1000 * 0.2 * d / RAND_MAX + 1.0);
+            //m_pointa[k].x = dr * dcos * 1.2 * d;
+            //m_pointa[k].y = dr * dsin * 1.2 * d;
             k++;
          }
       }
@@ -185,9 +185,9 @@ namespace gcom
       {
          for(x = 0, i = imin; i < imax; i++, x++)
          {
-            m = m_pointa[k].x();
-            n = m_pointa[k].y();
-            //o = m_pointa[k].z();
+            m = m_pointa[k].x;
+            n = m_pointa[k].y;
+            //o = m_pointa[k].z;
 
 
             dr = sqrt(m * m + n * n);
@@ -214,12 +214,12 @@ namespace gcom
 
             //int rnd =
             // i = x + y * width
-            m_pointa[k].x() = dr * dcos * (rand() * 0.5 * d / RAND_MAX + 1.0);
-            m_pointa[k].y() = dr * dsin * (rand() * 0.5 * d / RAND_MAX + 1.0);
-//               m_pointa[k].x() = i * d;
-//             m_pointa[k].y() = j * d;
-            m_pointa[k].x() = dr * dcos * 1.2 * d;
-            m_pointa[k].y() = dr * dsin * 1.2 * d;
+            m_pointa[k].x = dr * dcos * (rand() * 0.5 * d / RAND_MAX + 1.0);
+            m_pointa[k].y = dr * dsin * (rand() * 0.5 * d / RAND_MAX + 1.0);
+//               m_pointa[k].x = i * d;
+//             m_pointa[k].y = j * d;
+            m_pointa[k].x = dr * dcos * 1.2 * d;
+            m_pointa[k].y = dr * dsin * 1.2 * d;
             k++;
          }
       }
@@ -256,12 +256,12 @@ namespace gcom
          for(i = imin; i < imax; i++)
          {
 
-            m_pointaM[k].x() = i;
-            m_pointaM[k].x() = j;
-            m_pointaM[k].z() = sqrt(maximum - (i * i + j * j));
-            m_pointa[k].x() = i;
-            m_pointa[k].y() = j;
-            m_pointa[k].z() = m_pointaM[k].z();
+            m_pointaM[k].x = i;
+            m_pointaM[k].x = j;
+            m_pointaM[k].z = sqrt(maximum - (i * i + j * j));
+            m_pointa[k].x = i;
+            m_pointa[k].y = j;
+            m_pointa[k].z = m_pointaM[k].z;
             k++;
          }
       }
@@ -328,10 +328,10 @@ namespace gcom
 
             }
 
-            int newx = (int) m_pointa[i].x() + mx;
+            int newx = (int) m_pointa[i].x + mx;
             if(newx < 0 || newx >= iW)
                continue;
-            int newy = (int) m_pointa[i].y() + my;
+            int newy = (int) m_pointa[i].y + my;
             if(newy < 0 || newy >= m_iHeight)
                continue;
 

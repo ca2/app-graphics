@@ -671,57 +671,57 @@ namespace backimpact
       case TransitionEffectFlyInTopBottom:
       {
          GetRect(&rectangleUpdate, AlignTop);
-         point.x() = 0;
-         point.y() = rectangleUpdate.bottom() - cy;
+         point.x = 0;
+         point.y = rectangleUpdate.bottom() - cy;
       }
       break;
       case TransitionEffectFlyInBottomTop:
       {
          GetRect(&rectangleUpdate, AlignBottom);
-         point.x() = 0;
-         point.y() = 0;
+         point.x = 0;
+         point.y = 0;
       }
       break;
       case TransitionEffectFlyInLeftRight:
       {
          GetRect(&rectangleUpdate, AlignLeft);
-         point.x() = rectangleUpdate.right() - cx;
-         point.y() = 0;
+         point.x = rectangleUpdate.right() - cx;
+         point.y = 0;
       }
       break;
       case TransitionEffectFlyInRightLeft:
       {
          GetRect(&rectangleUpdate, AlignRight);
-         point.x() = 0;
-         point.y() = 0;
+         point.x = 0;
+         point.y = 0;
       }
       break;
       case TransitionEffectFlyInLeftBottom:
       {
          GetRect(&rectangleUpdate, AlignTopRight);
-         point.x() = rectangleUpdate.right() - cx;
-         point.y() = rectangleUpdate.bottom() - cy;
+         point.x = rectangleUpdate.right() - cx;
+         point.y = rectangleUpdate.bottom() - cy;
       }
       break;
       case TransitionEffectFlyInLeftTop:
       {
          GetRect(&rectangleUpdate, AlignRightBottom);
-         point.x() = cx - rectangleUpdate.right();
-         point.y() = 0;
+         point.x = cx - rectangleUpdate.right();
+         point.y = 0;
       }
       break;
       case TransitionEffectFlyInRightBottom:
       {
          GetRect(&rectangleUpdate, AlignLeftTop);
-         point.x() = 0;
-         point.y() = rectangleUpdate.bottom() - cy;
+         point.x = 0;
+         point.y = rectangleUpdate.bottom() - cy;
       }
       break;
       case TransitionEffectFlyInRightTop:
       {
          GetRect(&rectangleUpdate, AlignBottomLeft);
-         point.x() = 0;
-         point.y() = 0;
+         point.x = 0;
+         point.y = 0;
       }
       break;
       case TransitionEffectWipeTopRight:
@@ -1332,14 +1332,14 @@ namespace backimpact
    void transition_effect::tool_001::GetRect(::int_point * lppoint, const ::int_rectangle & rectangle)
    {
 
-      lppoint[0].x() = (int) rectangle.left();
-      lppoint[0].y() = (int) rectangle.top();
-      lppoint[1].x() = (int) rectangle.right();
-      lppoint[1].y() = (int) rectangle.top();
-      lppoint[2].x() = (int) rectangle.right();
-      lppoint[2].y() = (int) rectangle.bottom();
-      lppoint[3].x() = (int) rectangle.left();
-      lppoint[3].y() = (int) rectangle.bottom();
+      lppoint[0].x = (int) rectangle.left();
+      lppoint[0].y = (int) rectangle.top();
+      lppoint[1].x = (int) rectangle.right();
+      lppoint[1].y = (int) rectangle.top();
+      lppoint[2].x = (int) rectangle.right();
+      lppoint[2].y = (int) rectangle.bottom();
+      lppoint[3].x = (int) rectangle.left();
+      lppoint[3].y = (int) rectangle.bottom();
 
    }
 
@@ -1347,14 +1347,14 @@ namespace backimpact
    void transition_effect::tool_001::GetRect(::double_point * lppoint, const ::int_rectangle & rectangle)
    {
 
-      lppoint[0].x() = (int) rectangle.left() - 1.0;
-      lppoint[0].y() = (int) rectangle.top() - 1.0;
-      lppoint[1].x() = (int) rectangle.right() + 1.0;
-      lppoint[1].y() = (int) rectangle.top() - 1.0;
-      lppoint[2].x() = (int) rectangle.right() + 1.0;
-      lppoint[2].y() = (int) rectangle.bottom() + 1.0;
-      lppoint[3].x() = (int) rectangle.left() - 1.0;
-      lppoint[3].y() = (int) rectangle.bottom() + 1.0;
+      lppoint[0].x = (int) rectangle.left() - 1.0;
+      lppoint[0].y = (int) rectangle.top() - 1.0;
+      lppoint[1].x = (int) rectangle.right() + 1.0;
+      lppoint[1].y = (int) rectangle.top() - 1.0;
+      lppoint[2].x = (int) rectangle.right() + 1.0;
+      lppoint[2].y = (int) rectangle.bottom() + 1.0;
+      lppoint[3].x = (int) rectangle.left() - 1.0;
+      lppoint[3].y = (int) rectangle.bottom() + 1.0;
 
    }
 
@@ -1390,20 +1390,20 @@ namespace backimpact
 //
 //      }
 //
-//      double left = lppoint[0].x();
+//      double left = lppoint[0].x;
 //      double right = left;
-//      double top = lppoint[0].y();
+//      double top = lppoint[0].y;
 //      double bottom = top;
 //      for(int i = 1; i < iCount; i++)
 //      {
-//         if(lppoint[i].x() < left)
-//            left = floor(lppoint[i].x());
-//         else if(lppoint[i].x() > right)
-//            right = ceil(lppoint[i].x());
-//         if(lppoint[i].y() < top)
-//            top= floor(lppoint[i].y());
-//         else if(lppoint[i].y() > bottom)
-//            bottom = ceil(lppoint[i].y());
+//         if(lppoint[i].x < left)
+//            left = floor(lppoint[i].x);
+//         else if(lppoint[i].x > right)
+//            right = ceil(lppoint[i].x);
+//         if(lppoint[i].y < top)
+//            top= floor(lppoint[i].y);
+//         else if(lppoint[i].y > bottom)
+//            bottom = ceil(lppoint[i].y);
 //      }
 //      lprect->left() = (int) left;
 //      lprect->right() = (int)right;

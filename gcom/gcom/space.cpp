@@ -247,8 +247,8 @@ namespace gcom
    void space::get_center(::int_point * lppoint, ::int_rectangle * lprect)
    {
 
-      lppoint->x() = (lprect->left() + lprect->right()) / 2;
-      lppoint->y() = (lprect->top() + lprect->bottom()) / 2;
+      lppoint->x = (lprect->left() + lprect->right()) / 2;
+      lppoint->y = (lprect->top() + lprect->bottom()) / 2;
 
    }
 
@@ -264,9 +264,9 @@ namespace gcom
       cx = (int) (cx * dRate);
       cy = (int) (cy * dRate);
 
-      lprectScaling->left()     = point.x() - cx / 2;
+      lprectScaling->left()     = point.x - cx / 2;
       lprectScaling->right()    = lprectScaling->left() + cx;
-      lprectScaling->top()      = point.y() - cy / 2;
+      lprectScaling->top()      = point.y - cy / 2;
       lprectScaling->bottom()   = lprectScaling->top() + cy;
 
    }

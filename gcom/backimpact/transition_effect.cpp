@@ -785,7 +785,7 @@ namespace backimpact
 
             m_ptool001->m_polygon.set_size(4);
 
-            m_ptool001->GetRotateRect(point.x(), point.y(), m_ptool001->m_polygon.data());
+            m_ptool001->GetRotateRect(point.x, point.y, m_ptool001->m_polygon.data());
             //::draw2d::region_pointer rgnClip(e_create);
             //rgnClip->create_polygon(pointa, 4, ::draw2d::e_fill_mode_winding);
 
@@ -844,7 +844,7 @@ namespace backimpact
                break;
             }
             m_ptool001->m_polygon.set_size(6);
-            m_ptool001->GetRotateHexagon(point.x(), point.y(), m_ptool001->m_polygon.data());
+            m_ptool001->GetRotateHexagon(point.x, point.y, m_ptool001->m_polygon.data());
             dcBack->intersect_clip(m_ptool001->m_polygon);
             ::get_bounding_box(rectangleUpdate, m_ptool001->m_polygon.data(), 6);
 
@@ -1085,9 +1085,9 @@ namespace backimpact
 
             ::int_point point = m_ptool001->m_pointa.element_at(iIndex);
 
-            iTile = point.x();
+            iTile = point.x;
 
-            ///int iGroup = point.y();
+            ///int iGroup = point.y;
 
             double dRate = (double)( iTile + 1) /(double)(iTileMax);
 
@@ -1726,9 +1726,9 @@ namespace backimpact
 
          int c1 = m_ptool001->m_data.m_alphapixelate.m_c1;
          ::collection::index iIndex = m_ptool001->m_iStep - 1;
-         ::collection::index iSizeIndex = m_ptool001->m_pointa[iIndex].x();
+         ::collection::index iSizeIndex = m_ptool001->m_pointa[iIndex].x;
          int iSize = m_ptool001->m_ia[iSizeIndex];
-         int nextc = m_ptool001->m_pointa[iIndex].y();
+         int nextc = m_ptool001->m_pointa[iIndex].y;
          int ca;
 
          if(iIndex <= 0 || nextc == 0)
@@ -1737,7 +1737,7 @@ namespace backimpact
          }
          else
          {
-            ca = m_ptool001->m_pointa[iIndex - 1].y();
+            ca = m_ptool001->m_pointa[iIndex - 1].y;
          }
 
 
@@ -2014,9 +2014,9 @@ namespace backimpact
          ::collection::index iIndex = m_ptool001->m_iStep - 1;
          m_ptool001->m_data.m_radialunveil.m_iRadius += m_ptool001->m_data.m_radialunveil.m_iRadiusIncrement;
 
-         m_timeDelay = ::millisecond_time(m_ptool001->m_pointa[iIndex].y());
+         m_timeDelay = ::millisecond_time(m_ptool001->m_pointa[iIndex].y);
 
-         int r = m_ptool001->m_pointa[iIndex].x();
+         int r = m_ptool001->m_pointa[iIndex].x;
          int d = r * 2;
 
 
@@ -2224,7 +2224,7 @@ namespace backimpact
 //               const int c2 = m_ptool001->m_data.m_alphapixelate.m_c2;
 
          ::collection::index iIndex = m_ptool001->m_iStep - 1;
-         int iSizeIndex = m_ptool001->m_pointa[iIndex].x();
+         int iSizeIndex = m_ptool001->m_pointa[iIndex].x;
          int iSize = m_ptool001->m_ia[iSizeIndex];
 
          if(iSize < 64)
@@ -2236,7 +2236,7 @@ namespace backimpact
          int iStepCount = c1 / iSize;
          if(c1 % iSize == 0)
             iStepCount++;
-         int iStartStep = m_ptool001->m_pointa2[iIndex].y();
+         int iStartStep = m_ptool001->m_pointa2[iIndex].y;
          int iStep = (int) (iIndex - iStartStep);
          iStepRepeatCount = iStepCount / 8;
          if(iStep > iStepCount - iStepCount / 4)
