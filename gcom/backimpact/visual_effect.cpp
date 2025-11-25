@@ -1732,10 +1732,10 @@ namespace backimpact
 
       ::int_rectangle rcTrackBox;
 
-      rcTrackBox.left()   = cx1 * 4 / 9;
-      rcTrackBox.top()    = cy1 * 4 / 9;
-      rcTrackBox.right()  = cx1 - rcTrackBox.left();
-      rcTrackBox.bottom() = cy1 - rcTrackBox.top();
+      rcTrackBox.left   = cx1 * 4 / 9;
+      rcTrackBox.top    = cy1 * 4 / 9;
+      rcTrackBox.right  = cx1 - rcTrackBox.left;
+      rcTrackBox.bottom = cy1 - rcTrackBox.top;
 
       for(int i = 0; i < m_colortrack1a.get_size(); i++)
       {
@@ -2004,39 +2004,39 @@ namespace backimpact
 
    void visual_effect::Constraint001(int_point & point, const ::int_rectangle & rectangle, double & direction)
    {
-      if(point.x > rectangle.right())
+      if(point.x > rectangle.right)
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.y > rectangle.bottom())
+      else if(point.y > rectangle.bottom)
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.x < rectangle.left())
+      else if(point.x < rectangle.left)
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.y < rectangle.top())
+      else if(point.y < rectangle.top)
       {
          direction  += 180 + ((int) direction  % 360);
       }
 
-      if(point.x > rectangle.right())
+      if(point.x > rectangle.right)
       {
-         point.x = rectangle.right();
+         point.x = rectangle.right;
       }
-      else if(point.x < rectangle.left())
+      else if(point.x < rectangle.left)
       {
-         point.x = rectangle.left();
+         point.x = rectangle.left;
       }
 
-      if(point.y > rectangle.bottom())
+      if(point.y > rectangle.bottom)
       {
-         point.y = rectangle.bottom();
+         point.y = rectangle.bottom;
       }
-      else if(point.y < rectangle.top())
+      else if(point.y < rectangle.top)
       {
-         point.y = rectangle.top();
+         point.y = rectangle.top;
       }
 
    }
@@ -2104,17 +2104,17 @@ namespace backimpact
 
       ::int_rectangle rcTrackBox;
 
-      rcTrackBox.left()   = 1;
-      rcTrackBox.top()    = 1;
-      rcTrackBox.right()  = cx1 - 1 - rcTrackBox.left();
-      rcTrackBox.bottom() = cy1 - 1 - rcTrackBox.top();
+      rcTrackBox.left   = 1;
+      rcTrackBox.top    = 1;
+      rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
+      rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
       ::int_rectangle rcTrackBox2;
 
-      rcTrackBox2.left()   = 0;
-      rcTrackBox2.top()    = 0;
-      rcTrackBox2.right()  = cx1 - 1 - rcTrackBox2.left();
-      rcTrackBox2.bottom() = cy1 - 1 - rcTrackBox2.top();
+      rcTrackBox2.left   = 0;
+      rcTrackBox2.top    = 0;
+      rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
+      rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
       /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
       {
@@ -2419,56 +2419,56 @@ namespace backimpact
 
          if(point.x > pointCenter.x)
          {
-            point.x = rectangleIn.right();
+            point.x = rectangleIn.right;
          }
          else
          {
-            point.x = rectangleIn.left();
+            point.x = rectangleIn.left;
          }
 
          if(point.y > pointCenter.y)
          {
-            point.y = rectangleIn.bottom();
+            point.y = rectangleIn.bottom;
          }
          else
          {
-            point.y = rectangleIn.left();
+            point.y = rectangleIn.left;
          }
       }
 
-      if(point.x > lpcrectOut->right())
+      if(point.x > lpcrectOut->right)
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.y > lpcrectOut->bottom())
+      else if(point.y > lpcrectOut->bottom)
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.x < lpcrectOut->left())
+      else if(point.x < lpcrectOut->left)
       {
          direction  += 180 + ((int) direction  % 360);
       }
-      else if(point.y < lpcrectOut->top())
+      else if(point.y < lpcrectOut->top)
       {
          direction  += 180 + ((int) direction  % 360);
       }
 
-      if(point.x > lpcrectOut->right())
+      if(point.x > lpcrectOut->right)
       {
-         point.x = lpcrectOut->right();
+         point.x = lpcrectOut->right;
       }
-      else if(point.x < lpcrectOut->left())
+      else if(point.x < lpcrectOut->left)
       {
-         point.x = lpcrectOut->left();
+         point.x = lpcrectOut->left;
       }
 
-      if(point.y > lpcrectOut->bottom())
+      if(point.y > lpcrectOut->bottom)
       {
-         point.y = lpcrectOut->bottom();
+         point.y = lpcrectOut->bottom;
       }
-      else if(point.y < lpcrectOut->top())
+      else if(point.y < lpcrectOut->top)
       {
-         point.y = lpcrectOut->top();
+         point.y = lpcrectOut->top;
       }
 
    }
@@ -2526,17 +2526,17 @@ namespace backimpact
 
       ::int_rectangle rcTrackBox;
 
-      rcTrackBox.left()   = 1;
-      rcTrackBox.top()    = 1;
-      rcTrackBox.right()  = cx1 - 1 - rcTrackBox.left();
-      rcTrackBox.bottom() = cy1 - 1 - rcTrackBox.top();
+      rcTrackBox.left   = 1;
+      rcTrackBox.top    = 1;
+      rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
+      rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
       ::int_rectangle rcTrackBox2;
 
-      rcTrackBox2.left()   = 0;
-      rcTrackBox2.top()    = 0;
-      rcTrackBox2.right()  = cx1 - 1 - rcTrackBox2.left();
-      rcTrackBox2.bottom() = cy1 - 1 - rcTrackBox2.top();
+      rcTrackBox2.left   = 0;
+      rcTrackBox2.top    = 0;
+      rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
+      rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
       /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
       {
@@ -3473,17 +3473,17 @@ namespace backimpact
 
       ::int_rectangle rcTrackBox;
 
-      rcTrackBox.left()   = 1;
-      rcTrackBox.top()    = 1;
-      rcTrackBox.right()  = cx1 - 1 - rcTrackBox.left();
-      rcTrackBox.bottom() = cy1 - 1 - rcTrackBox.top();
+      rcTrackBox.left   = 1;
+      rcTrackBox.top    = 1;
+      rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
+      rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
       ::int_rectangle rcTrackBox2;
 
-      rcTrackBox2.left()   = 0;
-      rcTrackBox2.top()    = 0;
-      rcTrackBox2.right()  = cx1 - 1 - rcTrackBox2.left();
-      rcTrackBox2.bottom() = cy1 - 1 - rcTrackBox2.top();
+      rcTrackBox2.left   = 0;
+      rcTrackBox2.top    = 0;
+      rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
+      rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
       /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
       {
@@ -4521,17 +4521,17 @@ namespace backimpact
 
       ::int_rectangle rcTrackBox;
 
-      rcTrackBox.left()   = 1;
-      rcTrackBox.top()    = 1;
-      rcTrackBox.right()  = cx1 - 1 - rcTrackBox.left();
-      rcTrackBox.bottom() = cy1 - 1 - rcTrackBox.top();
+      rcTrackBox.left   = 1;
+      rcTrackBox.top    = 1;
+      rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
+      rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
       ::int_rectangle rcTrackBox2;
 
-      rcTrackBox2.left()   = 0;
-      rcTrackBox2.top()    = 0;
-      rcTrackBox2.right()  = cx1 - 1 - rcTrackBox2.left();
-      rcTrackBox2.bottom() = cy1 - 1 - rcTrackBox2.top();
+      rcTrackBox2.left   = 0;
+      rcTrackBox2.top    = 0;
+      rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
+      rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
       /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
       {
@@ -4989,17 +4989,17 @@ namespace backimpact
 
       ::int_rectangle rcTrackBox;
 
-      rcTrackBox.left()   = 1;
-      rcTrackBox.top()    = 1;
-      rcTrackBox.right()  = cx1 - 1 - rcTrackBox.left();
-      rcTrackBox.bottom() = cy1 - 1 - rcTrackBox.top();
+      rcTrackBox.left   = 1;
+      rcTrackBox.top    = 1;
+      rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
+      rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
       ::int_rectangle rcTrackBox2;
 
-      rcTrackBox2.left()   = 0;
-      rcTrackBox2.top()    = 0;
-      rcTrackBox2.right()  = cx1 - 1 - rcTrackBox2.left();
-      rcTrackBox2.bottom() = cy1 - 1 - rcTrackBox2.top();
+      rcTrackBox2.left   = 0;
+      rcTrackBox2.top    = 0;
+      rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
+      rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
       /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
       {
@@ -5776,17 +5776,17 @@ namespace backimpact
 
       ::int_rectangle rcTrackBox;
 
-      rcTrackBox.left()   = 1;
-      rcTrackBox.top()    = 1;
-      rcTrackBox.right()  = cx1 - 1 - rcTrackBox.left();
-      rcTrackBox.bottom() = cy1 - 1 - rcTrackBox.top();
+      rcTrackBox.left   = 1;
+      rcTrackBox.top    = 1;
+      rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
+      rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
       ::int_rectangle rcTrackBox2;
 
-      rcTrackBox2.left()   = 0;
-      rcTrackBox2.top()    = 0;
-      rcTrackBox2.right()  = cx1 - 1 - rcTrackBox2.left();
-      rcTrackBox2.bottom() = cy1 - 1 - rcTrackBox2.top();
+      rcTrackBox2.left   = 0;
+      rcTrackBox2.top    = 0;
+      rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
+      rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
       /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
       {
@@ -6343,17 +6343,17 @@ namespace backimpact
 
       ::int_rectangle rcTrackBox;
 
-      rcTrackBox.left()   = 1;
-      rcTrackBox.top()    = 1;
-      rcTrackBox.right()  = cx1 - 1 - rcTrackBox.left();
-      rcTrackBox.bottom() = cy1 - 1 - rcTrackBox.top();
+      rcTrackBox.left   = 1;
+      rcTrackBox.top    = 1;
+      rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
+      rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
       ::int_rectangle rcTrackBox2;
 
-      rcTrackBox2.left()   = 0;
-      rcTrackBox2.top()    = 0;
-      rcTrackBox2.right()  = cx1 - 1 - rcTrackBox2.left();
-      rcTrackBox2.bottom() = cy1 - 1 - rcTrackBox2.top();
+      rcTrackBox2.left   = 0;
+      rcTrackBox2.top    = 0;
+      rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
+      rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
       /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
       {

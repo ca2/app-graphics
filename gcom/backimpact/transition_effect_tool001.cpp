@@ -672,7 +672,7 @@ namespace backimpact
       {
          GetRect(&rectangleUpdate, AlignTop);
          point.x = 0;
-         point.y = rectangleUpdate.bottom() - cy;
+         point.y = rectangleUpdate.bottom - cy;
       }
       break;
       case TransitionEffectFlyInBottomTop:
@@ -685,7 +685,7 @@ namespace backimpact
       case TransitionEffectFlyInLeftRight:
       {
          GetRect(&rectangleUpdate, AlignLeft);
-         point.x = rectangleUpdate.right() - cx;
+         point.x = rectangleUpdate.right - cx;
          point.y = 0;
       }
       break;
@@ -699,14 +699,14 @@ namespace backimpact
       case TransitionEffectFlyInLeftBottom:
       {
          GetRect(&rectangleUpdate, AlignTopRight);
-         point.x = rectangleUpdate.right() - cx;
-         point.y = rectangleUpdate.bottom() - cy;
+         point.x = rectangleUpdate.right - cx;
+         point.y = rectangleUpdate.bottom - cy;
       }
       break;
       case TransitionEffectFlyInLeftTop:
       {
          GetRect(&rectangleUpdate, AlignRightBottom);
-         point.x = cx - rectangleUpdate.right();
+         point.x = cx - rectangleUpdate.right;
          point.y = 0;
       }
       break;
@@ -714,7 +714,7 @@ namespace backimpact
       {
          GetRect(&rectangleUpdate, AlignLeftTop);
          point.x = 0;
-         point.y = rectangleUpdate.bottom() - cy;
+         point.y = rectangleUpdate.bottom - cy;
       }
       break;
       case TransitionEffectFlyInRightTop:
@@ -863,34 +863,34 @@ namespace backimpact
       {
       case TransitionEffectWipeBottom:
       {
-         lprect->left() = 0;
-         lprect->right() = lprect->left() + cx;
-         lprect->top() = (int) (dRate * cy);
-         lprect->bottom() = (int) (dRateEx * cy);
+         lprect->left = 0;
+         lprect->right = lprect->left + cx;
+         lprect->top = (int) (dRate * cy);
+         lprect->bottom = (int) (dRateEx * cy);
       }
       break;
       case TransitionEffectWipeTop:
       {
-         lprect->left() = 0;
-         lprect->right() = lprect->left() + cx;
-         lprect->top() = (int) ((1.0 - dRateEx) * cy);
-         lprect->bottom() = (int) (1.0 - dRate) * cy;
+         lprect->left = 0;
+         lprect->right = lprect->left + cx;
+         lprect->top = (int) ((1.0 - dRateEx) * cy);
+         lprect->bottom = (int) (1.0 - dRate) * cy;
       }
       break;
       case TransitionEffectWipeRight:
       {
-         lprect->left() =  (int) (dRate * cx);
-         lprect->right() =  (int) (dRateEx * cx);
-         lprect->top() = 0;
-         lprect->bottom() = lprect->top() + cy;;
+         lprect->left =  (int) (dRate * cx);
+         lprect->right =  (int) (dRateEx * cx);
+         lprect->top = 0;
+         lprect->bottom = lprect->top + cy;;
       }
       break;
       case TransitionEffectWipeLeft:
       {
-         lprect->left() =  (int) ((1.0 - dRateEx) * cx);
-         lprect->right() =  (int) ((1.0 - dRate) * cx);
-         lprect->top() = 0;
-         lprect->bottom() = lprect->top() + cy;;
+         lprect->left =  (int) ((1.0 - dRateEx) * cx);
+         lprect->right =  (int) ((1.0 - dRate) * cx);
+         lprect->top = 0;
+         lprect->bottom = lprect->top + cy;;
       }
       break;
       case TransitionEffectWipeTopRight:
@@ -953,30 +953,30 @@ namespace backimpact
       {
       case TransitionEffectWipeTopRight:
       {
-         lprectA->left()     = rectangleUpdatePrevious.right();
-         lprectB->right()    = lprectA->left();
-         lprectB->top()      = rectangleUpdatePrevious.bottom();
+         lprectA->left     = rectangleUpdatePrevious.right;
+         lprectB->right    = lprectA->left;
+         lprectB->top      = rectangleUpdatePrevious.bottom;
       }
       break;
       case TransitionEffectWipeBottomRight:
       {
-         lprectB->bottom()   = rectangleUpdatePrevious.top();
-         lprectA->left()     = rectangleUpdatePrevious.right();;
-         lprectA->top()      = lprectB->bottom();
+         lprectB->bottom   = rectangleUpdatePrevious.top;
+         lprectA->left     = rectangleUpdatePrevious.right;;
+         lprectA->top      = lprectB->bottom;
       }
       break;
       case TransitionEffectWipeTopLeft:
       {
-         lprectA->right() = rectangleUpdatePrevious.left();
-         lprectB->left() = lprectA->right();
-         lprectB->top() = rectangleUpdatePrevious.bottom();
+         lprectA->right = rectangleUpdatePrevious.left;
+         lprectB->left = lprectA->right;
+         lprectB->top = rectangleUpdatePrevious.bottom;
       }
       break;
       case TransitionEffectWipeBottomLeft:
       {
-         lprectB->bottom()   = rectangleUpdatePrevious.top();
-         lprectA->right()    = rectangleUpdatePrevious.left();
-         lprectA->top()      = lprectB->bottom();
+         lprectB->bottom   = rectangleUpdatePrevious.top;
+         lprectA->right    = rectangleUpdatePrevious.left;
+         lprectA->top      = lprectB->bottom;
       }
       break;
       default:
@@ -1039,84 +1039,84 @@ namespace backimpact
       {
       case AlignTop:
       {
-         lprect->left() = 0;
-         lprect->right() = lprect->left() + cx;
-         lprect->top() = (int) (dRate * cy);
-         lprect->bottom() = cy;
+         lprect->left = 0;
+         lprect->right = lprect->left + cx;
+         lprect->top = (int) (dRate * cy);
+         lprect->bottom = cy;
       }
       break;
       case AlignBottom:
       {
-         lprect->left() = 0;
-         lprect->right() = lprect->left() + cx;
-         lprect->top() = 0;
-         lprect->bottom() = (int) (1.0 - dRate) * cy;
+         lprect->left = 0;
+         lprect->right = lprect->left + cx;
+         lprect->top = 0;
+         lprect->bottom = (int) (1.0 - dRate) * cy;
       }
       break;
       case AlignLeft:
       {
-         lprect->left() =  0;
-         lprect->right() =  (int) (dRate * cx);
-         lprect->top() = 0;
-         lprect->bottom() = lprect->top() + cy;;
+         lprect->left =  0;
+         lprect->right =  (int) (dRate * cx);
+         lprect->top = 0;
+         lprect->bottom = lprect->top + cy;;
       }
       break;
       case AlignRight:
       {
-         lprect->left() =  (int) ((1.0 - dRate) * cx);
-         lprect->right() =  cx;
-         lprect->top() = 0;
-         lprect->bottom() = lprect->top() + cy;;
+         lprect->left =  (int) ((1.0 - dRate) * cx);
+         lprect->right =  cx;
+         lprect->top = 0;
+         lprect->bottom = lprect->top + cy;;
       }
       break;
       case AlignTopRight:
       {
-         lprect->left() = 0;
-         lprect->right() = (int) (dRate * cx);
-         lprect->top() = 0;
-         lprect->bottom() = (int) (dRate * cy);
+         lprect->left = 0;
+         lprect->right = (int) (dRate * cx);
+         lprect->top = 0;
+         lprect->bottom = (int) (dRate * cy);
       }
       break;
       case AlignRightBottom:
       {
-         lprect->left() = 0;
-         lprect->right() = (int) (dRate * cx);
-         lprect->top() = (int) ((1.0 - dRate) * cy);
-         lprect->bottom() = cy;
+         lprect->left = 0;
+         lprect->right = (int) (dRate * cx);
+         lprect->top = (int) ((1.0 - dRate) * cy);
+         lprect->bottom = cy;
       }
       break;
       case AlignLeftTop:
       {
-         lprect->left() = (int) ((1.0 - dRate) * cx);
-         lprect->right() =  cx;
-         lprect->top() = 0;
-         lprect->bottom() = (int) (dRate * cy);
+         lprect->left = (int) ((1.0 - dRate) * cx);
+         lprect->right =  cx;
+         lprect->top = 0;
+         lprect->bottom = (int) (dRate * cy);
       }
       break;
       case AlignBottomLeft:
       {
-         lprect->left() =  (int) ((1.0 - dRate) * cx);
-         lprect->right() =  cx;
-         lprect->top() = (int) ((1.0 - dRate) * cy);
-         lprect->bottom() = cy;;
+         lprect->left =  (int) ((1.0 - dRate) * cx);
+         lprect->right =  cx;
+         lprect->top = (int) ((1.0 - dRate) * cy);
+         lprect->bottom = cy;;
       }
       break;
       case AlignCenter:
       {
          double dHalfRate = dRate / 2.0;
-         lprect->left() =  (int) ((0.5 - dHalfRate) * (cx));
-         lprect->right() =  (int) (dHalfRate * cx);
-         lprect->top() = (int) ((0.5 - dHalfRate) * (cy));
-         lprect->bottom() = (int) (dHalfRate * cy);
+         lprect->left =  (int) ((0.5 - dHalfRate) * (cx));
+         lprect->right =  (int) (dHalfRate * cx);
+         lprect->top = (int) ((0.5 - dHalfRate) * (cy));
+         lprect->bottom = (int) (dHalfRate * cy);
       }
       break;
       case AlignCenterOut:
       {
          double dHalfRate = 0.5 - (dRate / 2.0);
-         lprect->left() =  (int) ((0.5 - dHalfRate) * (cx));
-         lprect->right() =  (int) (dHalfRate * cx);
-         lprect->top() = (int) ((0.5 - dHalfRate) * (cy));
-         lprect->bottom() = (int) (dHalfRate * cy);
+         lprect->left =  (int) ((0.5 - dHalfRate) * (cx));
+         lprect->right =  (int) (dHalfRate * cx);
+         lprect->top = (int) ((0.5 - dHalfRate) * (cy));
+         lprect->bottom = (int) (dHalfRate * cy);
       }
       break;
       default:
@@ -1152,75 +1152,75 @@ namespace backimpact
       {
       case AlignTop:
       {
-         lprect->left() = 0;
-         lprect->right() = lprect->left() + cx;
-         lprect->top() = (int) (dRate * cy);
-         lprect->bottom() = (int) (dRatePlus * cy);
+         lprect->left = 0;
+         lprect->right = lprect->left + cx;
+         lprect->top = (int) (dRate * cy);
+         lprect->bottom = (int) (dRatePlus * cy);
       }
       break;
       case AlignBottom:
       {
-         lprect->left() = 0;
-         lprect->right() = lprect->left() + cx;
-         lprect->top() = (int) ((1.0 - dRatePlus) * cy);
-         lprect->bottom() = (int) ((1.0 - dRate) * cy);
+         lprect->left = 0;
+         lprect->right = lprect->left + cx;
+         lprect->top = (int) ((1.0 - dRatePlus) * cy);
+         lprect->bottom = (int) ((1.0 - dRate) * cy);
       }
       break;
       case AlignLeft:
       {
-         lprect->left() =  (int) (dRate * cx);
-         lprect->right() =  (int) (dRatePlus * cx);
-         lprect->top() = 0;
-         lprect->bottom() = lprect->top() + cy;;
+         lprect->left =  (int) (dRate * cx);
+         lprect->right =  (int) (dRatePlus * cx);
+         lprect->top = 0;
+         lprect->bottom = lprect->top + cy;;
       }
       break;
       case AlignRight:
       {
-         lprect->left() =  (int) ((1.0 - dRatePlus) * cx);
-         lprect->right() =  (int) ((1.0 - dRate) * cx);
-         lprect->top() = 0;
-         lprect->bottom() = lprect->top() + cy;;
+         lprect->left =  (int) ((1.0 - dRatePlus) * cx);
+         lprect->right =  (int) ((1.0 - dRate) * cx);
+         lprect->top = 0;
+         lprect->bottom = lprect->top + cy;;
       }
       break;
       case AlignTopRight:
       {
-         lprect->left() = (int) (dRate * cx);
-         lprect->right() = (int) (dRatePlus * cx);
-         lprect->top() = (int) (dRate * cy);
-         lprect->bottom() = (int) (dRatePlus * cy);
+         lprect->left = (int) (dRate * cx);
+         lprect->right = (int) (dRatePlus * cx);
+         lprect->top = (int) (dRate * cy);
+         lprect->bottom = (int) (dRatePlus * cy);
       }
       break;
       case AlignRightBottom:
       {
-         lprect->left() = (int) (dRate * cx);;
-         lprect->right() = (int) (dRatePlus * cx);
-         lprect->top() = (int) ((1.0 - dRatePlus) * cy);
-         lprect->bottom() = (int) ((1.0 - dRate) * cy);
+         lprect->left = (int) (dRate * cx);;
+         lprect->right = (int) (dRatePlus * cx);
+         lprect->top = (int) ((1.0 - dRatePlus) * cy);
+         lprect->bottom = (int) ((1.0 - dRate) * cy);
       }
       break;
       case AlignLeftTop:
       {
-         lprect->left() = (int) ((1.0 - dRatePlus) * cx);
-         lprect->right() =  (int) ((1.0 - dRate) * cx);
-         lprect->top() = (int) (dRate * cy);
-         lprect->bottom() = (int) (dRatePlus * cy);
+         lprect->left = (int) ((1.0 - dRatePlus) * cx);
+         lprect->right =  (int) ((1.0 - dRate) * cx);
+         lprect->top = (int) (dRate * cy);
+         lprect->bottom = (int) (dRatePlus * cy);
       }
       break;
       case AlignBottomLeft:
       {
-         lprect->left() =  (int) ((1.0 - dRatePlus) * cx);
-         lprect->right() =  (int) ((1.0 - dRate) * cx);
-         lprect->top() = (int) ((1.0 - dRatePlus) * cy);
-         lprect->bottom() = (int) ((1.0 - dRate) * cy);
+         lprect->left =  (int) ((1.0 - dRatePlus) * cx);
+         lprect->right =  (int) ((1.0 - dRate) * cx);
+         lprect->top = (int) ((1.0 - dRatePlus) * cy);
+         lprect->bottom = (int) ((1.0 - dRate) * cy);
       }
       break;
       case AlignCenter:
       {
          double dHalfRate = dRatePlus / 2.0;
-         lprect->left() =  (int) ((0.5 - dHalfRate) * (cx));
-         lprect->right() =  (int) (dHalfRate * cx);
-         lprect->top() = (int) ((0.5 - dHalfRate) * (cy));
-         lprect->bottom() = (int) (dHalfRate * cy);
+         lprect->left =  (int) ((0.5 - dHalfRate) * (cx));
+         lprect->right =  (int) (dHalfRate * cx);
+         lprect->top = (int) ((0.5 - dHalfRate) * (cy));
+         lprect->bottom = (int) (dHalfRate * cy);
       }
       break;
       default:
@@ -1234,11 +1234,11 @@ namespace backimpact
    void transition_effect::tool_001::
    GetHorizontalHexagon(::int_rectangle * lprect, ::double_point * lppointa)
    {
-      double y1 = lprect->top();
-      double y3 = lprect->bottom();
+      double y1 = lprect->top;
+      double y3 = lprect->bottom;
       double y2 = (y1 + y3) / 2.0;
-      double x1 = lprect->left();
-      double x4 = lprect->right();
+      double x1 = lprect->left;
+      double x4 = lprect->right;
       double dr = (x4 - x1) / 2.0;
       double x2 = (x1 + dr / 2.0);
       double x3 = x1 + dr * 1.5;
@@ -1277,10 +1277,10 @@ namespace backimpact
       int iTContrib = iRandY < 0 ? iRandY : 0;
       int iBContrib = iRandY > 0 ? iRandY : 0;
 
-      lprectEllipse->left() = (int) (rectangle.left() + iLContrib   - dDiff);
-      lprectEllipse->top() = (int) (rectangle.top() + iTContrib - dDiff);
-      lprectEllipse->right() = (int) (rectangle.right() + iRContrib   + dDiff);
-      lprectEllipse->bottom() = (int) (rectangle.bottom() + iBContrib   + dDiff);
+      lprectEllipse->left = (int) (rectangle.left + iLContrib   - dDiff);
+      lprectEllipse->top = (int) (rectangle.top + iTContrib - dDiff);
+      lprectEllipse->right = (int) (rectangle.right + iRContrib   + dDiff);
+      lprectEllipse->bottom = (int) (rectangle.bottom + iBContrib   + dDiff);
 
       return 1;
 
@@ -1309,10 +1309,10 @@ namespace backimpact
       int iTContrib = iRand < 0 ? iRand : 0;
       int iBContrib = iRand > 0 ? iRand : 0;
 
-      lprectCircle->left() = (int) (rectangle.left() + iLContrib   - dDiff);
-      lprectCircle->top() = (int) (rectangle.top() + iTContrib - dDiff);
-      lprectCircle->right() = (int) (rectangle.right() + iRContrib   + dDiff);
-      lprectCircle->bottom() = (int) (rectangle.bottom() + iBContrib   + dDiff);
+      lprectCircle->left = (int) (rectangle.left + iLContrib   - dDiff);
+      lprectCircle->top = (int) (rectangle.top + iTContrib - dDiff);
+      lprectCircle->right = (int) (rectangle.right + iRContrib   + dDiff);
+      lprectCircle->bottom = (int) (rectangle.bottom + iBContrib   + dDiff);
 
       return 1;
 
@@ -1332,14 +1332,14 @@ namespace backimpact
    void transition_effect::tool_001::GetRect(::int_point * lppoint, const ::int_rectangle & rectangle)
    {
 
-      lppoint[0].x = (int) rectangle.left();
-      lppoint[0].y = (int) rectangle.top();
-      lppoint[1].x = (int) rectangle.right();
-      lppoint[1].y = (int) rectangle.top();
-      lppoint[2].x = (int) rectangle.right();
-      lppoint[2].y = (int) rectangle.bottom();
-      lppoint[3].x = (int) rectangle.left();
-      lppoint[3].y = (int) rectangle.bottom();
+      lppoint[0].x = (int) rectangle.left;
+      lppoint[0].y = (int) rectangle.top;
+      lppoint[1].x = (int) rectangle.right;
+      lppoint[1].y = (int) rectangle.top;
+      lppoint[2].x = (int) rectangle.right;
+      lppoint[2].y = (int) rectangle.bottom;
+      lppoint[3].x = (int) rectangle.left;
+      lppoint[3].y = (int) rectangle.bottom;
 
    }
 
@@ -1347,14 +1347,14 @@ namespace backimpact
    void transition_effect::tool_001::GetRect(::double_point * lppoint, const ::int_rectangle & rectangle)
    {
 
-      lppoint[0].x = (int) rectangle.left() - 1.0;
-      lppoint[0].y = (int) rectangle.top() - 1.0;
-      lppoint[1].x = (int) rectangle.right() + 1.0;
-      lppoint[1].y = (int) rectangle.top() - 1.0;
-      lppoint[2].x = (int) rectangle.right() + 1.0;
-      lppoint[2].y = (int) rectangle.bottom() + 1.0;
-      lppoint[3].x = (int) rectangle.left() - 1.0;
-      lppoint[3].y = (int) rectangle.bottom() + 1.0;
+      lppoint[0].x = (int) rectangle.left - 1.0;
+      lppoint[0].y = (int) rectangle.top - 1.0;
+      lppoint[1].x = (int) rectangle.right + 1.0;
+      lppoint[1].y = (int) rectangle.top - 1.0;
+      lppoint[2].x = (int) rectangle.right + 1.0;
+      lppoint[2].y = (int) rectangle.bottom + 1.0;
+      lppoint[3].x = (int) rectangle.left - 1.0;
+      lppoint[3].y = (int) rectangle.bottom + 1.0;
 
    }
 
@@ -1405,10 +1405,10 @@ namespace backimpact
 //         else if(lppoint[i].y > bottom)
 //            bottom = ceil(lppoint[i].y);
 //      }
-//      lprect->left() = (int) left;
-//      lprect->right() = (int)right;
-//      lprect->top() = (int)top;
-//      lprect->bottom() = (int)bottom;
+//      lprect->left = (int) left;
+//      lprect->right = (int)right;
+//      lprect->top = (int)top;
+//      lprect->bottom = (int)bottom;
 //
 //   }
 
@@ -1442,10 +1442,10 @@ namespace backimpact
 
       int greekdeltax = (m_cx - w) / 2;
       int greekdeltay = (m_cy - h) / 2;
-      lprect->left() = greekdeltax + w * i;
-      lprect->right() = lprect->left() + w;
-      lprect->top() = greekdeltay + h * j;
-      lprect->bottom() = lprect->top() + h;
+      lprect->left = greekdeltax + w * i;
+      lprect->right = lprect->left + w;
+      lprect->top = greekdeltay + h * j;
+      lprect->bottom = lprect->top + h;
 
    }
 
@@ -1475,10 +1475,10 @@ namespace backimpact
       ::int_rectangle rectangle;
       dRight  = dLeft + iRadius * 2.05  + 1;
       dBottom = dTop + iRadius * sqrt(3.1) + 1;
-      rectangle.left() = (int) dLeft;
-      rectangle.top() = (int) dTop;
-      rectangle.right() = (int) dRight;
-      rectangle.bottom() = (int) dBottom;
+      rectangle.left = (int) dLeft;
+      rectangle.top = (int) dTop;
+      rectangle.right = (int) dRight;
+      rectangle.bottom = (int) dBottom;
 
       GetHorizontalHexagon(&rectangle, lppoint);
       

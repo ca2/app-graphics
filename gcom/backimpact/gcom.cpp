@@ -382,10 +382,10 @@ namespace backimpact
 
                }
 
-               m_rectangleFinalPlacement.left()     = iXOffset;
-               m_rectangleFinalPlacement.top()      = iYOffset;
-               m_rectangleFinalPlacement.right()    = iXOffset + iW * iCount;
-               m_rectangleFinalPlacement.bottom()   = iXOffset + iW * jCount;
+               m_rectangleFinalPlacement.left     = iXOffset;
+               m_rectangleFinalPlacement.top      = iYOffset;
+               m_rectangleFinalPlacement.right    = iXOffset + iW * iCount;
+               m_rectangleFinalPlacement.bottom   = iXOffset + iW * jCount;
 
             }
             else if(pimagechange->m_eplacement == ImagePlacementZoomAll ||
@@ -417,10 +417,10 @@ namespace backimpact
 
                }
 
-               m_rectangleFinalPlacement.left()     = finalX;
-               m_rectangleFinalPlacement.top()      = finalY;
-               m_rectangleFinalPlacement.right()    = finalX + finalW;
-               m_rectangleFinalPlacement.bottom()   = finalY + finalH;
+               m_rectangleFinalPlacement.left     = finalX;
+               m_rectangleFinalPlacement.top      = finalY;
+               m_rectangleFinalPlacement.right    = finalX + finalW;
+               m_rectangleFinalPlacement.bottom   = finalY + finalH;
 
             }
 

@@ -746,10 +746,10 @@ namespace backimpact
 
             /*                  drawpimage->draw(
                               dcBack,
-                              rectangleUpdate.left(), rectangleUpdate.top(),
+                              rectangleUpdate.left, rectangleUpdate.top,
                               rectangleUpdate.width(), rectangleUpdate.height(),
                               pgcom->get_image(e_image_buffer),
-                              rectangleUpdate.left(), rectangleUpdate.top(),
+                              rectangleUpdate.left, rectangleUpdate.top,
                               rectangleUpdate.width(), rectangleUpdate.height(),
                               SRCCOPY);
             */
@@ -812,10 +812,10 @@ namespace backimpact
             }
             /*drawpimage->draw(
                dcBack,
-               rectangleUpdate.left(), rectangleUpdate.top(),
+               rectangleUpdate.left, rectangleUpdate.top,
                rectangleUpdate.width(), rectangleUpdate.height(),
                pgcom->get_image(e_image_buffer),
-               rectangleUpdate.left(), rectangleUpdate.top(),
+               rectangleUpdate.left, rectangleUpdate.top,
                rectangleUpdate.width(), rectangleUpdate.height(),
                SRCCOPY);*/
             dcBack->reset_clip();
@@ -1262,8 +1262,8 @@ namespace backimpact
          ::int_rectangle rectangleIntersect;
          rectangleIntersect.intersect(rectangle, rectangleBound);
 
-         ::double_point pointSrc(rectangleIntersect.left() - rectangle.left() + rectangleBound.left(),
-            rectangleIntersect.top() - rectangle.top() + rectangleBound.top());
+         ::double_point pointSrc(rectangleIntersect.left - rectangle.left + rectangleBound.left,
+            rectangleIntersect.top - rectangle.top + rectangleBound.top);
 
          auto pimageFrame1 = pgcom->get_image(e_image_frame1);
 
@@ -1555,8 +1555,8 @@ namespace backimpact
 
          double greekdeltay = (rectangle.height() / 2) * dRate;
 
-         rectangle.top() += (long) greekdeltay;
-         rectangle.bottom() -= (long) greekdeltay;
+         rectangle.top += (long) greekdeltay;
+         rectangle.bottom -= (long) greekdeltay;
 
 
          ::image::image_source imagesource(dcBuffer, rectangle);
@@ -1586,8 +1586,8 @@ namespace backimpact
 
          double greekdeltax = (rectangle.width() / 2) * dRate;
 
-         rectangle.left() += (long) greekdeltax;
-         rectangle.right() -= (long) greekdeltax;
+         rectangle.left += (long) greekdeltax;
+         rectangle.right -= (long) greekdeltax;
 
          ::image::image_source imagesource(dcBuffer, rectangle);
 
@@ -1708,18 +1708,18 @@ namespace backimpact
 
 
 
-         int finalX = rectangleBound.left();
-         int finalY = rectangleBound.top();
+         int finalX = rectangleBound.left;
+         int finalY = rectangleBound.top;
          int finalW = rectangleBound.width();
          int finalH = rectangleBound.height();
 
 
          ::int_rectangle rectangleDest;
 
-         rectangleDest.left() = 0;
-         rectangleDest.top() = 0;
-         rectangleDest.right() = finalW;
-         rectangleDest.bottom() = finalH;
+         rectangleDest.left = 0;
+         rectangleDest.top = 0;
+         rectangleDest.right = finalW;
+         rectangleDest.bottom = finalH;
 
 
          ::int_rectangle rectangleUpdate;
@@ -1973,21 +1973,21 @@ namespace backimpact
 
             rectangleDest.offset(rectangleBound.top_left());
 
-            rectangleDest.right() +=1;
-            rectangleDest.bottom() +=1;
+            rectangleDest.right +=1;
+            rectangleDest.bottom +=1;
 
             {
 
                ::image::image_source imagesource(pimage, 
                   double_rectangle_dimension(
-                     rectangleDest.left() - rectangleBound.left(),
-                     rectangleDest.top() - rectangleBound.top(), 
+                     rectangleDest.left - rectangleBound.left,
+                     rectangleDest.top - rectangleBound.top, 
                      minimum(rectangleDest.width(), finalW),
                      minimum(rectangleDest.height(), finalH))
                );
 
-               auto rectangle = double_rectangle_dimension(rectangleDest.left(),
-                                          rectangleDest.top(),
+               auto rectangle = double_rectangle_dimension(rectangleDest.left,
+                                          rectangleDest.top,
                                           minimum(rectangleDest.width(), finalW),
                                           minimum(rectangleDest.height(), finalH));
 

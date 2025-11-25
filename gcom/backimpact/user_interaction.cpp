@@ -954,7 +954,7 @@ void user_interaction::backimpact_render(::draw2d::graphics_pointer & pgraphics,
 
    ::int_rectangle rectangle(rectangleParam);
 
-   backimpact_render(pgraphics,rectangle.left(),rectangle.top(),rectangle.width(),rectangle.height());
+   backimpact_render(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height());
 
 }
 
