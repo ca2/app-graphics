@@ -85,17 +85,17 @@ namespace backimpact
 
       IppStatus _set_sizes(::int_size sSrc, ::int_size sDst)
       {
-         if(srcSize.width == sSrc.cx()
-               && srcSize.height == sSrc.cy()
-               && dstSize.width == sDst.cx()
-               && dstSize.height == sDst.cy()
+         if(srcSize.width == sSrc.cx
+               && srcSize.height == sSrc.cy
+               && dstSize.width == sDst.cx
+               && dstSize.height == sDst.cy
            )
             return ippStsNoErr;
          destroy();
-         srcSize.width = sSrc.cx();
-         srcSize.height = sSrc.cy();
-         dstSize.width = sDst.cx();
-         dstSize.height = sDst.cy();
+         srcSize.width = sSrc.cx;
+         srcSize.height = sSrc.cy;
+         dstSize.width = sDst.cx;
+         dstSize.height = sDst.cy;
 //         Ipp8u* pSrc,, Ipp32s srcStep, Ipp8u* pDst, IppiSize dstSize, Ipp32s dstStep
          /* Spec and init buffer sizes */
          status = ippiResizeGetSize_8u(srcSize, dstSize, ippLinear, 0, &specSize, &initSize);
@@ -302,9 +302,9 @@ namespace backimpact
 
       puserinteraction->backimpact_get_client_rect(m_tool1.m_rectangleX);
 
-      m_tool1.cx() = m_tool1.m_rectangleX.width();
+      m_tool1.m_size.cx = m_tool1.m_rectangleX.width();
 
-      m_tool1.cy() = m_tool1.m_rectangleX.height();
+      m_tool1.m_size.cy = m_tool1.m_rectangleX.height();
 
       gcom * pgcom = pmain->get_gcom();
 
@@ -590,8 +590,8 @@ namespace backimpact
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
 
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       //auto psystem = m_papplication;
 
@@ -739,8 +739,8 @@ namespace backimpact
       transition_effect * ptransitioneffect = pmain->get_transition_effect();
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       //auto psystem = m_papplication;
 
@@ -890,8 +890,8 @@ namespace backimpact
       transition_effect * ptransitioneffect = pmain->get_transition_effect();
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       //auto psystem = m_papplication;
 
@@ -1469,8 +1469,8 @@ namespace backimpact
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
 
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       //auto psystem = m_papplication;
 
@@ -1710,8 +1710,8 @@ namespace backimpact
 
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       ASSERT(pgcom->GetBufferDC()->get_os_data() != nullptr);
 
@@ -2072,8 +2072,8 @@ namespace backimpact
 
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       //auto psystem = m_papplication;
 
@@ -2494,8 +2494,8 @@ namespace backimpact
 
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
       
       //auto psystem = m_papplication;
 
@@ -3018,8 +3018,8 @@ namespace backimpact
          ::image::image_pointer pimageFrame1 = pgcom->get_image(e_image_frame1);
          m_tool1.m_dMod = 4.2;
          m_tool1.m_dMinSize = 0;
-         int cx1 = m_tool1.cx() / 4;
-         int cy1 = m_tool1.cy() / 4;
+         int cx1 = m_tool1.m_size.cx / 4;
+         int cy1 = m_tool1.m_size.cy / 4;
          pimage1->create({cx1, cy1});
          pimage2->create({cx1, cy1});
          pimage3->create({cx1, cy1});
@@ -3154,8 +3154,8 @@ namespace backimpact
       }
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
       
       //auto psystem = m_papplication;
 
@@ -3194,7 +3194,7 @@ namespace backimpact
       {
          pimage2->create({cx1, cy1});
          pimage3->create({cx1, cy1});
-         pimage4->create({ m_tool1.cx(), m_tool1.cy() });
+         pimage4->create({ m_tool1.m_size.cx, m_tool1.m_size.cy });
       }
 
       if(m_iVisual == VisualEffectRotateEx6)
@@ -3427,8 +3427,8 @@ namespace backimpact
 
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
       //class imaging & imaging = psystem->imaging();
 
 
@@ -4014,8 +4014,8 @@ namespace backimpact
 
          m_tool1.m_dMod = 4.2;
          m_tool1.m_dMinSize = 0;
-         int cx1 = m_tool1.cx() / 4;
-         int cy1 = m_tool1.cy() / 4;
+         int cx1 = m_tool1.m_size.cx / 4;
+         int cy1 = m_tool1.m_size.cy / 4;
          pimage1->create({cx1, cy1});
          pimage2->create({cx1, cy1});
          pimage3->create({cx1, cy1});
@@ -4172,8 +4172,8 @@ namespace backimpact
 
          m_tool1.m_dMod = 4.2;
          m_tool1.m_dMinSize = 0;
-         int cx1 = m_tool1.cx() / 4;
-         int cy1 = m_tool1.cy() / 4;
+         int cx1 = m_tool1.m_size.cx / 4;
+         int cy1 = m_tool1.m_size.cy / 4;
          pimage1->create({cx1, cy1});
          pimage2->create({cx1, cy1});
          pimage3->create({cx1, cy1});
@@ -4329,8 +4329,8 @@ namespace backimpact
 
          m_tool1.m_dMod = 4.2;
          m_tool1.m_dMinSize = 0;
-         int cx1 = m_tool1.cx() / 4;
-         int cy1 = m_tool1.cy() / 4;
+         int cx1 = m_tool1.m_size.cx / 4;
+         int cy1 = m_tool1.m_size.cy / 4;
          pimage1->create({cx1, cy1});
          pimage2->create({cx1, cy1});
          pimage3->create({cx1, cy1});
@@ -4487,8 +4487,8 @@ namespace backimpact
 
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       //auto psystem = m_papplication;
 
@@ -4962,8 +4962,8 @@ namespace backimpact
 
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       //auto psystem = m_papplication;
 
@@ -5453,8 +5453,8 @@ namespace backimpact
       }
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       //auto psystem = m_papplication;
 
@@ -5493,7 +5493,7 @@ namespace backimpact
       {
          pimage2->create({cx1, cy1});
          pimage3->create({cx1, cy1});
-         pimage4->create({ m_tool1.cx(), m_tool1.cy() });
+         pimage4->create({ m_tool1.m_size.cx, m_tool1.m_size.cy });
       }
 
       if(m_iVisual == VisualEffectExpand6)
@@ -5727,8 +5727,8 @@ namespace backimpact
 
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
       //auto psystem = m_papplication;
 
@@ -6312,8 +6312,8 @@ namespace backimpact
 
 
       ::int_rectangle rectangleX = m_tool1.m_rectangleX;
-      m_tool1.cx() = rectangleX.width();
-      m_tool1.cy() = rectangleX.height();
+      m_tool1.m_size.cx = rectangleX.width();
+      m_tool1.m_size.cy = rectangleX.height();
 
 //      auto psystem = m_papplication;
 

@@ -316,17 +316,17 @@ namespace backimpact
             double dRate;
             if(pimagechange->m_eplacement == ImagePlacementZoomAll)
             {
-               dRate = minimum((double) cx / sizeSource.cx(), (double) cy / sizeSource.cy());
-               finalW = (int) (sizeSource.cx() * dRate);
-               finalH = (int)(sizeSource.cy() * dRate);
+               dRate = minimum((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
+               finalW = (int) (sizeSource.cx * dRate);
+               finalH = (int)(sizeSource.cy * dRate);
                finalX = (cx - finalW) / 2;
                finalY = (cy - finalH) / 2;
             }
             else if (pimagechange->m_eplacement == ImagePlacementZoomExtend)
             {
-               dRate = maximum((double) cx / sizeSource.cx(), (double) cy / sizeSource.cy());
-               finalW = (int) (sizeSource.cx() * dRate);
-               finalH = (int) (sizeSource.cy() * dRate);
+               dRate = maximum((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
+               finalW = (int) (sizeSource.cx * dRate);
+               finalH = (int) (sizeSource.cy * dRate);
                finalX = (cx - finalW) / 2;
                finalY = (cy - finalH) / 2;
             }
@@ -342,8 +342,8 @@ namespace backimpact
             if(pimagechange->m_eplacement == ImagePlacementTile)
             {
 
-               int iW = sizeSource.cx();
-               int iH = sizeSource.cy();
+               int iW = sizeSource.cx;
+               int iH = sizeSource.cy;
                int iXMod = (cx - iW) / 2;
                int iYMod = (cy - iH) / 2;
                int iXOffset =  iXMod;
@@ -395,8 +395,8 @@ namespace backimpact
 
                int srcX = 0;
                int srcY = 0;
-               int srcW = sizeSource.cx();
-               int srcH = sizeSource.cy();
+               int srcW = sizeSource.cx;
+               int srcH = sizeSource.cy;
 
                dcBuffer->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
@@ -520,7 +520,7 @@ namespace backimpact
 
          auto sizeMonitorHalf = pdisplay->get_main_monitor_size() / 2;
 
-         if (size.cx() < sizeMonitorHalf.cx() && size.cy() < sizeMonitorHalf.cy())
+         if (size.cx < sizeMonitorHalf.cx && size.cy < sizeMonitorHalf.cy)
          {
 
             eplacement = ImagePlacementTile;

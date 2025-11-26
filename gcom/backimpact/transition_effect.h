@@ -128,10 +128,10 @@ namespace backimpact
 //         void Go(ETransitionEffect eType);
          void Go();
 
-         const int & cx() const { return m_size.cx(); }
-         int & cx() { return m_size.cx(); }
-         const int & cy() const { return m_size.cy(); }
-         int & cy() { return m_size.cy(); }
+         const int & cx() const { return m_size.cx; }
+         int & cx() { return m_size.cx; }
+         const int & cy() const { return m_size.cy; }
+         int & cy() { return m_size.cy; }
 
          void GetSliceRect(
          ::int_rectangle *   lprect,

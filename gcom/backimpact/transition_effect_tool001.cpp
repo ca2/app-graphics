@@ -281,9 +281,9 @@ namespace backimpact
          
          GetRect(pointaBigRect, int_rectangle(0, 0, cx, cy));
          
-         m_size.cx() = 64;
+         m_size.cx = 64;
          
-         m_size.cy() = 64;
+         m_size.cy = 64;
 
          auto psystem = system();
 
@@ -297,9 +297,9 @@ namespace backimpact
          
          int iDimension = maximum(rectangleBigRect.width(), rectangleBigRect.height()) * 2;
          
-         int imax = iDimension / m_size.cx();
+         int imax = iDimension / m_size.cx;
          
-         int jmax = iDimension / m_size.cy();
+         int jmax = iDimension / m_size.cy;
 
          ::double_point pointaRect[4];
 
@@ -1432,7 +1432,7 @@ namespace backimpact
    void transition_effect::tool_001::GetRotateRect(int i, int j, ::double_point * lppoint)
    {
 
-      GetRotateRect(m_size.cx(), m_size.cy(), i, j, m_phi, lppoint);
+      GetRotateRect(m_size.cx, m_size.cy, i, j, m_phi, lppoint);
 
    }
 
