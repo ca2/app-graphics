@@ -477,7 +477,7 @@ namespace backimpact
 
       }
 
-      spgraphicsScreen->CreateCompatibleDC(nullptr);
+      spgraphicsScreen->create_compatible_graphics(nullptr);
 
       get_image(e_image_back)->create({ cx, cy }); // Back
       get_image(e_image_back)->clear(::color::transparent);
