@@ -249,7 +249,7 @@ namespace backimpact
 
       //estatus = 
       
-      øconstruct_new(m_presizer);
+      construct_newø(m_presizer);
 
       //if (!estatus)
       //{

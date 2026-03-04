@@ -42,7 +42,7 @@ namespace backimpact
 
       //}
 
-      øconstruct(m_dcScreen);
+      constructø(m_dcScreen);
 
       //return estatus;
 
@@ -548,7 +548,7 @@ namespace backimpact
 
       }
 
-      øconstruct(pimage);
+      constructø(pimage);
 
       on_create_image(pimage,  eimage);
 

@@ -47,11 +47,11 @@ namespace gcom
 
       //estatus = 
 
-      system()->øconstruct(m_pimage);
+      system()->constructø(m_pimage);
 
       //estatus = 
 
-      system()->øconstruct(m_pimageStretched);
+      system()->constructø(m_pimageStretched);
 
       //return estatus;
 

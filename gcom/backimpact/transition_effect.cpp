@@ -181,7 +181,7 @@ namespace backimpact
 
       //estatus = 
       
-      øconstruct_new(m_ptool001);
+      construct_newø(m_ptool001);
 
       
       m_ptool001->initialize_backimpact_helper(pmain);

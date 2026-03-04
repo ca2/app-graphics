@@ -288,7 +288,7 @@ namespace gcom
    void slide_show::add_slide(const ::scoped_string & scopedstr)
    {
 
-      m_slidea.add(øallocate slide(scopedstr));
+      m_slidea.add(allocateø slide(scopedstr));
 
    }
 
