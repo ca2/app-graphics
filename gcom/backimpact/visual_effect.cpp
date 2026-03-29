@@ -1044,7 +1044,7 @@ namespace backimpact
          int x2 = cx1 - x1;
          int y2 = cy1 - y1;
 
-         auto pbrush = øcreate < ::draw2d::brush >();
+         auto pbrush = createø < ::draw2d::brush >();
 
          pbrush->create_solid(m_color.opaque());
 
@@ -1635,7 +1635,7 @@ namespace backimpact
          int y1 = m_pointColorTrack.y - r;
          int x2 = cx1 - x1 - r;
          int y2 = cy1 - y1 - r;
-         auto pbrush = øcreate < ::draw2d::brush >();
+         auto pbrush = createø < ::draw2d::brush >();
          pbrush->create_solid(colorStrong.opaque());
          pimage2->get_graphics()->set(pbrush);
          //pimage1->g()->fill_rectangle({ x, y, c3, c4, m_color & ::opacity(bA));
@@ -1895,23 +1895,23 @@ namespace backimpact
 
 
       {
-         auto ppen1 = øcreate < ::draw2d::pen > ();
+         auto ppen1 = createø < ::draw2d::pen > ();
          ppen1->create_solid(1.0, colorStrong1.opaque());
          ::draw2d::brush_pointer brush1(e_create, this);
          brush1->create_solid(colorStrong1.opaque());
-         auto ppen2 = øcreate < ::draw2d::pen > ();
+         auto ppen2 = createø < ::draw2d::pen > ();
          ppen2->create_solid(1.0, colorStrong2.opaque());
          ::draw2d::brush_pointer brush2(e_create, this);
          brush2->create_solid(colorStrong2.opaque());
-         auto ppen3 = øcreate < ::draw2d::pen > ();
+         auto ppen3 = createø < ::draw2d::pen > ();
          ppen3->create_solid(1.0, colorStrong3.opaque());
          ::draw2d::brush_pointer brush3(e_create, this);
          brush3->create_solid(colorStrong3.opaque());
-         auto ppen4 = øcreate < ::draw2d::pen > ();
+         auto ppen4 = createø < ::draw2d::pen > ();
          ppen4->create_solid(1.0, colorStrong4.opaque());
          ::draw2d::brush_pointer brush4(e_create, this);
          brush4->create_solid(colorStrong4.opaque());
-         auto ppen5 = øcreate < ::draw2d::pen > ();
+         auto ppen5 = createø < ::draw2d::pen > ();
          ppen5->create_solid(1.0, colorStrong5.opaque());
          ::draw2d::brush_pointer brush5(e_create, this);
          brush5->create_solid(colorStrong5.opaque());
@@ -2735,7 +2735,7 @@ namespace backimpact
          pimage1->g()->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
-      auto ppen1 = øcreate < ::draw2d::pen > ();
+      auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
       pimage1->get_graphics()->set(ppen1);
       int margin = 10;
@@ -3220,9 +3220,9 @@ namespace backimpact
          colorStrong1.set_hls(dH, dL, dS);
       }
 
-      auto ppen1 = øcreate < ::draw2d::pen > ();
+      auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
-      auto ppenWhite = øcreate < ::draw2d::pen > ();
+      auto ppenWhite = createø < ::draw2d::pen > ();
       ppenWhite->create_solid(3, argb(255, 205, 205, 205));
       int margin1 = cx1 / 8;
       int margin2 = cy1 / 2;
@@ -3722,9 +3722,9 @@ namespace backimpact
       // top1
 
       /*
-      auto ppen1 = øcreate < ::draw2d::pen > ();
+      auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
-      auto ppenWhite = øcreate < ::draw2d::pen > ();
+      auto ppenWhite = createø < ::draw2d::pen > ();
       ppenWhite->create_solid(3, argb(255, 205, 205, 205));
       int margin1 = 10;
          int margin2 = cy1 / 2;
@@ -4722,7 +4722,7 @@ namespace backimpact
          pimage1->g()->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
-      auto ppen1 = øcreate < ::draw2d::pen > ();
+      auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
       pimage1->get_graphics()->set(ppen1);
       int marginx = cx1 / 12;
@@ -5198,7 +5198,7 @@ namespace backimpact
          pimage1->g()->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
-      auto ppen1 = øcreate < ::draw2d::pen > ();
+      auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
       pimage1->get_graphics()->set(ppen1);
       int margin = 10;
@@ -5519,9 +5519,9 @@ namespace backimpact
          colorStrong1.set_hls(dH, dL, dS);
       }
 
-      auto ppen1 = øcreate < ::draw2d::pen > ();
+      auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
-      auto ppenWhite = øcreate < ::draw2d::pen > ();
+      auto ppenWhite = createø < ::draw2d::pen > ();
       ppenWhite->create_solid(3, argb(255, 205, 205, 205));
       int margin1 = cx1 / 8;
       int margin2 = cy1 / 2;
@@ -6023,9 +6023,9 @@ namespace backimpact
          pimage1->g()->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
-      auto ppen1 = øcreate < ::draw2d::pen > ();
+      auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
-      auto ppenWhite = øcreate < ::draw2d::pen > ();
+      auto ppenWhite = createø < ::draw2d::pen > ();
       ppenWhite->create_solid(3, argb(255, 205, 205, 205));
       int margin1 = 10;
 //         int margin2 = cy1 / 2;
@@ -6544,7 +6544,7 @@ namespace backimpact
          pimage1->g()->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
-      auto ppen1 = øcreate < ::draw2d::pen > ();
+      auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
       pimage1->get_graphics()->set(ppen1);
       int marginx = cx1 / 12;

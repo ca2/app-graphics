@@ -350,7 +350,7 @@ namespace backimpact
 
   //       synchronouslock.unlock();
 
-         //auto pimagefileset = øcreate_new < simpledb::file_set > ();
+         //auto pimagefileset = create_newø < simpledb::file_set > ();
 
          //auto papp = m_papplication;
 

@@ -954,7 +954,7 @@ namespace backimpact
 
                rectangleUpdate = rectangleEllipse;
 
-               auto ppathClip = øcreate < ::draw2d::path >();
+               auto ppathClip = createø < ::draw2d::path >();
 
                ::double_ellipse ellipse;
                
