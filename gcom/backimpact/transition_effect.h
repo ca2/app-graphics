@@ -107,7 +107,7 @@ namespace backimpact
          ::int_point_array                m_pointa;
          ::int_point_array                m_pointa2;
          ::double_polygon                    m_polygon;
-         ::int_array_base                        m_ia;
+         ::i32_array_base                        m_ia;
          double_array                     m_da;
          ::collection::index                            m_iStep; // 0 - Inactive, >= 1 Active
          ::collection::count                          m_iStepCount; // -1 - Infinite, 0 and 1 - invalid, > 1 ::collection::count out
@@ -214,7 +214,7 @@ namespace backimpact
       comparable_array < ETransitionEffect, ETransitionEffect >
                                  m_etypea;
 
-      ::int_array_base                  m_iaVisual;
+      ::i32_array_base                  m_iaVisual;
       ::pointer<tool_001>      m_ptool001;
       bool                       m_bDestroy;
 
