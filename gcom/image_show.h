@@ -17,7 +17,7 @@ namespace gcom
       string                           m_strImage;
       ::image::image_pointer           m_pimage;
       ::image::image_pointer           m_pimageStretched;
-      ::int_size                       m_sizeStretching;
+      ::i32_size                       m_sizeStretching;
 
 
       image_show();

@@ -200,7 +200,7 @@ namespace backimpact
    }
 
 
-   bool main::update_buffer(const ::int_rectangle & rectangle)
+   bool main::update_buffer(const ::i32_rectangle & rectangle)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -682,7 +682,7 @@ namespace backimpact
       {
          if(lparam == 3)
          {
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
             update_buffer(rectangle);
 
             get_user_interaction()->backimpact_update_screen(rectangle,0);
@@ -690,7 +690,7 @@ namespace backimpact
          else if(lparam == 4)
          {
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
 
             update_buffer(rectangle);
 

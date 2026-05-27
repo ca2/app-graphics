@@ -419,7 +419,7 @@ namespace backimpact
    void transition_effect::Restart()
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       main * pmain = helper_get_main();
 
@@ -508,7 +508,7 @@ namespace backimpact
       else
       {
 
-         int_rectangle_array recta;
+         i32_rectangle_array recta;
 
          while(!TestEnd() && iRepeat > 0)
          {
@@ -537,7 +537,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::RunStepProcLevel1(int_rectangle_array & recta)
+   void transition_effect::RunStepProcLevel1(i32_rectangle_array & recta)
    {
 
       if (TestEnd())
@@ -571,7 +571,7 @@ namespace backimpact
          else
          {
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
 
             for(int i = 0; i < 1 && m_ptool001->m_ia.get_size(); i++)
             {
@@ -598,7 +598,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::on_step(int_rectangle_array & recta)
+   void transition_effect::on_step(i32_rectangle_array & recta)
    {
 
       synchronous_lock synchronouslockGcom(gcom_pmutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -633,7 +633,7 @@ namespace backimpact
 
       user_interaction * puserinteraction = pmain->get_user_interaction();
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       puserinteraction->backimpact_get_client_rect(rectangleX);
 
@@ -690,16 +690,16 @@ namespace backimpact
 
       //}
 
-//         ::int_size  sizeBack2 = bitmapBuffer->get_size();
-                  //double dBase = 40.0;
-      constexpr double dGamma = 0.5; // ? Parable
+//         ::i32_size  sizeBack2 = bitmapBuffer->get_size();
+                  //::f64 dBase = 40.0;
+      constexpr ::f64 dGamma = 0.5; // ? Parable
 
-      constexpr auto gamma_fix = [](double dRate)
+      constexpr auto gamma_fix = [](::f64 dRate)
       {
 
-         double dRateClipped = minimum_maximum(dRate, 0.0, 1.0);
+         ::f64 dRateClipped = minimum_maximum(dRate, 0.0, 1.0);
 
-         double d = dRateClipped * 2.0;
+         ::f64 d = dRateClipped * 2.0;
 
          if (d <= 1.0)
          {
@@ -714,14 +714,14 @@ namespace backimpact
 
          }
 
-         //double d = pow(dBase, dRateClipped * 0.9) / dBase;
+         //::f64 d = pow(dBase, dRateClipped * 0.9) / dBase;
 
          //return ;
 
       };
 
 
-      ::int_rectangle rectangleUpdate;
+      ::i32_rectangle rectangleUpdate;
       switch(m_etypea[m_iType])
       {
       case TransitionEffectSingleStep:
@@ -769,7 +769,7 @@ namespace backimpact
 
             if(m_ptool001->m_iStep <= 0)
                break;;
-            ::int_point point;
+            ::i32_point point;
             try
             {
                point = m_ptool001->m_pointa.element_at(iIndex);
@@ -781,7 +781,7 @@ namespace backimpact
             {
                break;
             }
-            //::double_point pointa[4];
+            //::f64_point pointa[4];
 
             m_ptool001->m_polygon.set_size(4);
 
@@ -831,7 +831,7 @@ namespace backimpact
 
             if(m_ptool001->m_iStep <= 0)
                break;
-            ::int_point point;
+            ::i32_point point;
             try
             {
                point = m_ptool001->m_pointa.element_at(iIndex);
@@ -912,10 +912,10 @@ namespace backimpact
 
                int i = iStep % tilesx;
                int j = iStep / tilesx;
-               double dUpdateH = (double) finalH / tilesy;
-               double dUpdateW = (double) finalW / tilesx;
-               double dX = dUpdateW * i;
-               double dY = dUpdateH * j;
+               ::f64 dUpdateH = (::f64) finalH / tilesy;
+               ::f64 dUpdateW = (::f64) finalW / tilesx;
+               ::f64 dX = dUpdateW * i;
+               ::f64 dY = dUpdateH * j;
                rectangleUpdate.set(
                (int) dX,
                (int) dY,
@@ -937,7 +937,7 @@ namespace backimpact
                   || m_etypea[m_iType] == TransitionEffectEllipsoidalpixelate_)
             {
 
-               ::int_rectangle rectangleEllipse;
+               ::i32_rectangle rectangleEllipse;
 
                if(m_etypea[m_iType] == TransitionEffectCirclypixelate_)
                {
@@ -956,7 +956,7 @@ namespace backimpact
 
                auto ppathClip = createø < ::draw2d::path >();
 
-               ::double_ellipse ellipse;
+               ::f64_ellipse ellipse;
                
                ellipse.set(rectangleUpdate);
 
@@ -1010,7 +1010,7 @@ namespace backimpact
          int finalW = cx;
          int finalH = cy;
 
-         ::int_rectangle & rectangleUpdate = m_ptool001->m_rectangle;
+         ::i32_rectangle & rectangleUpdate = m_ptool001->m_rectangle;
 
          if(m_ptool001->m_iStep == 1)
          {
@@ -1021,7 +1021,7 @@ namespace backimpact
 
          pimageBack->copy_from(pgcom->get_image(e_image_temp1));
 
-         double dRate = ((double) (m_ptool001->m_iStep + 1.0)) / ((double) m_ptool001->m_iStepCount);
+         ::f64 dRate = ((::f64) (m_ptool001->m_iStep + 1.0)) / ((::f64) m_ptool001->m_iStepCount);
 
          rectangleUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
 
@@ -1059,7 +1059,7 @@ namespace backimpact
 
          int finalH = cy;
 
-         ::int_rectangle & rectangleUpdate = m_ptool001->m_rectangle;
+         ::i32_rectangle & rectangleUpdate = m_ptool001->m_rectangle;
 
          const int iTileCount = m_ptool001->m_data.m_sliceframe.m_iTileCount;
 
@@ -1083,15 +1083,15 @@ namespace backimpact
 
             }
 
-            ::int_point point = m_ptool001->m_pointa.element_at(iIndex);
+            ::i32_point point = m_ptool001->m_pointa.element_at(iIndex);
 
             iTile = point.x;
 
             ///int iGroup = point.y;
 
-            double dRate = (double)( iTile + 1) /(double)(iTileMax);
+            ::f64 dRate = (::f64)( iTile + 1) /(::f64)(iTileMax);
 
-            double dRateMinus = (double) iTile / (double)(iTileMax);
+            ::f64 dRateMinus = (::f64) iTile / (::f64)(iTileMax);
 
             int iImageCount = m_ptool001->m_data.m_sliceframe.m_iImageCount;
 
@@ -1145,7 +1145,7 @@ namespace backimpact
 
                      ::image::image_source imagesource(pimageBuffer);
 
-                     double_rectangle rectangle(pimageBuffer->size());
+                     f64_rectangle rectangle(pimageBuffer->size());
 
                      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1153,7 +1153,7 @@ namespace backimpact
 
                      {
 
-                        double dRate = (double)(i+1) / (double)(iImageCount + 1);
+                        ::f64 dRate = (::f64)(i+1) / (::f64)(iImageCount + 1);
 
                         imagedrawingoptions.opacity(gamma_fix(dRate));
 
@@ -1171,7 +1171,7 @@ namespace backimpact
 
             }
 
-            double dAlpha = (double) iIntensity / (double) iImageCount;
+            ::f64 dAlpha = (::f64) iIntensity / (::f64) iImageCount;
 
             if(dAlpha > 0 && dAlpha <= 1.0 && !rectangleUpdate.is_empty())
             {
@@ -1183,7 +1183,7 @@ namespace backimpact
 
                   ::image::image_source imagesource(pimage, rectangleUpdate);
 
-                  double_rectangle rectangle(rectangleUpdate);
+                  f64_rectangle rectangle(rectangleUpdate);
 
                   ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1237,7 +1237,7 @@ namespace backimpact
 
 
          ::collection::index iFrame = m_ptool001->m_iStep - 1;
-         double & dFlyRate = m_ptool001->m_data.m_fly.m_dRate;
+         ::f64 & dFlyRate = m_ptool001->m_data.m_fly.m_dRate;
          if (iFrame == 0)
          {
 
@@ -1245,29 +1245,29 @@ namespace backimpact
 
          }
 
-         double dFrameStd = (double) iFrame / (double) iFrameMax;
-         dFlyRate = dFlyRate + ((1.0 - dFlyRate)/ sqrt((double)iFrameMax));
-         double dRate = minimum_maximum(dFlyRate, 0., 1.);
-         double dComplementRate = 1.0 - dRate;
-         double dAlpha = gamma_fix(dFrameStd);
+         ::f64 dFrameStd = (::f64) iFrame / (::f64) iFrameMax;
+         dFlyRate = dFlyRate + ((1.0 - dFlyRate)/ sqrt((::f64)iFrameMax));
+         ::f64 dRate = minimum_maximum(dFlyRate, 0., 1.);
+         ::f64 dComplementRate = 1.0 - dRate;
+         ::f64 dAlpha = gamma_fix(dFrameStd);
 
-         ::int_rectangle rectangleBound;
+         ::i32_rectangle rectangleBound;
          pgcom->GetFinalPlacement(&rectangleBound);
 
-         ::int_rectangle rectangle(rectangleBound);
+         ::i32_rectangle rectangle(rectangleBound);
 
          ::gcom::space space;
          space.deviate(&rectangle, &rectangleBound, GetDirection(m_etypea[m_iType]), dComplementRate);
 
-         ::int_rectangle rectangleIntersect;
+         ::i32_rectangle rectangleIntersect;
          rectangleIntersect.intersect(rectangle, rectangleBound);
 
-         ::double_point pointSrc(rectangleIntersect.left - rectangle.left + rectangleBound.left,
+         ::f64_point pointSrc(rectangleIntersect.left - rectangle.left + rectangleBound.left,
             rectangleIntersect.top - rectangle.top + rectangleBound.top);
 
          auto pimageFrame1 = pgcom->get_image(e_image_frame1);
 
-         ::int_rectangle rectangleX(pimageFrame1->size());
+         ::i32_rectangle rectangleX(pimageFrame1->size());
 
          {
 
@@ -1288,8 +1288,8 @@ namespace backimpact
          auto pimageBuffer = pgcom->get_image(e_image_buffer);
          {
 
-           // ::image::image_source imagesource(pimageFinal, ::double_rectangle(pointSrc, rectangleIntersect.size()));
-            ::image::image_source imagesource(pimageBuffer, ::double_rectangle(pointSrc, rectangleIntersect.size()));
+           // ::image::image_source imagesource(pimageFinal, ::f64_rectangle(pointSrc, rectangleIntersect.size()));
+            ::image::image_source imagesource(pimageBuffer, ::f64_rectangle(pointSrc, rectangleIntersect.size()));
 
             ::image::image_drawing_options imagedrawingoptions(rectangleIntersect);
 
@@ -1321,14 +1321,14 @@ namespace backimpact
          const int iFrameMax = iFrameCount;
 
          ::collection::index iFrame = m_ptool001->m_iStep - 1;
-         double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
-         double dFrameStdPlus = 1.0 - ((double) (iFrame + 1) / iFrameMax);
-         double dRate = 1.0 - dFrameStd * dFrameStd;
+         ::f64 dFrameStd = 1.0 - ((::f64) iFrame / iFrameMax);
+         ::f64 dFrameStdPlus = 1.0 - ((::f64) (iFrame + 1) / iFrameMax);
+         ::f64 dRate = 1.0 - dFrameStd * dFrameStd;
 
-         double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
+         ::f64 dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
 
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
          pgcom->GetFinalPlacement(&rectangle);
 
          ::gcom::space space;
@@ -1365,22 +1365,22 @@ namespace backimpact
          const int iFrameMax = iFrameCount - 1;
 
          ::collection::index iFrame = m_ptool001->m_iStep - 1;
-//               double dFrameStdMinus = 1.0 - ((double) (iFrame - 1)/ iFrameMax);
-         double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
-         double dFrameStdPlus = 1.0 - ((double) (iFrame + 1) / iFrameMax);
-//               double dRateMinus = 1.0 - dFrameStdMinus * dFrameStdMinus;
-         double dRate = 1.0 - dFrameStd * dFrameStd;
-         double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
+//               ::f64 dFrameStdMinus = 1.0 - ((::f64) (iFrame - 1)/ iFrameMax);
+         ::f64 dFrameStd = 1.0 - ((::f64) iFrame / iFrameMax);
+         ::f64 dFrameStdPlus = 1.0 - ((::f64) (iFrame + 1) / iFrameMax);
+//               ::f64 dRateMinus = 1.0 - dFrameStdMinus * dFrameStdMinus;
+         ::f64 dRate = 1.0 - dFrameStd * dFrameStd;
+         ::f64 dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
 
-         ::int_rectangle rectangleA;
-         ::int_rectangle rectangleB;
-         ::int_rectangle rectangleC;
-//               ::int_rectangle & rectangleUpdate = m_ptool001->m_rectangle;
-
-
+         ::i32_rectangle rectangleA;
+         ::i32_rectangle rectangleB;
+         ::i32_rectangle rectangleC;
+//               ::i32_rectangle & rectangleUpdate = m_ptool001->m_rectangle;
 
 
-         ::int_rectangle rectangle;
+
+
+         ::i32_rectangle rectangle;
          pgcom->GetFinalPlacement(&rectangle);
 
 
@@ -1437,10 +1437,10 @@ namespace backimpact
          const int iFrameMax = iFrameCount - 1;
 
          ::collection::index iFrame = m_ptool001->m_iStep - 1;
-         double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
-         double dRate = 1.0 - dFrameStd * dFrameStd;
+         ::f64 dFrameStd = 1.0 - ((::f64) iFrame / iFrameMax);
+         ::f64 dRate = 1.0 - dFrameStd * dFrameStd;
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
          pgcom->GetFinalPlacement(&rectangle);
 
          ::gcom::space space;
@@ -1463,17 +1463,17 @@ namespace backimpact
          const int iFrameMax = iFrameCount - 1;
 
          ::collection::index iFrame = m_ptool001->m_iStep - 1;
-         double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
-         double dFrameStdPlus = 1.0 - ((double) (iFrame + 1) / iFrameMax);
-         double dRate = 1.0 - dFrameStd * dFrameStd;
-         double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
+         ::f64 dFrameStd = 1.0 - ((::f64) iFrame / iFrameMax);
+         ::f64 dFrameStdPlus = 1.0 - ((::f64) (iFrame + 1) / iFrameMax);
+         ::f64 dRate = 1.0 - dFrameStd * dFrameStd;
+         ::f64 dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
 
-         ::int_rectangle rectangleA;
-         ::int_rectangle rectangleB;
-         ::int_rectangle rectangleC;
-         ::int_rectangle rectangleD;
+         ::i32_rectangle rectangleA;
+         ::i32_rectangle rectangleB;
+         ::i32_rectangle rectangleC;
+         ::i32_rectangle rectangleD;
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
          pgcom->GetFinalPlacement(&rectangle);
 
          ::gcom::space space;
@@ -1547,13 +1547,13 @@ namespace backimpact
          const int iFrameMax = iFrameCount - 1;
 
          ::collection::index iFrame = m_ptool001->m_iStep - 1;
-         double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
-         double dRate = dFrameStd * dFrameStd;
+         ::f64 dFrameStd = 1.0 - ((::f64) iFrame / iFrameMax);
+         ::f64 dRate = dFrameStd * dFrameStd;
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
          pgcom->GetFinalPlacement(&rectangle);
 
-         double greekdeltay = (rectangle.height() / 2) * dRate;
+         ::f64 greekdeltay = (rectangle.height() / 2) * dRate;
 
          rectangle.top += (long) greekdeltay;
          rectangle.bottom -= (long) greekdeltay;
@@ -1578,13 +1578,13 @@ namespace backimpact
          const int iFrameMax = iFrameCount - 1;
 
          ::collection::index iFrame = m_ptool001->m_iStep - 1;
-         double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
-         double dRate = dFrameStd * dFrameStd;
+         ::f64 dFrameStd = 1.0 - ((::f64) iFrame / iFrameMax);
+         ::f64 dRate = dFrameStd * dFrameStd;
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
          pgcom->GetFinalPlacement(&rectangle);
 
-         double greekdeltax = (rectangle.width() / 2) * dRate;
+         ::f64 greekdeltax = (rectangle.width() / 2) * dRate;
 
          rectangle.left += (long) greekdeltax;
          rectangle.right -= (long) greekdeltax;
@@ -1617,15 +1617,15 @@ namespace backimpact
 
          ::collection::index iFrame = m_ptool001->m_iStep - 1;
 
-         double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
+         ::f64 dFrameStd = 1.0 - ((::f64) iFrame / iFrameMax);
 
-         double dRate = dFrameStd * dFrameStd;
+         ::f64 dRate = dFrameStd * dFrameStd;
 
-         ::int_rectangle rectangleBound;
+         ::i32_rectangle rectangleBound;
 
          pgcom->GetFinalPlacement(&rectangleBound);
 
-         ::int_rectangle rectangle(rectangleBound);
+         ::i32_rectangle rectangle(rectangleBound);
 
          ::gcom::space space;
 
@@ -1643,7 +1643,7 @@ namespace backimpact
 
          dcBack->reset_clip();
 
-         double_rectangle rectangleSource(
+         f64_rectangle rectangleSource(
             0,
             0,
             pgcom->get_image(e_image_final)->width(),
@@ -1672,11 +1672,11 @@ namespace backimpact
          const int iFrameMax = iFrameCount - 1;
 
          ::collection::index iFrame = m_ptool001->m_iStep - 1;
-         double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
+         ::f64 dFrameStd = 1.0 - ((::f64) iFrame / iFrameMax);
 
-         double dRate = dFrameStd * dFrameStd;
+         ::f64 dRate = dFrameStd * dFrameStd;
 
-         ::int_rectangle rectangle = rectangleX;
+         ::i32_rectangle rectangle = rectangleX;
 
          ::gcom::space space;
 
@@ -1703,7 +1703,7 @@ namespace backimpact
       {
 
 
-         ::int_rectangle rectangleBound;
+         ::i32_rectangle rectangleBound;
          pgcom->GetFinalPlacement(&rectangleBound);
 
 
@@ -1714,7 +1714,7 @@ namespace backimpact
          int finalH = rectangleBound.height();
 
 
-         ::int_rectangle rectangleDest;
+         ::i32_rectangle rectangleDest;
 
          rectangleDest.left = 0;
          rectangleDest.top = 0;
@@ -1722,7 +1722,7 @@ namespace backimpact
          rectangleDest.bottom = finalH;
 
 
-         ::int_rectangle rectangleUpdate;
+         ::i32_rectangle rectangleUpdate;
 
          int c1 = m_ptool001->m_data.m_alphapixelate.m_c1;
          ::collection::index iIndex = m_ptool001->m_iStep - 1;
@@ -1747,8 +1747,8 @@ namespace backimpact
 
          if(iIndex >= 0)
          {
-            double dRateMinus = (double) ca / (double) c1;
-            double dRate = (double) nextc / (double) c1;
+            ::f64 dRateMinus = (::f64) ca / (::f64) c1;
+            ::f64 dRate = (::f64) nextc / (::f64) c1;
 
             if(dRateMinus < 0.0)
                dRateMinus = 0.0;
@@ -1763,15 +1763,15 @@ namespace backimpact
             if(dRateMinus > dRate)
                dRateMinus = dRate;
 
-            double dAlpha;
+            ::f64 dAlpha;
 
             {
-               double dBeginSpanTime = 0.30;
-               double dEndSpanTime = 0.05;
-               double dTime = (double) m_ptool001->m_iStep / (double) m_ptool001->m_iStepCount;
-               double dRate = 8.0;
-               double dMiddle = 0.87;
-               double dMiddleAlpha = 107.0;
+               ::f64 dBeginSpanTime = 0.30;
+               ::f64 dEndSpanTime = 0.05;
+               ::f64 dTime = (::f64) m_ptool001->m_iStep / (::f64) m_ptool001->m_iStepCount;
+               ::f64 dRate = 8.0;
+               ::f64 dMiddle = 0.87;
+               ::f64 dMiddleAlpha = 107.0;
 
                if(dTime < dMiddle)
                {
@@ -1897,7 +1897,7 @@ namespace backimpact
 
                   ::image::image_source imagesource(dcFrame1);
 
-                  double_rectangle rectangle(::double_size(finalW, finalH));
+                  f64_rectangle rectangle(::f64_size(finalW, finalH));
 
                   ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1927,9 +1927,9 @@ namespace backimpact
 
                {
 
-                  ::image::image_source imagesource(dcBuffer, double_rectangle(int_point(finalX, finalY), ::long_long_size(finalW, finalH)));
+                  ::image::image_source imagesource(dcBuffer, f64_rectangle(i32_point(finalX, finalY), ::i64_size(finalW, finalH)));
 
-                  double_rectangle rectangle(::long_long_size(finalW, finalH));
+                  f64_rectangle rectangle(::i64_size(finalW, finalH));
 
                   ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1979,14 +1979,14 @@ namespace backimpact
             {
 
                ::image::image_source imagesource(pimage, 
-                  double_rectangle_dimension(
+                  f64_rectangle_dimension(
                      rectangleDest.left - rectangleBound.left,
                      rectangleDest.top - rectangleBound.top, 
                      minimum(rectangleDest.width(), finalW),
                      minimum(rectangleDest.height(), finalH))
                );
 
-               auto rectangle = double_rectangle_dimension(rectangleDest.left,
+               auto rectangle = f64_rectangle_dimension(rectangleDest.left,
                                           rectangleDest.top,
                                           minimum(rectangleDest.width(), finalW),
                                           minimum(rectangleDest.height(), finalH));
@@ -2042,8 +2042,8 @@ namespace backimpact
          int wWindow = minimum(cx, d);
          int hWindow = minimum(cy, d);
 
-//                  double xrate = (double) wWindow / d;
-//                  double yrate = (double) hWindow / d;
+//                  ::f64 xrate = (::f64) wWindow / d;
+//                  ::f64 yrate = (::f64) hWindow / d;
 
          ::image::image_pointer pimage1 = pgcom->get_image(e_image_temp1);
          ::image::image_pointer pimage2 = pgcom->get_image(e_image_temp2);
@@ -2059,13 +2059,13 @@ namespace backimpact
 
          {
 
-            auto rectangleSource = double_rectangle_dimension(xOff, yOff,
+            auto rectangleSource = f64_rectangle_dimension(xOff, yOff,
                                     pimage->width() - xOff * 2,
                                     pimage->height() - yOff * 2);
 
             ::image::image_source imagesource(pimage, rectangleSource);
 
-            double_rectangle rectangleTarget(::int_size(wWindow, hWindow));
+            f64_rectangle rectangleTarget(::i32_size(wWindow, hWindow));
 
             ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -2079,9 +2079,9 @@ namespace backimpact
 
          {
 
-            ::image::image_source imagesource(dcBuffer, double_rectangle_dimension(x1, y1, wWindow, hWindow));
+            ::image::image_source imagesource(dcBuffer, f64_rectangle_dimension(x1, y1, wWindow, hWindow));
 
-            auto rectangle = double_rectangle_dimension(0, 0, wWindow, hWindow);
+            auto rectangle = f64_rectangle_dimension(0, 0, wWindow, hWindow);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2152,7 +2152,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimage2);
 
-            auto rectangle = double_rectangle_dimension(x1, y1, wWindow, hWindow);
+            auto rectangle = f64_rectangle_dimension(x1, y1, wWindow, hWindow);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2192,7 +2192,7 @@ namespace backimpact
       for(int i = 0; i < recta.get_size(); i++)
       {
 
-         ::int_rectangle rectangleTransfer = recta[i];
+         ::i32_rectangle rectangleTransfer = recta[i];
 
          //dcTransfer->draw(rectangleTransfer, dcBack, rectangleTransfer.top_left());
 
@@ -2294,7 +2294,7 @@ namespace backimpact
 #ifdef _DEBUG
 
 
-   long long transition_effect::increment_reference_count()
+   ::i64 transition_effect::increment_reference_count()
    {
 
       return ::matter::increment_reference_count();
@@ -2302,7 +2302,7 @@ namespace backimpact
    }
 
 
-   long long transition_effect::decrement_reference_count()
+   ::i64 transition_effect::decrement_reference_count()
    {
 
       return ::matter::decrement_reference_count();
@@ -2310,7 +2310,7 @@ namespace backimpact
    }
 
 
-   long long transition_effect::release()
+   ::i64 transition_effect::release()
    {
 
       return ::matter::release();
@@ -2378,7 +2378,7 @@ namespace backimpact
 
       user_interaction * puserinteraction = pmain->get_user_interaction();
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       puserinteraction->backimpact_get_client_rect(rectangleX);
 
@@ -2395,7 +2395,7 @@ namespace backimpact
 
             ::image::image_source imagesource(dcTransfer);
 
-            double_rectangle rectangle(rectangleX.size());
+            f64_rectangle rectangle(rectangleX.size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2487,9 +2487,9 @@ namespace backimpact
    void transition_effect::_thread_run_step()
    {
 
-      srand((unsigned int) time(nullptr));
+      srand((::u32) time(nullptr));
 
-      //unsigned int uRet = 0;
+      //::u32 uRet = 0;
 
       while (m_bRun && ::task_get_run())
       {

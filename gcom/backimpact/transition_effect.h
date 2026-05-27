@@ -26,11 +26,11 @@ namespace backimpact
          {
             struct SQUARY_PIXELATE
             {
-               double xyz;
+               ::f64 xyz;
             } m_squarypixelate;
             struct HEXAGON_PIXELATE
             {
-               double xyz;
+               ::f64 xyz;
             } m_hexagonpixelate;
             struct SLICE_FRAME
             {
@@ -42,7 +42,7 @@ namespace backimpact
             struct FLY
             {
                int m_iFrameCount;
-               double m_dRate;
+               ::f64 m_dRate;
             } m_fly;
             struct TILES
             {
@@ -62,7 +62,7 @@ namespace backimpact
                int m_iRadiusIncrement;
             } m_radialunveil;
          } m_data;
-         double      m_dAlpha;
+         ::f64      m_dAlpha;
 
          enum EAlign
          {
@@ -83,12 +83,12 @@ namespace backimpact
          
          
          ETransitionEffect       m_etransitioneffect;
-         int_size                    m_size;
+         i32_size                    m_size;
          int                     m_cx;
          int                     m_cy;
-         double                  m_dRate;
-         double                  m_dRateEx;
-         double                  m_phi;
+         ::f64                  m_dRate;
+         ::f64                  m_dRateEx;
+         ::f64                  m_phi;
          int                     m_iRadius;
 
          
@@ -96,23 +96,23 @@ namespace backimpact
          
          
          int                              m_iStepRepeatCount;
-         ::int_rectangle                  m_rectangle;
-         int_point                        m_point;
-         ::int_rectangle                  m_rectangleIn;
-         ::int_rectangle                  m_rectangleOut;
-         ::int_rectangle                  m_rectangleA;
-         ::int_rectangle                  m_rectangleB;
-         ::int_rectangle                  m_rectangleC;
-         ::int_rectangle                  m_rectangleD;
-         ::int_point_array                m_pointa;
-         ::int_point_array                m_pointa2;
-         ::double_polygon                    m_polygon;
+         ::i32_rectangle                  m_rectangle;
+         i32_point                        m_point;
+         ::i32_rectangle                  m_rectangleIn;
+         ::i32_rectangle                  m_rectangleOut;
+         ::i32_rectangle                  m_rectangleA;
+         ::i32_rectangle                  m_rectangleB;
+         ::i32_rectangle                  m_rectangleC;
+         ::i32_rectangle                  m_rectangleD;
+         ::i32_point_array                m_pointa;
+         ::i32_point_array                m_pointa2;
+         ::f64_polygon                    m_polygon;
          ::i32_array_base                        m_ia;
-         double_array                     m_da;
+         f64_array                     m_da;
          ::collection::index                            m_iStep; // 0 - Inactive, >= 1 Active
          ::collection::count                          m_iStepCount; // -1 - Infinite, 0 and 1 - invalid, > 1 ::collection::count out
          ::collection::index                            m_iFrame;
-         double                           m_dMinimumAlpha;
+         ::f64                           m_dMinimumAlpha;
          
          
       public:
@@ -124,7 +124,7 @@ namespace backimpact
          virtual void initialize_backimpact_helper(main * pmain);
 
 
-         void Start(int cx, int cy, double dRate, double dRateEx);
+         void Start(int cx, int cy, ::f64 dRate, ::f64 dRateEx);
 //         void Go(ETransitionEffect eType);
          void Go();
 
@@ -134,59 +134,59 @@ namespace backimpact
          int & cy() { return m_size.cy; }
 
          void GetSliceRect(
-         ::int_rectangle *   lprect,
+         ::i32_rectangle *   lprect,
          EAlign   aelign);
 
          void GetSliceRect(
-         ::int_rectangle *   lprect,
+         ::i32_rectangle *   lprect,
          EAlign   aelign,
-         double   dRate,
-         double   dRateMinus);
+         ::f64   dRate,
+         ::f64   dRateMinus);
 
          void GetSliceRect(
          int      cx,
          int      cy,
-         ::int_rectangle *   lprect,
+         ::i32_rectangle *   lprect,
          EAlign   aelign,
-         double   dRate,
-         double   dRateMinus);
+         ::f64   dRate,
+         ::f64   dRateMinus);
 
 
-         void GetRectAB(::int_rectangle * lprectA, ::int_rectangle * lprectB);
-         void GetRectABCD(::int_rectangle * lprectA, ::int_rectangle * lprectB, ::int_rectangle * lprectC, ::int_rectangle * lprectD);
-         void GetHorizontalHexagon(::int_rectangle * lprect, ::double_point * lppointa);
-         int FindRandomEnglobingEllipse(const ::int_rectangle * lprect, ::int_rectangle * lprectCircle, int iMaxRand);
-         int FindRandomEnglobingCircle(const ::int_rectangle * lprect, ::int_rectangle * lprectCircle, int iMaxRand);
-         void GetRect(::int_point * lppoint, const ::int_rectangle & rectangle);
-         void GetRect(::double_point * lppoint, const ::int_rectangle & rectangle);
+         void GetRectAB(::i32_rectangle * lprectA, ::i32_rectangle * lprectB);
+         void GetRectABCD(::i32_rectangle * lprectA, ::i32_rectangle * lprectB, ::i32_rectangle * lprectC, ::i32_rectangle * lprectD);
+         void GetHorizontalHexagon(::i32_rectangle * lprect, ::f64_point * lppointa);
+         int FindRandomEnglobingEllipse(const ::i32_rectangle * lprect, ::i32_rectangle * lprectCircle, int iMaxRand);
+         int FindRandomEnglobingCircle(const ::i32_rectangle * lprect, ::i32_rectangle * lprectCircle, int iMaxRand);
+         void GetRect(::i32_point * lppoint, const ::i32_rectangle & rectangle);
+         void GetRect(::f64_point * lppoint, const ::i32_rectangle & rectangle);
          void GetRect(
-         ::int_rectangle *   lprect);
+         ::i32_rectangle *   lprect);
          void GetRect(
-         ::int_rectangle * lprect,
-         double   dRate,
-         double   dRateEx);
+         ::i32_rectangle * lprect,
+         ::f64   dRate,
+         ::f64   dRateEx);
          void GetRect(
-         ::int_rectangle *   lprect,
+         ::i32_rectangle *   lprect,
          EAlign   ealign);
          void GetRect(
-         ::int_rectangle *   lprect,
+         ::i32_rectangle *   lprect,
          EAlign   ealign,
-         double   dRate);
+         ::f64   dRate);
          void GetRect(
-         ::int_rectangle *   lprect,
+         ::i32_rectangle *   lprect,
          EAlign   ealign,
          int      cx,
          int      cy,
-         double   dRate);
-         void GetRotateRect(int w, int h, int i, int j, double phi, ::double_point * lppoint);
-         void GetRotateRect(int i, int j, ::double_point * lppoint);
-         void TranslateRect(::int_rectangle * lprect, int w, int h, int i, int j);
-         void GetRotateHexagon(int iRadius, int i, int j, double phi, ::double_point * lppoint);
-         void GetRotateHexagon(int i, int j, ::double_point * lppoint);
+         ::f64   dRate);
+         void GetRotateRect(int w, int h, int i, int j, ::f64 phi, ::f64_point * lppoint);
+         void GetRotateRect(int i, int j, ::f64_point * lppoint);
+         void TranslateRect(::i32_rectangle * lprect, int w, int h, int i, int j);
+         void GetRotateHexagon(int iRadius, int i, int j, ::f64 phi, ::f64_point * lppoint);
+         void GetRotateHexagon(int i, int j, ::f64_point * lppoint);
          void Initialize(ETransitionEffect eeffect, int cx, int cy, transition_effect & effect);
          void Finalize();
 
-//         static void GetSimplePolyBox(::int_rectangle * lprect, ::double_point * lppoint, int iCount);
+//         static void GetSimplePolyBox(::i32_rectangle * lprect, ::f64_point * lppoint, int iCount);
 
       };
 
@@ -243,9 +243,9 @@ namespace backimpact
 
       //void _Init(ETransitionEffect etypeNew);
 #ifdef _DEBUG
-      virtual long long increment_reference_count() override;
-      virtual long long decrement_reference_count() override;
-      virtual long long release() override;
+      virtual ::i64 increment_reference_count() override;
+      virtual ::i64 decrement_reference_count() override;
+      virtual ::i64 release() override;
 #endif
 
       void OnTimer();
@@ -253,7 +253,7 @@ namespace backimpact
       bool IsActive();
       bool TestEnd();
       void End();
-      void on_step(int_rectangle_array & rectaUpdate);
+      void on_step(i32_rectangle_array & rectaUpdate);
 
 
       void initialize_transition_effect();
@@ -266,7 +266,7 @@ namespace backimpact
       virtual void _thread_run_step();
 
    protected:
-      void RunStepProcLevel1(int_rectangle_array & arra);
+      void RunStepProcLevel1(i32_rectangle_array & arra);
       void RunStepProcLevel2();
 
    };

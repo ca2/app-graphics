@@ -24,7 +24,7 @@
 #define RAND_MAX2 65535
 int rand2()
 {
-   return (int) ((long long) rand() * (long long) RAND_MAX2 / (long long) RAND_MAX);
+   return (int) ((::i64) rand() * (::i64) RAND_MAX2 / (::i64) RAND_MAX);
 }
 
 #define rand rand2
@@ -34,7 +34,7 @@ int rand2()
 
 #undef RAND_MAX
 #define RAND_MAX RAND_MAX2
-#define DRAND_MAX ((double)RAND_MAX)
+#define DRAND_MAX ((::f64)RAND_MAX)
 
 
 namespace backimpact
@@ -73,7 +73,7 @@ namespace backimpact
       
 #ifdef USE_IPP
 
-      bool set_sizes(::int_size sSrc, ::int_size sDst)
+      bool set_sizes(::i32_size sSrc, ::i32_size sDst)
       {
 
          if (_set_sizes(sSrc, sDst) != ippStsNoErr)
@@ -83,7 +83,7 @@ namespace backimpact
          return true;
       }
 
-      IppStatus _set_sizes(::int_size sSrc, ::int_size sDst)
+      IppStatus _set_sizes(::i32_size sSrc, ::i32_size sDst)
       {
          if(srcSize.width == sSrc.cx
                && srcSize.height == sSrc.cy
@@ -123,7 +123,7 @@ namespace backimpact
             return status;
          }
 
-         /* work buffer int_size */
+         /* work buffer i32_size */
          status = ippiResizeGetBufferSize_8u(pSpec, dstSize, numChannels, &bufSize);
          if (status != ippStsNoErr)
          {
@@ -192,7 +192,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimageSource);
 
-            double_rectangle rectangle(pimageTarget->size());
+            f64_rectangle rectangle(pimageTarget->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -266,7 +266,7 @@ namespace backimpact
 
 
 
-   void visual_effect::on_render_buffer(int_rectangle_array & recta)
+   void visual_effect::on_render_buffer(i32_rectangle_array & recta)
    {
 
       main * pmain = helper_get_main();
@@ -292,7 +292,7 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
 
-         srand((unsigned int) time(nullptr));
+         srand((::u32) time(nullptr));
 
          InitialRender();
 
@@ -430,7 +430,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimageBack);
 
-         double_rectangle rectangle(pimageTransfer->get_size());
+         f64_rectangle rectangle(pimageTransfer->get_size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -443,7 +443,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderRotateBlend(int_rectangle_array & recta)
+   void visual_effect::RenderRotateBlend(i32_rectangle_array & recta)
    {
 
       auto pmain = helper_get_main();
@@ -457,7 +457,7 @@ namespace backimpact
 
       auto ptransitioneffect = pmain->get_transition_effect();
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
 
       gcom * pgcom = pmain->get_gcom();
 
@@ -490,7 +490,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimageBuffer);
 
-         double_rectangle rectangle(pimage3->size());
+         f64_rectangle rectangle(pimage3->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -505,7 +505,7 @@ namespace backimpact
       m_iGrowColor,
       m_iGrowMax);
 
-      double dAngleOffset = 1.0 * rand() / RAND_MAX;
+      ::f64 dAngleOffset = 1.0 * rand() / RAND_MAX;
       if(m_iGrowColor >= 0)
       {
          //m_iGrowColor++;
@@ -547,7 +547,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -563,7 +563,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -581,14 +581,14 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderNPRotateBlend(int_rectangle_array & recta)
+   void visual_effect::RenderNPRotateBlend(i32_rectangle_array & recta)
    {
 
       main * pmain = helper_get_main();
 
       transition_effect * ptransitioneffect = pmain->get_transition_effect();
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
 
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
@@ -636,13 +636,13 @@ namespace backimpact
       //rand() * 255 / RAND_MAX,
       //rand() * 255 / RAND_MAX);
 
-      unsigned char bA = 50;
+      ::u8 bA = 50;
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
 
       // ::draw2d::graphics_pointer pimage3->get_graphics();
@@ -655,8 +655,8 @@ namespace backimpact
 
 
 
-      double dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
-      double dAngle;
+      ::f64 dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
+      ::f64 dAngle;
       if(m_iGrowColor >= 0)
       {
          dAngle = 10.111 + dAngleOffset;
@@ -700,7 +700,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         double_rectangle rectangle(0, 0, cx1, cy1);
+         f64_rectangle rectangle(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -716,7 +716,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle (pimageBack->size());
+         f64_rectangle rectangle (pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -731,14 +731,14 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderNPRotateColorBlend(int_rectangle_array & recta)
+   void visual_effect::RenderNPRotateColorBlend(i32_rectangle_array & recta)
    {
       
       main * pmain = helper_get_main();
 
       transition_effect * ptransitioneffect = pmain->get_transition_effect();
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
 
@@ -790,15 +790,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-      unsigned char bA = 50;
+      ::u8 bA = 50;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
 
       // ::draw2d::graphics_pointer pimage3->get_graphics();
@@ -811,8 +811,8 @@ namespace backimpact
 
 
 
-      double dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
-      double dAngle;
+      ::f64 dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
+      ::f64 dAngle;
       if(m_iGrowColor >= 0)
       {
          dAngle = 10.111 + dAngleOffset;
@@ -852,7 +852,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         double_rectangle rectangle(0, 0, cx1, cy1);
+         f64_rectangle rectangle(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -868,7 +868,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -883,13 +883,13 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderNPRotateTrackColorBlend(int_rectangle_array & recta)
+   void visual_effect::RenderNPRotateTrackColorBlend(i32_rectangle_array & recta)
    {
       main * pmain = helper_get_main();
 
       transition_effect * ptransitioneffect = pmain->get_transition_effect();
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
 
@@ -931,8 +931,8 @@ namespace backimpact
       }
       m_dDirection += m_dDirectionAddUp;
 
-      double dcos = ::cos(m_dDirection * M_PI / 180.0);
-      double dsin = ::sin(m_dDirection * M_PI / 180.0);
+      ::f64 dcos = ::cos(m_dDirection * M_PI / 180.0);
+      ::f64 dsin = ::sin(m_dDirection * M_PI / 180.0);
 
       StepGrow001(
       m_color,
@@ -987,15 +987,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-      unsigned char bA = 50;
+      ::u8 bA = 50;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       // ::draw2d::graphics_pointer pimage3->get_graphics();
       //pimage3->get_graphics()->CreateCompatibleDC(nullptr);
@@ -1011,8 +1011,8 @@ namespace backimpact
 //         int c4 = rand() * 10 / RAND_MAX + 1;
 
 
-      double dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
-      double dAngle;
+      ::f64 dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
+      ::f64 dAngle;
       if(m_iGrowColor >= 0)
       {
 
@@ -1068,7 +1068,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1084,7 +1084,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1108,7 +1108,7 @@ namespace backimpact
 
       user_interaction * puserinteraction = pmain->get_user_interaction();
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       puserinteraction->backimpact_get_client_rect(rectangleX);
 
@@ -1144,7 +1144,7 @@ namespace backimpact
 
          ::image::image_source imagesource(dcBuffer);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx, cy);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx, cy);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1179,7 +1179,7 @@ namespace backimpact
       m_explosion.Reset();
 
 
-      int_point      m_pointColorTrack;
+      i32_point      m_pointColorTrack;
 
       m_rndgrowVelocity.i = 0;
       m_rndgrowVelocity.lbound = 1;
@@ -1227,9 +1227,9 @@ namespace backimpact
    int & iGrowColor,
    int & iGrowMax)
    {
-      double dH;
-      double dL;
-      double dS;
+      ::f64 dH;
+      ::f64 dL;
+      ::f64 dS;
       color.get_hls(dH, dL, dS);
       dL = 0.7;
       dS = 0.7;
@@ -1287,9 +1287,9 @@ namespace backimpact
    int & iGrowColor,
    int & iGrowMax)
    {
-      double dH;
-      double dL;
-      double dS;
+      ::f64 dH;
+      ::f64 dL;
+      ::f64 dS;
       color.get_hls(dH, dL, dS);
       dL = 0.7;
       dS = 0.7;
@@ -1348,9 +1348,9 @@ namespace backimpact
    int & iGrowMax,
    bool & bGrowColor)
    {
-      double dH;
-      double dL;
-      double dS;
+      ::f64 dH;
+      ::f64 dL;
+      ::f64 dS;
       color.get_hls(dH, dL, dS);
       dL = 0.7;
       dS = 0.7;
@@ -1460,14 +1460,14 @@ namespace backimpact
       return b;
    }
    
-   void visual_effect::RenderRotateEx1(int_rectangle_array & recta)
+   void visual_effect::RenderRotateEx1(i32_rectangle_array & recta)
    {
       
       main * pmain = helper_get_main();
 
       transition_effect * ptransitioneffect = pmain->get_transition_effect();
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
 
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
@@ -1510,8 +1510,8 @@ namespace backimpact
       }
       m_dDirection += m_dDirectionAddUp;
 
-      double dcos = ::cos(m_dDirection * M_PI / 180.0);
-      double dsin = ::sin(m_dDirection * M_PI / 180.0);
+      ::f64 dcos = ::cos(m_dDirection * M_PI / 180.0);
+      ::f64 dsin = ::sin(m_dDirection * M_PI / 180.0);
 
       StepGrow001(
       m_color,
@@ -1520,9 +1520,9 @@ namespace backimpact
 
       ::color::color colorStrong = m_color;
 
-      double dH;
-      double dL;
-      double dS;
+      ::f64 dH;
+      ::f64 dL;
+      ::f64 dS;
       colorStrong.get_hls(dH, dL, dS);
       dL = 0.3;
       dS = 0.8;
@@ -1575,15 +1575,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-      unsigned char bA = 200;
+      ::u8 bA = 200;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       // ::draw2d::graphics_pointer pimage3->get_graphics();
       //pimage3->get_graphics()->CreateCompatibleDC(nullptr);
@@ -1599,8 +1599,8 @@ namespace backimpact
 //         int c4 = rand() * 10 / RAND_MAX + 1;
 
 
-      double dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
-      double dAngle;
+      ::f64 dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
+      ::f64 dAngle;
       if(m_iGrowColor >= 0)
       {
 
@@ -1659,7 +1659,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1675,7 +1675,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1690,7 +1690,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderRotateEx2(int_rectangle_array & recta)
+   void visual_effect::RenderRotateEx2(i32_rectangle_array & recta)
    {
 
       main * pmain = helper_get_main();
@@ -1709,7 +1709,7 @@ namespace backimpact
 
 
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
 
@@ -1730,7 +1730,7 @@ namespace backimpact
       }
 
 
-      ::int_rectangle rcTrackBox;
+      ::i32_rectangle rcTrackBox;
 
       rcTrackBox.left   = cx1 * 4 / 9;
       rcTrackBox.top    = cy1 * 4 / 9;
@@ -1783,45 +1783,45 @@ namespace backimpact
       ::color::color colorStrong5;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.3;
          dS = 0.8;
          colorStrong1.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong2.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.5;
          colorStrong2.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong2.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.7;
          colorStrong3.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong4.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong4.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong4.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.5;
@@ -1834,15 +1834,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-//         unsigned char bA = 200;
+//         ::u8 bA = 200;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       // ::draw2d::graphics_pointer pimage3->get_graphics();
       //pimage3->get_graphics()->CreateCompatibleDC(nullptr);
@@ -1865,8 +1865,8 @@ namespace backimpact
       m_dAngleOffset += m_dAngleOffsetAddUp;
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-      double dAngleOffset = m_dAngleOffset;
-      double dAngle;
+      ::f64 dAngleOffset = m_dAngleOffset;
+      ::f64 dAngle;
       if(m_iGrowColor >= 0)
       {
 
@@ -1971,7 +1971,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1987,7 +1987,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2002,7 +2002,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::Constraint001(int_point & point, const ::int_rectangle & rectangle, double & direction)
+   void visual_effect::Constraint001(i32_point & point, const ::i32_rectangle & rectangle, ::f64 & direction)
    {
       if(point.x > rectangle.right)
       {
@@ -2040,7 +2040,7 @@ namespace backimpact
       }
 
    }
-   void visual_effect::TrackDirection001(double &direction, double & directionAddUp, random_grow & randomgrow)
+   void visual_effect::TrackDirection001(::f64 &direction, ::f64 & directionAddUp, random_grow & randomgrow)
    {
       if(randomgrow.Step())
       {
@@ -2052,7 +2052,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderRotateEx3(int_rectangle_array & recta)
+   void visual_effect::RenderRotateEx3(i32_rectangle_array & recta)
    {
 
       main * pmain = helper_get_main();
@@ -2071,7 +2071,7 @@ namespace backimpact
 
 
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
 
@@ -2102,14 +2102,14 @@ namespace backimpact
 //         int s3 = rand() * 2 / RAND_MAX + 1;
 //         int s4 = rand() * 2 / RAND_MAX + 1;
 
-      ::int_rectangle rcTrackBox;
+      ::i32_rectangle rcTrackBox;
 
       rcTrackBox.left   = 1;
       rcTrackBox.top    = 1;
       rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
       rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
-      ::int_rectangle rcTrackBox2;
+      ::i32_rectangle rcTrackBox2;
 
       rcTrackBox2.left   = 0;
       rcTrackBox2.top    = 0;
@@ -2166,72 +2166,72 @@ namespace backimpact
       ::color::color colorStrong8;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong1.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.7;
          colorStrong2.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.7;
          colorStrong3.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.9;
          colorStrong4.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong5.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
          colorStrong6.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong7.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
@@ -2243,15 +2243,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-      unsigned char bA = 200;
+      ::u8 bA = 200;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       // ::draw2d::graphics_pointer pimage3->get_graphics();
       //pimage3->get_graphics()->CreateCompatibleDC(nullptr);
@@ -2274,8 +2274,8 @@ namespace backimpact
       m_dAngleOffset += m_dAngleOffsetAddUp;
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-      double dAngleOffset = m_dAngleOffset;
-      double dAngle;
+      ::f64 dAngleOffset = m_dAngleOffset;
+      ::f64 dAngle;
       if(m_iGrowColor >= 0)
       {
          dAngle = 0.111 + dAngleOffset;
@@ -2373,7 +2373,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2389,7 +2389,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2404,11 +2404,11 @@ namespace backimpact
    }
 
 
-   void visual_effect::Constraint001(int_point & point, const ::int_rectangle * lpcrectIn,
-   const ::int_rectangle * lpcrectOut, double & direction)
+   void visual_effect::Constraint001(i32_point & point, const ::i32_rectangle * lpcrectIn,
+   const ::i32_rectangle * lpcrectOut, ::f64 & direction)
    {
 
-      ::int_rectangle rectangleIn(*lpcrectIn);
+      ::i32_rectangle rectangleIn(*lpcrectIn);
 
       if(rectangleIn.contains(point))
       {
@@ -2474,7 +2474,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderRotateEx4(int_rectangle_array & recta)
+   void visual_effect::RenderRotateEx4(i32_rectangle_array & recta)
    {
       
       main * pmain = helper_get_main();
@@ -2493,7 +2493,7 @@ namespace backimpact
 
 
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
       
@@ -2524,14 +2524,14 @@ namespace backimpact
 //         int s3 = rand() * 2 / RAND_MAX + 1;
 //         int s4 = rand() * 2 / RAND_MAX + 1;
 
-      ::int_rectangle rcTrackBox;
+      ::i32_rectangle rcTrackBox;
 
       rcTrackBox.left   = 1;
       rcTrackBox.top    = 1;
       rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
       rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
-      ::int_rectangle rcTrackBox2;
+      ::i32_rectangle rcTrackBox2;
 
       rcTrackBox2.left   = 0;
       rcTrackBox2.top    = 0;
@@ -2588,72 +2588,72 @@ namespace backimpact
       ::color::color colorStrong8;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong1.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.3;
          dS = 0.1;
          colorStrong2.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.7;
          colorStrong3.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.9;
          colorStrong4.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong5.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
          colorStrong6.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong7.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
@@ -2665,15 +2665,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-      unsigned char bA = 200;
+      ::u8 bA = 200;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -2698,12 +2698,12 @@ namespace backimpact
       {
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
-      double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
+      ::f64 dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
       m_dAngleOffset += minimum(10.0, minimum(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-//         double dAngleOffset = m_dAngleOffset;
-      double dAngle;
+//         ::f64 dAngleOffset = m_dAngleOffset;
+      ::f64 dAngle;
       if(m_rndgrowAngleOffsetLatency.i > 50)
       {
          //dAngle = 10.111 + dAngleOffset;
@@ -2741,8 +2741,8 @@ namespace backimpact
       int margin = 10;
       int w = margin * 2;
 
-      ::int_point pointLast(margin, margin);
-      ::int_point pointNow;
+      ::i32_point pointLast(margin, margin);
+      ::i32_point pointNow;
       //pimage1->get_graphics()->set_current_point(margin, margin);
 
       int imax = cx1 - margin;
@@ -2964,7 +2964,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2980,7 +2980,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -2996,7 +2996,7 @@ namespace backimpact
 
 
 
-   void visual_effect::RenderRain1(int_rectangle_array & recta)
+   void visual_effect::RenderRain1(i32_rectangle_array & recta)
    {
       
       main * pmain = helper_get_main();
@@ -3032,7 +3032,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimageFrame1);
 
-            double_rectangle rectangle(pimage4->size());
+            f64_rectangle rectangle(pimage4->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -3048,7 +3048,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimageBuffer);
 
-            double_rectangle rectangle(pimage3->size());
+            f64_rectangle rectangle(pimage3->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -3074,7 +3074,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage3);
 
-         double_rectangle rectangle(pimage1->size());
+         f64_rectangle rectangle(pimage1->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -3136,7 +3136,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderRotateEx5(int_rectangle_array & recta)
+   void visual_effect::RenderRotateEx5(i32_rectangle_array & recta)
    {
 
       main * pmain = helper_get_main();
@@ -3153,7 +3153,7 @@ namespace backimpact
                          pimage1->height() / 2);
       }
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
       
@@ -3211,9 +3211,9 @@ namespace backimpact
       ::color::color colorStrong1 = m_color;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
@@ -3228,23 +3228,23 @@ namespace backimpact
       int margin2 = cy1 / 2;
       int w = cy1 / 3;
 
-      double jmul = (double) cy1 / (cx1 * 2.0);
+      ::f64 jmul = (::f64) cy1 / (cx1 * 2.0);
 
-      double delta = w;
+      ::f64 delta = w;
 
 
       int imax = cx1 - margin1;
       int jmax = cx1 / 2;
       int rmax = jmax * RAND_MAX;
-      double rhalf = RAND_MAX / 2.0;
+      ::f64 rhalf = RAND_MAX / 2.0;
       int j = 0;
 //         int r1 = 0;
 //         int r2 = 0;
 
 
-      double offset;
+      ::f64 offset;
 
-      double jres;
+      ::f64 jres;
       int i;
       for(i = margin1; i < jmax; i++)
       {
@@ -3317,7 +3317,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimage1);
 
-            double_rectangle rectangle(pimage4->size());
+            f64_rectangle rectangle(pimage4->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -3334,7 +3334,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimage4);
 
-            double_rectangle rectangle(pimage1->size());
+            f64_rectangle rectangle(pimage1->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -3357,8 +3357,8 @@ namespace backimpact
       m_dAngleOffset = m_dAngleOffsetAddUp;
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-      double dAngleOffset = m_dAngleOffset;
-      double dAngle;
+      ::f64 dAngleOffset = m_dAngleOffset;
+      ::f64 dAngle;
       if(m_iGrowColor >= 0)
       {
          dAngle = 1.511 + dAngleOffset;
@@ -3376,7 +3376,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -3392,7 +3392,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -3407,7 +3407,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderRotateEx7(int_rectangle_array & recta)
+   void visual_effect::RenderRotateEx7(i32_rectangle_array & recta)
    {
 
       main * pmain = helper_get_main();
@@ -3426,7 +3426,7 @@ namespace backimpact
 
 
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
       //class imaging & imaging = psystem->imaging();
@@ -3471,14 +3471,14 @@ namespace backimpact
 //         int s3 = rand() * 2 / RAND_MAX + 1;
 //         int s4 = rand() * 2 / RAND_MAX + 1;
 
-      ::int_rectangle rcTrackBox;
+      ::i32_rectangle rcTrackBox;
 
       rcTrackBox.left   = 1;
       rcTrackBox.top    = 1;
       rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
       rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
-      ::int_rectangle rcTrackBox2;
+      ::i32_rectangle rcTrackBox2;
 
       rcTrackBox2.left   = 0;
       rcTrackBox2.top    = 0;
@@ -3535,72 +3535,72 @@ namespace backimpact
       ::color::color colorStrong8;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong1.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.3;
          dS = 0.1;
          colorStrong2.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.7;
          colorStrong3.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.9;
          colorStrong4.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong5.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
          colorStrong6.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong7.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
@@ -3612,15 +3612,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-//         unsigned char bA = 200;
+//         ::u8 bA = 200;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -3659,12 +3659,12 @@ namespace backimpact
       {
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
-      double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
+      ::f64 dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
       m_dAngleOffset += minimum(10.0, minimum(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-      double dAngleOffset = m_dAngleOffset;
-      double dAngle;
+      ::f64 dAngleOffset = m_dAngleOffset;
+      ::f64 dAngle;
       if(m_rndgrowAngleOffsetLatency.i > 50)
       {
          //dAngle = 10.111 + dAngleOffset;
@@ -3932,8 +3932,8 @@ namespace backimpact
       m_dAngleOffset = m_dAngleOffsetAddUp;
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-      double dAngleOffset = m_dAngleOffset;
-      double dAngle;
+      ::f64 dAngleOffset = m_dAngleOffset;
+      ::f64 dAngle;
       if(m_iGrowColor >= 0)
       {
          dAngle = 1.511 + dAngleOffset;
@@ -3959,7 +3959,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -3975,7 +3975,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -3992,7 +3992,7 @@ namespace backimpact
 
 
 
-   void visual_effect::RenderAlphaPixelExplosion(int_rectangle_array & recta)
+   void visual_effect::RenderAlphaPixelExplosion(i32_rectangle_array & recta)
    {
       main * pmain = helper_get_main();
 
@@ -4033,7 +4033,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimageFrame1);
 
-            double_rectangle rectangle(pimage1->size());
+            f64_rectangle rectangle(pimage1->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4051,7 +4051,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimageBuffer);
 
-            double_rectangle rectangle(pimage4->size());
+            f64_rectangle rectangle(pimage4->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4110,7 +4110,7 @@ namespace backimpact
       m_tool1.m_iPage ^= 1;
       //dcBack->fill_rectangle(0, 0, cx, cy, argb(255, 0, 0, 0));
       //dcBack->fill_rectangle(100, 100, cx, cy, argb(255, 255, 255, 255));
-      //pimageBack->stretch(::double_rectangle(pimage3->size()), pimage2);
+      //pimageBack->stretch(::f64_rectangle(pimage3->size()), pimage2);
 
       //pimage2->channel_multiply(::color::e_channel_opacity, 50.0 / 255.0);
 
@@ -4118,7 +4118,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage3);
 
-         double_rectangle rectangle(::long_long_size(cx1, cy1));
+         f64_rectangle rectangle(::i64_size(cx1, cy1));
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4136,7 +4136,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4151,7 +4151,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderPixelExplosion(int_rectangle_array & recta)
+   void visual_effect::RenderPixelExplosion(i32_rectangle_array & recta)
    {
       main * pmain = helper_get_main();
 
@@ -4185,14 +4185,14 @@ namespace backimpact
          m_explosion.create(cx1, cy1, pimage1->scan_size(), pimage1->color_indexes());
          m_explosion.Reset();
 
-         pimage1->get_graphics()->fill_rectangle(::double_rectangle_dimension(0, 0, cx1, cy1), argb(0, 0, 0, 0));
+         pimage1->get_graphics()->fill_rectangle(::f64_rectangle_dimension(0, 0, cx1, cy1), argb(0, 0, 0, 0));
          pimage3->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
             ::image::image_source imagesource(pimageBuffer);
 
-            double_rectangle rectangle(pimage3->size());
+            f64_rectangle rectangle(pimage3->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4209,7 +4209,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage3);
 
-         double_rectangle rectangle(pimage1->size());
+         f64_rectangle rectangle(pimage1->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4222,7 +4222,7 @@ namespace backimpact
 
       ::image::image_source imagesource(pimage1);
 
-      double_rectangle rectangle(pimage1->size());
+      f64_rectangle rectangle(pimage1->size());
 
       ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4237,10 +4237,10 @@ namespace backimpact
 //      pimage4->draw(imagedrawing);
 //      psystem->imaging().bitmap_blend(
 //      pimage4->get_graphics(),
-//      ::int_point(), ,
+//      ::i32_point(), ,
 //      pimage1->get_graphics(),
-//      ::int_point(),
-//      (unsigned char) );
+//      ::i32_point(),
+//      (::u8) );
 
       ::collection::index iReturnPoint = ptransitioneffect->m_ptool001->m_iStepCount * 5 / 21;
 
@@ -4290,7 +4290,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         double_rectangle rectangle(pimage3->size());
+         f64_rectangle rectangle(pimage3->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4305,7 +4305,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderPixelExplosion2(int_rectangle_array & recta)
+   void visual_effect::RenderPixelExplosion2(i32_rectangle_array & recta)
    {
 
       main * pmain = helper_get_main();
@@ -4348,7 +4348,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimageBuffer);
 
-            double_rectangle rectangle(pimage1->size());
+            f64_rectangle rectangle(pimage1->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4364,7 +4364,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimageFrame1);
 
-            double_rectangle rectangle(pimage3->size());
+            f64_rectangle rectangle(pimage3->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4385,7 +4385,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimageBuffer);
 
-         double_rectangle rectangle(pimage4->size());
+         f64_rectangle rectangle(pimage4->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4404,7 +4404,7 @@ namespace backimpact
          0, 0, cx1, cy1,
          pimage1->get_graphics(),
          0, 0,
-         (unsigned char) maximum(minimum(255, m_tool1.m_dAlpha), 0));*/
+         (::u8) maximum(minimum(255, m_tool1.m_dAlpha), 0));*/
 
       ::collection::index iReturnPoint = ptransitioneffect->m_ptool001->m_iStepCount * 5 / 21;
 
@@ -4452,7 +4452,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage3);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4467,7 +4467,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderRotateEx8(int_rectangle_array & recta)
+   void visual_effect::RenderRotateEx8(i32_rectangle_array & recta)
    {
       main * pmain = helper_get_main();
 
@@ -4486,7 +4486,7 @@ namespace backimpact
 
 
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
 
@@ -4519,14 +4519,14 @@ namespace backimpact
 //         int s3 = rand() * 2 / RAND_MAX + 1;
 //         int s4 = rand() * 2 / RAND_MAX + 1;
 
-      ::int_rectangle rcTrackBox;
+      ::i32_rectangle rcTrackBox;
 
       rcTrackBox.left   = 1;
       rcTrackBox.top    = 1;
       rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
       rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
-      ::int_rectangle rcTrackBox2;
+      ::i32_rectangle rcTrackBox2;
 
       rcTrackBox2.left   = 0;
       rcTrackBox2.top    = 0;
@@ -4583,72 +4583,72 @@ namespace backimpact
       ::color::color colorStrong8;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong1.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.3;
          dS = 0.1;
          colorStrong2.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.7;
          colorStrong3.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.9;
          colorStrong4.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong5.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
          colorStrong6.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong7.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
@@ -4660,15 +4660,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-//         unsigned char bA = 200;
+//         ::u8 bA = 200;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -4685,12 +4685,12 @@ namespace backimpact
       {
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
-      double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
+      ::f64 dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
       m_dAngleOffset += minimum(10.0, minimum(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-//         double dAngleOffset = m_dAngleOffset;
-      double dAngle;
+//         ::f64 dAngleOffset = m_dAngleOffset;
+      ::f64 dAngle;
       if(m_rndgrowAngleOffsetLatency.i > 50)
       {
          //dAngle = 10.111 + dAngleOffset;
@@ -4728,7 +4728,7 @@ namespace backimpact
       int marginx = cx1 / 12;
       int marginy = cy1 * 5 / 11;
       int w = marginx * 2;
-      ::int_point pointLast (marginx, marginy);
+      ::i32_point pointLast (marginx, marginy);
       //pimage1->get_graphics()->set_current_point(marginx, marginy);
 
       int imax = cx1 - marginx;
@@ -4749,7 +4749,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
@@ -4762,7 +4762,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
@@ -4772,12 +4772,12 @@ namespace backimpact
 
       for(i = marginx; i < jmax; i++)
       {
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
       {
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
@@ -4920,7 +4920,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4934,7 +4934,7 @@ namespace backimpact
       // call ipp here
       //pimageBack->g()->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
-      //pimageBack->stretch(::double_rectangle(pimageBack->size()), pimage1);
+      //pimageBack->stretch(::f64_rectangle(pimageBack->size()), pimage1);
 
       m_presizer->do_resize(pimageBack, pimage1);
 
@@ -4943,7 +4943,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderExpand4(int_rectangle_array & recta)
+   void visual_effect::RenderExpand4(i32_rectangle_array & recta)
    {
       main * pmain = helper_get_main();
 
@@ -4961,7 +4961,7 @@ namespace backimpact
 
 
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
 
@@ -4987,14 +4987,14 @@ namespace backimpact
       }
 
 
-      ::int_rectangle rcTrackBox;
+      ::i32_rectangle rcTrackBox;
 
       rcTrackBox.left   = 1;
       rcTrackBox.top    = 1;
       rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
       rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
-      ::int_rectangle rcTrackBox2;
+      ::i32_rectangle rcTrackBox2;
 
       rcTrackBox2.left   = 0;
       rcTrackBox2.top    = 0;
@@ -5051,72 +5051,72 @@ namespace backimpact
       ::color::color colorStrong8;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong1.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.3;
          dS = 0.1;
          colorStrong2.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.7;
          colorStrong3.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.9;
          colorStrong4.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong5.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
          colorStrong6.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong7.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
@@ -5128,15 +5128,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-      unsigned char bA = 200;
+      ::u8 bA = 200;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -5161,12 +5161,12 @@ namespace backimpact
       {
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
-      double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
+      ::f64 dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
       m_dAngleOffset += minimum(10.0, minimum(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-//         double dAngleOffset = m_dAngleOffset;
-      //double dAngle;
+//         ::f64 dAngleOffset = m_dAngleOffset;
+      //::f64 dAngle;
       //if(m_rndgrowAngleOffsetLatency.i > 50)
       //{
       //   //dAngle = 10.111 + dAngleOffset;
@@ -5203,7 +5203,7 @@ namespace backimpact
       pimage1->get_graphics()->set(ppen1);
       int margin = 10;
       int w = margin * 2;
-      ::int_point pointLast;
+      ::i32_point pointLast;
       pointLast.x=margin;
       pointLast.y=margin;
       //pimage1->get_graphics()->set_current_point(margin, margin);
@@ -5226,7 +5226,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(i, r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(i, r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
@@ -5239,7 +5239,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(i, r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(i, r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
@@ -5249,12 +5249,12 @@ namespace backimpact
 
       for(i = margin; i < jmax; i++)
       {
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(i, cy1 - margin + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(i, cy1 - margin + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
       {
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(i, cy1 - margin + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(i, cy1 - margin + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
@@ -5280,7 +5280,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax), i));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax), i));
          j++;
       }
       for(; i < imax; i++)
@@ -5293,7 +5293,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax), i));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax), i));
          j--;
       }
 
@@ -5303,12 +5303,12 @@ namespace backimpact
 
       for(i = margin; i < jmax; i++)
       {
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i));
          j++;
       }
       for(; i < imax; i++)
       {
-         pimage1->get_graphics()->process_line(pointLast, ::int_point(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i));
+         pimage1->get_graphics()->process_line(pointLast, ::i32_point(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i));
          j--;
       }
 
@@ -5403,7 +5403,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -5421,7 +5421,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -5436,7 +5436,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderExpand5(int_rectangle_array & recta)
+   void visual_effect::RenderExpand5(i32_rectangle_array & recta)
    {
       main * pmain = helper_get_main();
 
@@ -5452,7 +5452,7 @@ namespace backimpact
                          pimage1->height() / 2);
       }
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
 
@@ -5510,9 +5510,9 @@ namespace backimpact
       ::color::color colorStrong1 = m_color;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
@@ -5527,23 +5527,23 @@ namespace backimpact
       int margin2 = cy1 / 2;
       int w = cy1 / 3;
 
-      double jmul = (double) cy1 / (cx1 * 2.0);
+      ::f64 jmul = (::f64) cy1 / (cx1 * 2.0);
 
-      double delta = w;
+      ::f64 delta = w;
 
 
       int imax = cx1 - margin1;
       int jmax = cx1 / 2;
       int rmax = jmax * RAND_MAX;
-      double rhalf = RAND_MAX / 2.0;
+      ::f64 rhalf = RAND_MAX / 2.0;
       int j = 0;
 //         int r1 = 0;
 //         int r2 = 0;
 
 
-      double offset;
+      ::f64 offset;
 
-      double jres;
+      ::f64 jres;
       int i;
       for(i = margin1; i < jmax; i++)
       {
@@ -5616,7 +5616,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimage1);
 
-            double_rectangle rectangle(pimage4->size());
+            f64_rectangle rectangle(pimage4->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -5634,7 +5634,7 @@ namespace backimpact
 
             ::image::image_source imagesource(pimage4);
 
-            double_rectangle rectangle(pimage1->size());
+            f64_rectangle rectangle(pimage1->size());
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -5657,8 +5657,8 @@ namespace backimpact
       m_dAngleOffset = m_dAngleOffsetAddUp;
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-      //double dAngleOffset = m_dAngleOffset;
-      //double dAngle;
+      //::f64 dAngleOffset = m_dAngleOffset;
+      //::f64 dAngle;
       //if(m_iGrowColor >= 0)
       //{
       //   dAngle = 1.511 + dAngleOffset;
@@ -5677,7 +5677,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -5693,7 +5693,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -5708,7 +5708,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderExpand7(int_rectangle_array & recta)
+   void visual_effect::RenderExpand7(i32_rectangle_array & recta)
    {
       main * pmain = helper_get_main();
 
@@ -5726,7 +5726,7 @@ namespace backimpact
 
 
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
 
@@ -5774,14 +5774,14 @@ namespace backimpact
 //         int s3 = rand() * 2 / RAND_MAX + 1;
 //         int s4 = rand() * 2 / RAND_MAX + 1;
 
-      ::int_rectangle rcTrackBox;
+      ::i32_rectangle rcTrackBox;
 
       rcTrackBox.left   = 1;
       rcTrackBox.top    = 1;
       rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
       rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
-      ::int_rectangle rcTrackBox2;
+      ::i32_rectangle rcTrackBox2;
 
       rcTrackBox2.left   = 0;
       rcTrackBox2.top    = 0;
@@ -5838,72 +5838,72 @@ namespace backimpact
       ::color::color colorStrong8;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong1.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.3;
          dS = 0.1;
          colorStrong2.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.7;
          colorStrong3.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.9;
          colorStrong4.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong5.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
          colorStrong6.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong7.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
@@ -5915,15 +5915,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-//         unsigned char bA = 200;
+//         ::u8 bA = 200;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -5962,12 +5962,12 @@ namespace backimpact
       {
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
-      double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
+      ::f64 dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
       m_dAngleOffset += minimum(10.0, minimum(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-      double dAngleOffset = m_dAngleOffset;
-      double dAngle;
+      ::f64 dAngleOffset = m_dAngleOffset;
+      ::f64 dAngle;
       if(m_rndgrowAngleOffsetLatency.i > 50)
       {
          //dAngle = 10.111 + dAngleOffset;
@@ -6234,8 +6234,8 @@ namespace backimpact
       m_dAngleOffset = m_dAngleOffsetAddUp;
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-      //double dAngleOffset = m_dAngleOffset;
-      //double dAngle;
+      //::f64 dAngleOffset = m_dAngleOffset;
+      //::f64 dAngle;
       //if(m_iGrowColor >= 0)
       //{
       //   dAngle = 1.511 + dAngleOffset;
@@ -6261,7 +6261,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -6277,7 +6277,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -6293,7 +6293,7 @@ namespace backimpact
    }
 
 
-   void visual_effect::RenderExpand8(int_rectangle_array & recta)
+   void visual_effect::RenderExpand8(i32_rectangle_array & recta)
    {
       main * pmain = helper_get_main();
 
@@ -6311,7 +6311,7 @@ namespace backimpact
 
 
 
-      ::int_rectangle rectangleX = m_tool1.m_rectangleX;
+      ::i32_rectangle rectangleX = m_tool1.m_rectangleX;
       m_tool1.m_size.cx = rectangleX.width();
       m_tool1.m_size.cy = rectangleX.height();
 
@@ -6341,14 +6341,14 @@ namespace backimpact
 //         int s3 = rand() * 2 / RAND_MAX + 1;
 //         int s4 = rand() * 2 / RAND_MAX + 1;
 
-      ::int_rectangle rcTrackBox;
+      ::i32_rectangle rcTrackBox;
 
       rcTrackBox.left   = 1;
       rcTrackBox.top    = 1;
       rcTrackBox.right  = cx1 - 1 - rcTrackBox.left;
       rcTrackBox.bottom = cy1 - 1 - rcTrackBox.top;
 
-      ::int_rectangle rcTrackBox2;
+      ::i32_rectangle rcTrackBox2;
 
       rcTrackBox2.left   = 0;
       rcTrackBox2.top    = 0;
@@ -6405,72 +6405,72 @@ namespace backimpact
       ::color::color colorStrong8;
 
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong1.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong1.get_hls(dH, dL, dS);
          dL = 0.3;
          dS = 0.1;
          colorStrong2.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.9;
          dS = 0.7;
          colorStrong3.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong3.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.9;
          colorStrong4.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong5.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong5.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
          colorStrong6.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.7;
          dS = 0.8;
          colorStrong7.set_hls(dH, dL, dS);
       }
       {
-         double dH;
-         double dL;
-         double dS;
+         ::f64 dH;
+         ::f64 dL;
+         ::f64 dS;
          colorStrong7.get_hls(dH, dL, dS);
          dL = 0.5;
          dS = 0.9;
@@ -6482,15 +6482,15 @@ namespace backimpact
 //            rand() * 255 / RAND_MAX,
 //            rand() * 255 / RAND_MAX);
 
-//         unsigned char bA = 200;
+//         ::u8 bA = 200;
 
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
 #endif
 
-      //double dmin = minimum(cx, cy);
-      //double dmax = maximum(cx, cy);abs
+      //::f64 dmin = minimum(cx, cy);
+      //::f64 dmax = maximum(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -6507,12 +6507,12 @@ namespace backimpact
       {
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
-      double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
+      ::f64 dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
       m_dAngleOffset += minimum(10.0, minimum(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
-//         double dAngleOffset = m_dAngleOffset;
-      //double dAngle;
+//         ::f64 dAngleOffset = m_dAngleOffset;
+      //::f64 dAngle;
       //if(m_rndgrowAngleOffsetLatency.i > 50)
       //{
       //   //dAngle = 10.111 + dAngleOffset;
@@ -6550,7 +6550,7 @@ namespace backimpact
       int marginx = cx1 / 12;
       int marginy = cy1 * 5 / 11;
       int w = marginx * 2;
-      ::double_point pointLast(marginx, marginy);
+      ::f64_point pointLast(marginx, marginy);
       //pimage1->get_graphics()->set_current_point(marginx, marginy);
 
       int imax = cx1 - marginx;
@@ -6571,7 +6571,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pimage1->get_graphics()->process_line(pointLast, ::double_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::f64_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
@@ -6584,7 +6584,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pimage1->get_graphics()->process_line(pointLast, ::double_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::f64_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
@@ -6594,12 +6594,12 @@ namespace backimpact
 
       for(i = marginx; i < jmax; i++)
       {
-         pimage1->get_graphics()->process_line(pointLast, ::double_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::f64_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
       {
-         pimage1->get_graphics()->process_line(pointLast, ::double_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
+         pimage1->get_graphics()->process_line(pointLast, ::f64_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
@@ -6743,7 +6743,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage2);
 
-         auto rectangle = double_rectangle_dimension(0, 0, cx1, cy1);
+         auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -6759,7 +6759,7 @@ namespace backimpact
 
          ::image::image_source imagesource(pimage1);
 
-         double_rectangle rectangle(pimageBack->size());
+         f64_rectangle rectangle(pimageBack->size());
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 

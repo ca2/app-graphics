@@ -88,15 +88,15 @@ namespace gcom
       int i, j;
       int x, y;
 
-      double dr;
-      double dcos;
-      double dsin;
+      ::f64 dr;
+      ::f64 dcos;
+      ::f64 dsin;
 
 
 
-      double dmax = minimum(m_iWidth, m_iHeight);
+      ::f64 dmax = minimum(m_iWidth, m_iHeight);
 
-      double dm = dmax / 3;
+      ::f64 dm = dmax / 3;
 
       if(m_minradius > 0.0)
       {
@@ -104,7 +104,7 @@ namespace gcom
       }
 
 
-      double m, n;
+      ::f64 m, n;
 
 
       int k = 0;
@@ -117,10 +117,10 @@ namespace gcom
 
 
             dr = sqrt(m * m + n * n);
-            double d;
+            ::f64 d;
             if(fabs(dr) < dm)
             {
-               double da = rand() * 3.1415 * 2 / RAND_MAX;
+               ::f64 da = rand() * 3.1415 * 2 / RAND_MAX;
                dcos = cos(da);
                dsin = sin(da);
                dr = rand() * dm * 1.2 / RAND_MAX;;
@@ -165,19 +165,19 @@ namespace gcom
       int i, j;
       int x, y;
 
-      double dr;
-      double dcos;
-      double dsin;
+      ::f64 dr;
+      ::f64 dcos;
+      ::f64 dsin;
 
-      double dmax = sqrt((double) (imax * imax + jmax * jmax));
+      ::f64 dmax = sqrt((::f64) (imax * imax + jmax * jmax));
 
       if(m_z > dmax) m_z = dmax;
-      //double dmax = minimum(m_iWidth, m_iHeight);
-      //double dmax = maximum(m_iWidth, m_iHeight) * 2;
+      //::f64 dmax = minimum(m_iWidth, m_iHeight);
+      //::f64 dmax = maximum(m_iWidth, m_iHeight) * 2;
 
-      //double m, n, o;
+      //::f64 m, n, o;
 
-      double m, n;
+      ::f64 m, n;
 
 
       int k = 0;
@@ -191,10 +191,10 @@ namespace gcom
 
 
             dr = sqrt(m * m + n * n);
-            double d = m_z;
+            ::f64 d = m_z;
             if(dr < 10.0)
             {
-               double da = rand() * 3.1415 * 2 / RAND_MAX;
+               ::f64 da = rand() * 3.1415 * 2 / RAND_MAX;
                dcos = cos(da);
                dsin = sin(da);
                //dr = 1.0;
@@ -245,8 +245,8 @@ namespace gcom
       int jmin = - m_iHeight / 2;
       int jmax = m_iHeight / 2;
 
-      double maximum = imax * imax + jmax * jmax;
-      //double maximum = maximum(imax, jmax) * 2;
+      ::f64 maximum = imax * imax + jmax * jmax;
+      //::f64 maximum = maximum(imax, jmax) * 2;
       //   maximum = 2 * maximum;
 
       int k = 0;
@@ -351,9 +351,9 @@ namespace gcom
       int ig;
       int ib;
 
-      R = color.byte_red(m_colorindexes)-shift;
-      G = color.byte_green(m_colorindexes)-shift;
-      B = color.byte_blue(m_colorindexes)-shift;
+      R = color.u8_red(m_colorindexes)-shift;
+      G = color.u8_green(m_colorindexes)-shift;
+      B = color.u8_blue(m_colorindexes)-shift;
 
       ir = (R < 0) ? 0 : (R > 255) ? 255 : R;
       ig = (G < 0) ? 0 : (G > 255) ? 255 : G;

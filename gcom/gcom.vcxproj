@@ -1110,7 +1110,7 @@
     <ClInclude Include="backimpact\user_interaction.h" />
     <ClInclude Include="backimpact\visual_effect.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="gcom\double3d_point.h" />
+    <ClInclude Include="gcom\f64_point3d.h" />
     <ClInclude Include="gcom\slide_drawer.h" />
     <ClInclude Include="gcom\_constant.h" />
     <ClInclude Include="gcom\_.h" />

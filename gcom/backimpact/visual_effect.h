@@ -21,13 +21,13 @@ namespace backimpact
 
       struct tool_001
       {
-         ::int_size                    m_size;
-         ::int_rectangle               m_rectangleX;
+         ::i32_size                    m_size;
+         ::i32_rectangle               m_rectangleX;
          int                           m_iPage;
          int                           m_iFrame;
-         double                        m_dMod;
-         double                        m_dMinSize;
-         double                        m_dAlpha;
+         ::f64                        m_dMod;
+         ::f64                        m_dMinSize;
+         ::f64                        m_dAlpha;
 
          // const int & cx() const { return m_size.cx; }
          // int & cx() { return m_size.cx; }
@@ -38,11 +38,11 @@ namespace backimpact
 
       struct random_grow
       {
-         double                        i;
-         double                        imax;
-         double                        lbound;
-         double                        maxlbound;
-         double                        maxubound;
+         ::f64                        i;
+         ::f64                        imax;
+         ::f64                        lbound;
+         ::f64                        maxlbound;
+         ::f64                        maxubound;
       public:
          bool Step();
       };
@@ -51,13 +51,13 @@ namespace backimpact
       struct color_track1
       {
          random_grow                   m_rndgrowDirectionLatency;
-         double                        m_dDirection;
-         double                        m_dDirectionAddUp;
-         int_point                     m_pointColorTrack;
+         ::f64                        m_dDirection;
+         ::f64                        m_dDirectionAddUp;
+         i32_point                     m_pointColorTrack;
          random_grow                   m_rndgrowVelocity;
-         double                        m_dCos;
-         double                        m_dSin;
-         double                        m_dSize;
+         ::f64                        m_dCos;
+         ::f64                        m_dSin;
+         ::f64                        m_dSize;
       };
 
 
@@ -66,7 +66,7 @@ namespace backimpact
       ::color::color                   m_color;
       int                              m_iGrowColor;
       int                              m_iGrowMax;
-      double                           m_dAngle;
+      ::f64                           m_dAngle;
 
       ::color::color                   m_color2;
       int                              m_iGrowColor2;
@@ -80,23 +80,23 @@ namespace backimpact
       int                              m_iGrowColor4;
       int                              m_iGrowMax4;
 
-      int_point                        m_pointColorTrack;
+      i32_point                        m_pointColorTrack;
       random_grow                      m_rndgrowVelocity;
-      double                           m_dDirection;
-      double                           m_dDirectionAddUp;
+      ::f64                           m_dDirection;
+      ::f64                           m_dDirectionAddUp;
       random_grow                      m_rndgrowDirectionLatency;
 
       random_grow                      m_rndgrowAngleOffsetLatency;
-      double                           m_dAngleOffset;
-      double                           m_dAngleOffsetAddUp;
+      ::f64                           m_dAngleOffset;
+      ::f64                           m_dAngleOffsetAddUp;
 
       array < color_track1 >           m_colortrack1a;
 
       tool_001                         m_tool1;
 
-      double_point_array               m_pointa;
-      double_point_array               m_pointa1;
-      double_point_array               m_pointa2;
+      f64_point_array               m_pointa;
+      f64_point_array               m_pointa1;
+      f64_point_array               m_pointa2;
 
       ::gcom::pixel_explosion          m_explosion;
 
@@ -114,37 +114,37 @@ namespace backimpact
 
       int get_effect_count();
       void InitialRender();
-      void on_render_buffer(int_rectangle_array & recta);
+      void on_render_buffer(i32_rectangle_array & recta);
 
-      void RenderRotateBlend(int_rectangle_array & recta);
-      void RenderNPRotateBlend(int_rectangle_array & recta);
-      void RenderNPRotateColorBlend(int_rectangle_array & recta);
-      void RenderNPRotateTrackColorBlend(int_rectangle_array & recta);
-      void RenderRotateEx1(int_rectangle_array & recta);
-      void RenderRotateEx2(int_rectangle_array & recta);
-      void RenderRotateEx3(int_rectangle_array & recta);
-      void RenderRotateEx4(int_rectangle_array & recta);
-      void RenderRain1(int_rectangle_array & recta);
-      void RenderRotateEx5(int_rectangle_array & recta);
-      void RenderRotateEx6(int_rectangle_array & recta);
-      void RenderRotateEx7(int_rectangle_array & recta);
-      void RenderRotateEx8(int_rectangle_array & recta);
-      void RenderExpand4(int_rectangle_array & recta);
-      void RenderExpand5(int_rectangle_array & recta);
-      void RenderExpand6(int_rectangle_array & recta);
-      void RenderExpand7(int_rectangle_array & recta);
-      void RenderExpand8(int_rectangle_array & recta);
-      void RenderPixelExplosion(int_rectangle_array & recta);
-      void RenderPixelExplosion2(int_rectangle_array & recta);
-      void RenderAlphaPixelExplosion(int_rectangle_array & recta);
-
-
+      void RenderRotateBlend(i32_rectangle_array & recta);
+      void RenderNPRotateBlend(i32_rectangle_array & recta);
+      void RenderNPRotateColorBlend(i32_rectangle_array & recta);
+      void RenderNPRotateTrackColorBlend(i32_rectangle_array & recta);
+      void RenderRotateEx1(i32_rectangle_array & recta);
+      void RenderRotateEx2(i32_rectangle_array & recta);
+      void RenderRotateEx3(i32_rectangle_array & recta);
+      void RenderRotateEx4(i32_rectangle_array & recta);
+      void RenderRain1(i32_rectangle_array & recta);
+      void RenderRotateEx5(i32_rectangle_array & recta);
+      void RenderRotateEx6(i32_rectangle_array & recta);
+      void RenderRotateEx7(i32_rectangle_array & recta);
+      void RenderRotateEx8(i32_rectangle_array & recta);
+      void RenderExpand4(i32_rectangle_array & recta);
+      void RenderExpand5(i32_rectangle_array & recta);
+      void RenderExpand6(i32_rectangle_array & recta);
+      void RenderExpand7(i32_rectangle_array & recta);
+      void RenderExpand8(i32_rectangle_array & recta);
+      void RenderPixelExplosion(i32_rectangle_array & recta);
+      void RenderPixelExplosion2(i32_rectangle_array & recta);
+      void RenderAlphaPixelExplosion(i32_rectangle_array & recta);
 
 
 
-      static void Constraint001(int_point & point, const ::int_rectangle & rectangle, double & dDirection);
-      static void Constraint001(int_point & point, const ::int_rectangle * lpcrectIn, const ::int_rectangle * lpcrectOut, double & dDirection);
-      static void TrackDirection001(double &direction, double & directionAddUp, random_grow & randomgrow);
+
+
+      static void Constraint001(i32_point & point, const ::i32_rectangle & rectangle, ::f64 & dDirection);
+      static void Constraint001(i32_point & point, const ::i32_rectangle * lpcrectIn, const ::i32_rectangle * lpcrectOut, ::f64 & dDirection);
+      static void TrackDirection001(::f64 &direction, ::f64 & directionAddUp, random_grow & randomgrow);
 
 
       static void StepGrow001(::color::color & color, int & iGrowColor, int & iGrowMax);

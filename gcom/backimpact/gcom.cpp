@@ -147,7 +147,7 @@ namespace backimpact
 //
 //      __UNREFERENCED_PARAMETER(lpbmBack);
 //
-//      ::int_rectangle rectangleX;
+//      ::i32_rectangle rectangleX;
 //
 //      auto pmain = helper_get_main();
 //
@@ -175,7 +175,7 @@ namespace backimpact
 //
 //      ::draw2d::graphics_pointer dcBack = GetBackDC();
 //
-//      dcBack->fill_rectangle(::double_rectangle_dimension(0, 0, cx, cy), argb(0, 0, 0, 0));
+//      dcBack->fill_rectangle(::f64_rectangle_dimension(0, 0, cx, cy), argb(0, 0, 0, 0));
 //
 //      sl1Back.unlock();
 //
@@ -234,11 +234,11 @@ namespace backimpact
 
       user_interaction * puserinteraction = pmain->get_user_interaction();
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       puserinteraction->backimpact_get_client_rect(rectangleX);
 
-      ::int_rectangle rectangleScreen = rectangleX;
+      ::i32_rectangle rectangleScreen = rectangleX;
 
       puserinteraction->backimpact_client_to_screen()(rectangleScreen);
 
@@ -303,7 +303,7 @@ namespace backimpact
 
             }
 
-            ::int_size sizeSource = bmpSource->get_size();
+            ::i32_size sizeSource = bmpSource->get_size();
 
 
             int finalX = 0;
@@ -313,10 +313,10 @@ namespace backimpact
 
             image_change * pimagechange = pmain->get_image_change();
 
-            double dRate;
+            ::f64 dRate;
             if(pimagechange->m_eplacement == ImagePlacementZoomAll)
             {
-               dRate = minimum((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
+               dRate = minimum((::f64) cx / sizeSource.cx, (::f64) cy / sizeSource.cy);
                finalW = (int) (sizeSource.cx * dRate);
                finalH = (int)(sizeSource.cy * dRate);
                finalX = (cx - finalW) / 2;
@@ -324,7 +324,7 @@ namespace backimpact
             }
             else if (pimagechange->m_eplacement == ImagePlacementZoomExtend)
             {
-               dRate = maximum((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
+               dRate = maximum((::f64) cx / sizeSource.cx, (::f64) cy / sizeSource.cy);
                finalW = (int) (sizeSource.cx * dRate);
                finalH = (int) (sizeSource.cy * dRate);
                finalX = (cx - finalW) / 2;
@@ -370,7 +370,7 @@ namespace backimpact
 
                      ::image::image_source imagesource(dcBuffer);
 
-                     auto rectangle = float_rectangle_dimension(iX, iY, iW, iH);
+                     auto rectangle = f32_rectangle_dimension(iX, iY, iW, iH);
 
                      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -403,11 +403,11 @@ namespace backimpact
 
                {
 
-                  auto rectangleSource = double_rectangle_dimension(srcX, srcY, srcW, srcH);
+                  auto rectangleSource = f64_rectangle_dimension(srcX, srcY, srcW, srcH);
 
                   ::image::image_source imagesource(dcSource, rectangleSource);
 
-                  auto rectangleTarget = double_rectangle_dimension(finalX, finalY, finalW, finalH);
+                  auto rectangleTarget = f64_rectangle_dimension(finalX, finalY, finalW, finalH);
 
                   ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
@@ -457,7 +457,7 @@ namespace backimpact
 
 //      synchronous_lock slUserMutex(&gcom_pmutex());
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
       user_interaction * puserinteraction = helper_get_main()->get_user_interaction();
       puserinteraction->backimpact_get_client_rect(rectangleX);
       int cx = rectangleX.width();
@@ -506,7 +506,7 @@ namespace backimpact
       if (bmpSource)
       {
 
-         ::int_size size = bmpSource->get_size();
+         ::i32_size size = bmpSource->get_size();
 
          auto psession = session();
 
@@ -636,7 +636,7 @@ namespace backimpact
          break;
       }
    }
-   void gcom::GetFinalPlacement(::int_rectangle * lprect)
+   void gcom::GetFinalPlacement(::i32_rectangle * lprect)
    {
       *lprect = m_rectangleFinalPlacement;
 

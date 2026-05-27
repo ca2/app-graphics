@@ -25,7 +25,7 @@ namespace backimpact
       ::pointer<thread>       m_pthread;
       task_pointer               m_ptaskTimer2;
       bool                       m_bTransferVoid;
-      unsigned int                        m_dwTimerStep;
+      ::u32                        m_dwTimerStep;
 
 
       //::file::set_pointer        m_spfilesetBackgroundImage;
@@ -58,7 +58,7 @@ namespace backimpact
 
       virtual ::color::color get_background_color();
       void backimpact_render(::draw2d::graphics_pointer & pgraphics, int x, int y, int w, int h);
-      void backimpact_render(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
+      void backimpact_render(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
       void enable(bool bEnable = true);
       bool is_enabled();
       void get_current_image_path(string & str);
@@ -76,15 +76,15 @@ namespace backimpact
       //virtual thread * get_backimpact_thread();
 
       virtual void backimpact_feedback(::image::image *pimage);
-      virtual void backimpact_get_client_rect(::int_rectangle & rect);
+      virtual void backimpact_get_client_rect(::i32_rectangle & rect);
       virtual ::shift_int backimpact_client_to_screen();
       virtual void backimpact_post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
       virtual void backimpact_post_message(wparam wparam, lparam lparam);
       virtual void backimpact_update_screen();
       virtual void backimpact_get_data(data & data);
       virtual void backimpact_set_data(data & data);
-      virtual void backimpact_update_screen(const ::int_rectangle & rectangle, unsigned int uRedraw);
-      virtual void backimpact_update_screen(int_rectangle_array & recta, unsigned int uRedraw);
+      virtual void backimpact_update_screen(const ::i32_rectangle & rectangle, ::u32 uRedraw);
+      virtual void backimpact_update_screen(i32_rectangle_array & recta, ::u32 uRedraw);
 
       virtual string backimpact_get_next_background_image_path(const ::scoped_string & scopedstrCurrentImagePath);
       virtual void backimpact_set_current_background_image_path(const ::scoped_string & scopedstr);
@@ -97,7 +97,7 @@ namespace backimpact
 //#endif
 
       virtual void image_change_post_event(enum_happening ehappening);
-      virtual bool update_buffer(const ::int_rectangle & rectangle);
+      virtual bool update_buffer(const ::i32_rectangle & rectangle);
 
       virtual void on_after_image_loaded();
 

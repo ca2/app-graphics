@@ -16,7 +16,7 @@ namespace backimpact
 
       class ::time                             m_timeGcomBackgroundUpdate;
       ::draw2d::graphics_pointer             m_dcScreen;
-      ::int_rectangle                        m_rectangleFinalPlacement;
+      ::i32_rectangle                        m_rectangleFinalPlacement;
 
 
       map_base < enum_image, ::image::image_pointer >      m_mapImage;
@@ -88,17 +88,17 @@ namespace backimpact
 //         ::draw2d::bitmap            m_bmpTransfer;
 //         ::draw2d::bitmap            m_bmpTransferOld;
 
-      // Source tools keep the original bitmap int its original int_size
+      // Source tools keep the original bitmap int its original i32_size
 //         ::draw2d::graphics_pointer               m_dcSource;
 //         ::draw2d::bitmap            m_bmpSource;
 //         ::draw2d::bitmap            m_bmpSourceOld;
 
-      // Source tools keep the original bitmap int its original int_size
+      // Source tools keep the original bitmap int its original i32_size
 //         ::draw2d::graphics_pointer               m_dcFrame1;
 //         ::draw2d::bitmap            m_bmpFrame1;
 //       ::draw2d::bitmap            m_bmpFrame1Old;
 
-      void GetFinalPlacement(::int_rectangle * lprect);
+      void GetFinalPlacement(::i32_rectangle * lprect);
       void back_to_transfer();
       void buffer_to_back();
 

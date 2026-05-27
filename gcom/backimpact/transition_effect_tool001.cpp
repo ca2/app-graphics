@@ -50,7 +50,7 @@ namespace backimpact
 #define HIDOUBLETOINT(d) (((d) > (int) (d)) ? ((int) (d)) + 1 : (int) (d))
 
    void transition_effect::tool_001::Start(
-   int cx, int cy, double dRate, double dRateEx)
+   int cx, int cy, ::f64 dRate, ::f64 dRateEx)
    {
       m_cx = cx;
       m_cy = cy;
@@ -234,7 +234,7 @@ namespace backimpact
 
          pimageFinal->set_mipmap(::image::e_mipmap_anisotropic);
 
-         double_array da;
+         f64_array da;
 
          da.add(0.95);
          da.add(0.90);
@@ -277,9 +277,9 @@ namespace backimpact
          
          m_phi = mathematics()->random(70, 110) * 3.1415 / 180.0;
          
-         ::double_point pointaBigRect[4];
+         ::f64_point pointaBigRect[4];
          
-         GetRect(pointaBigRect, int_rectangle(0, 0, cx, cy));
+         GetRect(pointaBigRect, i32_rectangle(0, 0, cx, cy));
          
          m_size.cx = 64;
          
@@ -291,7 +291,7 @@ namespace backimpact
 
          pgeometry->rotate((m_cx / 2), (m_cy / 2), pointaBigRect, 4, m_phi);
 
-         ::int_rectangle rectangleBigRect;
+         ::i32_rectangle rectangleBigRect;
          
          ::get_bounding_box(rectangleBigRect, pointaBigRect, 4);
          
@@ -301,11 +301,11 @@ namespace backimpact
          
          int jmax = iDimension / m_size.cy;
 
-         ::double_point pointaRect[4];
+         ::f64_point pointaRect[4];
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
-         ::int_rectangle rectangleX(0, 0, m_cx, m_cy);
+         ::i32_rectangle rectangleX(0, 0, m_cx, m_cy);
 
          for(int i =  -imax; i <= imax; i++)
          {
@@ -316,7 +316,7 @@ namespace backimpact
                ::get_bounding_box(rectangle, pointaRect, 4);
                if(rectangle.intersect(rectangleX, rectangle))
                {
-                  m_pointa.add(int_point(i, j));
+                  m_pointa.add(i32_point(i, j));
                }
             }
          }
@@ -328,8 +328,8 @@ namespace backimpact
       {
          effect.m_timeDelay = 10_ms;
          m_phi = mathematics()->random(70, 110) * 3.1415 / 180.0;
-         ::double_point pointaBigRect[4];
-         GetRect(pointaBigRect, int_rectangle(0, 0, cx, cy));
+         ::f64_point pointaBigRect[4];
+         GetRect(pointaBigRect, i32_rectangle(0, 0, cx, cy));
          
          auto psystem = system();
 
@@ -337,7 +337,7 @@ namespace backimpact
 
          pgeometry->rotate((m_cx / 2), (m_cy / 2), pointaBigRect, 4, m_phi);
 
-         ::int_rectangle rectangleBigRect;
+         ::i32_rectangle rectangleBigRect;
          ::get_bounding_box(rectangleBigRect, pointaBigRect, 4);
          m_iRadius = 48;
          int & iRadius = m_iRadius;
@@ -348,9 +348,9 @@ namespace backimpact
          int nExCount = nCount + 1;
          int imax = (mCount + mExCount) / 2;
          int jmax = (nCount + nExCount) / 2;
-         ::double_point pointaHexagon[6];
-         ::int_rectangle rectangle;
-         ::int_rectangle rectangleX(0, 0, m_cx, m_cy);
+         ::f64_point pointaHexagon[6];
+         ::i32_rectangle rectangle;
+         ::i32_rectangle rectangleX(0, 0, m_cx, m_cy);
          for(int i =  -imax; i <= imax; i++)
          {
             for(int j = -jmax; j <= jmax; j++)
@@ -363,7 +363,7 @@ namespace backimpact
                if(rectangle.intersect(rectangleX, rectangle))
                {
                   
-                  m_pointa.add(int_point(i, j));
+                  m_pointa.add(i32_point(i, j));
                   
                }
                
@@ -391,7 +391,7 @@ namespace backimpact
 
          effect.m_timeDelay = 0_ms;
          int iImageCount = 100;
-         //double dPow = 1.0 / 2.5;
+         //::f64 dPow = 1.0 / 2.5;
          //const int iMaxGroupCount = 256;
          // const int iMaxGroupCount = 127;
          //const int iTileCount = maximum(4, cy / 8);
@@ -414,7 +414,7 @@ namespace backimpact
                if(iTile >= 0
                      && iTile < iTileCount)
                {
-                  m_pointa.add(int_point(iTile, iGroup));
+                  m_pointa.add(i32_point(iTile, iGroup));
                }
             }
          }
@@ -474,10 +474,10 @@ namespace backimpact
          int iSize;
 
          {
-            double dSize;
-            double dMaxSize = c1;
-            double dMinSize = 1.0;
-            double dRate = sqrt(2.0);
+            ::f64 dSize;
+            ::f64 dMaxSize = c1;
+            ::f64 dMinSize = 1.0;
+            ::f64 dRate = sqrt(2.0);
 
             for(dSize = dMinSize; dSize <= dMaxSize; dSize *= dRate)
             {
@@ -508,12 +508,12 @@ namespace backimpact
 
             for(; j < c1; j += iSize)
             {
-               m_pointa.add(::int_point((int) i,(int)  j));
-               m_pointa2.add(::int_point((int) iSize,(int)  iStartIndex));
+               m_pointa.add(::i32_point((int) i,(int)  j));
+               m_pointa2.add(::i32_point((int) iSize,(int)  iStartIndex));
             }
 
-            m_pointa.add(::int_point((int) i, (int) c1));
-            m_pointa2.add(::int_point((int) iSize,(int)  iStartIndex));
+            m_pointa.add(::i32_point((int) i, (int) c1));
+            m_pointa2.add(::i32_point((int) iSize,(int)  iStartIndex));
 
          }
 
@@ -532,7 +532,7 @@ namespace backimpact
          int ca = 0;
          while(dim < c1)
          {
-            m_pointa.add(int_point(dim, 50));
+            m_pointa.add(i32_point(dim, 50));
             dim += m_data.m_radialunveil.m_iRadiusIncrement + ca;
             ca += 10;
          }
@@ -619,12 +619,12 @@ namespace backimpact
 
       const int & cx = m_cx;
       const int & cy = m_cy;
-//         const double dRate = m_dRate;
-//         const double dRateEx = m_dRateEx;
-      int_rectangle & rectangleUpdate = m_rectangle;
-      int_point & point = m_point;
-      int_rectangle & rectangleA = m_rectangleA;
-      int_rectangle & rectangleB = m_rectangleB;
+//         const ::f64 dRate = m_dRate;
+//         const ::f64 dRateEx = m_dRateEx;
+      i32_rectangle & rectangleUpdate = m_rectangle;
+      i32_point & point = m_point;
+      i32_rectangle & rectangleA = m_rectangleA;
+      i32_rectangle & rectangleB = m_rectangleB;
 
       switch(etransitioneffect)
       {
@@ -846,19 +846,19 @@ namespace backimpact
       }
    }
 
-   void transition_effect::tool_001::GetRect(::int_rectangle * lprect)
+   void transition_effect::tool_001::GetRect(::i32_rectangle * lprect)
    {
       GetRect(lprect, m_dRate, m_dRateEx);
    }
 
-   void transition_effect::tool_001::GetRect(::int_rectangle * lprect, double dRate, double dRateEx)
+   void transition_effect::tool_001::GetRect(::i32_rectangle * lprect, ::f64 dRate, ::f64 dRateEx)
    {
       const int & cx = m_cx;
       const int & cy = m_cy;
-//         int_rectangle & rectangleUpdate = m_rectangle;
-//         int_point & point = m_point;
-//         int_rectangle & rectangleA = m_rectangleA;
-//         int_rectangle & rectangleB = m_rectangleB;
+//         i32_rectangle & rectangleUpdate = m_rectangle;
+//         i32_point & point = m_point;
+//         i32_rectangle & rectangleA = m_rectangleA;
+//         i32_rectangle & rectangleB = m_rectangleB;
       switch(m_etransitioneffect)
       {
       case TransitionEffectWipeBottom:
@@ -931,16 +931,16 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetRectAB(::int_rectangle * lprectA, ::int_rectangle * lprectB)
+   void transition_effect::tool_001::GetRectAB(::i32_rectangle * lprectA, ::i32_rectangle * lprectB)
    {
 //         const int & cx = m_cx;
 //         const int & cy = m_cy;
-      const double dRate = m_dRate;
-      const double dRateEx = m_dRateEx;
-      int_rectangle & rectangleUpdate = m_rectangle;
-//         int_point & point = m_point;
+      const ::f64 dRate = m_dRate;
+      const ::f64 dRateEx = m_dRateEx;
+      i32_rectangle & rectangleUpdate = m_rectangle;
+//         i32_point & point = m_point;
 
-      ::int_rectangle rectangleUpdatePrevious;
+      ::i32_rectangle rectangleUpdatePrevious;
 
       GetRect(&rectangleUpdatePrevious, dRate, dRate);
       GetRect(&rectangleUpdate, dRateEx, dRateEx);
@@ -985,13 +985,13 @@ namespace backimpact
       }
    }
 
-   void transition_effect::tool_001::GetRectABCD(::int_rectangle * lprectA, ::int_rectangle * lprectB, ::int_rectangle * lprectC, ::int_rectangle * lprectD)
+   void transition_effect::tool_001::GetRectABCD(::i32_rectangle * lprectA, ::i32_rectangle * lprectB, ::i32_rectangle * lprectC, ::i32_rectangle * lprectD)
    {
-      int_rectangle & rectangleUpdate = m_rectangle;
-      const double dRate = m_dRate;
-      const double dRateEx = m_dRateEx;
+      i32_rectangle & rectangleUpdate = m_rectangle;
+      const ::f64 dRate = m_dRate;
+      const ::f64 dRateEx = m_dRateEx;
 
-      ::int_rectangle rectangleUpdatePrevious;
+      ::i32_rectangle rectangleUpdatePrevious;
 
       GetRect(&rectangleUpdatePrevious, dRate, dRate);
       GetRect(&rectangleUpdate, dRateEx, dRateEx);
@@ -1016,7 +1016,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetRect(::int_rectangle * lprect, EAlign ealign)
+   void transition_effect::tool_001::GetRect(::i32_rectangle * lprect, EAlign ealign)
    {
 
       GetRect(lprect, ealign, m_dRate);
@@ -1024,7 +1024,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetRect(::int_rectangle * lprect, EAlign ealign, double dRate)
+   void transition_effect::tool_001::GetRect(::i32_rectangle * lprect, EAlign ealign, ::f64 dRate)
    {
 
       GetRect(lprect, ealign, m_cx, m_cy, dRate);
@@ -1032,7 +1032,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetRect(::int_rectangle * lprect, EAlign ealign, int cx, int cy, double dRate)
+   void transition_effect::tool_001::GetRect(::i32_rectangle * lprect, EAlign ealign, int cx, int cy, ::f64 dRate)
    {
 
       switch(ealign)
@@ -1103,7 +1103,7 @@ namespace backimpact
       break;
       case AlignCenter:
       {
-         double dHalfRate = dRate / 2.0;
+         ::f64 dHalfRate = dRate / 2.0;
          lprect->left =  (int) ((0.5 - dHalfRate) * (cx));
          lprect->right =  (int) (dHalfRate * cx);
          lprect->top = (int) ((0.5 - dHalfRate) * (cy));
@@ -1112,7 +1112,7 @@ namespace backimpact
       break;
       case AlignCenterOut:
       {
-         double dHalfRate = 0.5 - (dRate / 2.0);
+         ::f64 dHalfRate = 0.5 - (dRate / 2.0);
          lprect->left =  (int) ((0.5 - dHalfRate) * (cx));
          lprect->right =  (int) (dHalfRate * cx);
          lprect->top = (int) ((0.5 - dHalfRate) * (cy));
@@ -1127,7 +1127,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetSliceRect(::int_rectangle * lprect, EAlign ealign)
+   void transition_effect::tool_001::GetSliceRect(::i32_rectangle * lprect, EAlign ealign)
    {
 
       GetSliceRect(lprect, ealign, m_dRate, m_dRateEx);
@@ -1135,8 +1135,8 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetSliceRect(::int_rectangle * lprect, EAlign ealign,
-      double dRate, double dRatePlus)
+   void transition_effect::tool_001::GetSliceRect(::i32_rectangle * lprect, EAlign ealign,
+      ::f64 dRate, ::f64 dRatePlus)
    {
 
       GetSliceRect(m_cx, m_cy, lprect, ealign, dRate, dRatePlus);
@@ -1144,8 +1144,8 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetSliceRect(int cx, int cy, ::int_rectangle * lprect,
-   EAlign ealign, double dRate, double dRatePlus)
+   void transition_effect::tool_001::GetSliceRect(int cx, int cy, ::i32_rectangle * lprect,
+   EAlign ealign, ::f64 dRate, ::f64 dRatePlus)
    {
 
       switch(ealign)
@@ -1216,7 +1216,7 @@ namespace backimpact
       break;
       case AlignCenter:
       {
-         double dHalfRate = dRatePlus / 2.0;
+         ::f64 dHalfRate = dRatePlus / 2.0;
          lprect->left =  (int) ((0.5 - dHalfRate) * (cx));
          lprect->right =  (int) (dHalfRate * cx);
          lprect->top = (int) ((0.5 - dHalfRate) * (cy));
@@ -1232,45 +1232,45 @@ namespace backimpact
 
 
    void transition_effect::tool_001::
-   GetHorizontalHexagon(::int_rectangle * lprect, ::double_point * lppointa)
+   GetHorizontalHexagon(::i32_rectangle * lprect, ::f64_point * lppointa)
    {
-      double y1 = lprect->top;
-      double y3 = lprect->bottom;
-      double y2 = (y1 + y3) / 2.0;
-      double x1 = lprect->left;
-      double x4 = lprect->right;
-      double dr = (x4 - x1) / 2.0;
-      double x2 = (x1 + dr / 2.0);
-      double x3 = x1 + dr * 1.5;
+      ::f64 y1 = lprect->top;
+      ::f64 y3 = lprect->bottom;
+      ::f64 y2 = (y1 + y3) / 2.0;
+      ::f64 x1 = lprect->left;
+      ::f64 x4 = lprect->right;
+      ::f64 dr = (x4 - x1) / 2.0;
+      ::f64 x2 = (x1 + dr / 2.0);
+      ::f64 x3 = x1 + dr * 1.5;
 
-      lppointa[0] = double_point(x1, y2);
-      lppointa[1] = double_point(x2, y1);
-      lppointa[2] = double_point(x3, y1);
-      lppointa[3] = double_point(x4, y2);
-      lppointa[4] = double_point(x3, y3);
-      lppointa[5] = double_point(x2, y3);
+      lppointa[0] = f64_point(x1, y2);
+      lppointa[1] = f64_point(x2, y1);
+      lppointa[2] = f64_point(x3, y1);
+      lppointa[3] = f64_point(x4, y2);
+      lppointa[4] = f64_point(x3, y3);
+      lppointa[5] = f64_point(x2, y3);
 
    }
 
 
-   int transition_effect::tool_001::FindRandomEnglobingEllipse(const ::int_rectangle * lpcrect, ::int_rectangle * lprectEllipse, int iMaxRand)
+   int transition_effect::tool_001::FindRandomEnglobingEllipse(const ::i32_rectangle * lpcrect, ::i32_rectangle * lprectEllipse, int iMaxRand)
    {
 
       int iRandX = (int) mathematics()->random(-iMaxRand, iMaxRand);
 
       int iRandY = (int) mathematics()->random(-iMaxRand, iMaxRand);
 
-      ::int_rectangle rectangle(*lpcrect);
+      ::i32_rectangle rectangle(*lpcrect);
 
-      double dMaxSide = maximum(rectangle.width(), rectangle.height());
+      ::f64 dMaxSide = maximum(rectangle.width(), rectangle.height());
 
-      double dAdd = maximum(abs(iRandX), abs(iRandY));
+      ::f64 dAdd = maximum(abs(iRandX), abs(iRandY));
 
-      double dSide = dMaxSide + dAdd;
+      ::f64 dSide = dMaxSide + dAdd;
 
-      double dRadius = dSide / sqrt(2.0);
+      ::f64 dRadius = dSide / sqrt(2.0);
 
-      double dDiff = dSide - dRadius;
+      ::f64 dDiff = dSide - dRadius;
 
       int iLContrib = iRandX < 0 ? iRandX : 0;
       int iRContrib = iRandX > 0 ? iRandX : 0;
@@ -1287,22 +1287,22 @@ namespace backimpact
    }
 
 
-   int transition_effect::tool_001::FindRandomEnglobingCircle(const ::int_rectangle * lpcrect, ::int_rectangle * lprectCircle, int iMaxRand)
+   int transition_effect::tool_001::FindRandomEnglobingCircle(const ::i32_rectangle * lpcrect, ::i32_rectangle * lprectCircle, int iMaxRand)
    {
 
       int iRand = (int) mathematics()->random(-iMaxRand, iMaxRand);
 
-      ::int_rectangle rectangle(*lpcrect);
+      ::i32_rectangle rectangle(*lpcrect);
 
-      double dMaxSide = maximum(rectangle.width(), rectangle.height());
+      ::f64 dMaxSide = maximum(rectangle.width(), rectangle.height());
 
-      double dAdd = abs(iRand);
+      ::f64 dAdd = abs(iRand);
 
-      double dSide = dMaxSide + dAdd;
+      ::f64 dSide = dMaxSide + dAdd;
 
-      double dRadius = dSide / sqrt(2.0);
+      ::f64 dRadius = dSide / sqrt(2.0);
 
-      double dDiff = dSide - dRadius;
+      ::f64 dDiff = dSide - dRadius;
 
       int iLContrib = iRand < 0 ? iRand : 0;
       int iRContrib = iRand > 0 ? iRand : 0;
@@ -1329,7 +1329,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetRect(::int_point * lppoint, const ::int_rectangle & rectangle)
+   void transition_effect::tool_001::GetRect(::i32_point * lppoint, const ::i32_rectangle & rectangle)
    {
 
       lppoint[0].x = (int) rectangle.left;
@@ -1344,7 +1344,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetRect(::double_point * lppoint, const ::int_rectangle & rectangle)
+   void transition_effect::tool_001::GetRect(::f64_point * lppoint, const ::i32_rectangle & rectangle)
    {
 
       lppoint[0].x = (int) rectangle.left - 1.0;
@@ -1380,7 +1380,7 @@ namespace backimpact
    }
 
 
-//   void transition_effect::tool_001::GetSimplePolyBox(::int_rectangle * lprect, ::double_point * lppoint, int iCount)
+//   void transition_effect::tool_001::GetSimplePolyBox(::i32_rectangle * lprect, ::f64_point * lppoint, int iCount)
 //   {
 //
 //      if (iCount <= 0)
@@ -1390,10 +1390,10 @@ namespace backimpact
 //
 //      }
 //
-//      double left = lppoint[0].x;
-//      double right = left;
-//      double top = lppoint[0].y;
-//      double bottom = top;
+//      ::f64 left = lppoint[0].x;
+//      ::f64 right = left;
+//      ::f64 top = lppoint[0].y;
+//      ::f64 bottom = top;
 //      for(int i = 1; i < iCount; i++)
 //      {
 //         if(lppoint[i].x < left)
@@ -1413,10 +1413,10 @@ namespace backimpact
 //   }
 
 
-   void transition_effect::tool_001::GetRotateRect(int w, int h, int i, int j, double phi, ::double_point * lppoint)
+   void transition_effect::tool_001::GetRotateRect(int w, int h, int i, int j, ::f64 phi, ::f64_point * lppoint)
    {
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       TranslateRect(&rectangle, w, h, i, j);
       GetRect(lppoint, rectangle);
 
@@ -1429,7 +1429,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetRotateRect(int i, int j, ::double_point * lppoint)
+   void transition_effect::tool_001::GetRotateRect(int i, int j, ::f64_point * lppoint)
    {
 
       GetRotateRect(m_size.cx, m_size.cy, i, j, m_phi, lppoint);
@@ -1437,7 +1437,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::TranslateRect(::int_rectangle * lprect, int w, int h, int i, int j)
+   void transition_effect::tool_001::TranslateRect(::i32_rectangle * lprect, int w, int h, int i, int j)
    {
 
       int greekdeltax = (m_cx - w) / 2;
@@ -1450,18 +1450,18 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetRotateHexagon(int iRadius, int i, int j, double phi, ::double_point * lppoint)
+   void transition_effect::tool_001::GetRotateHexagon(int iRadius, int i, int j, ::f64 phi, ::f64_point * lppoint)
    {
 
-      double d3Sqrt = sqrt(3.0);
+      ::f64 d3Sqrt = sqrt(3.0);
       bool bEx = (abs(i) % 2 == 0) ^
                  (abs(j) % 2 == 0);
       i /= 2;
       j /= 2;
-      double dLeft = (m_cx - 3.0 * iRadius) / 2;
-      double dRight;
-      double dTop = (m_cy - iRadius * d3Sqrt) / 2;
-      double dBottom;
+      ::f64 dLeft = (m_cx - 3.0 * iRadius) / 2;
+      ::f64 dRight;
+      ::f64 dTop = (m_cy - iRadius * d3Sqrt) / 2;
+      ::f64 dBottom;
       if(bEx)
       {
          dLeft += iRadius * (3.0 * i - 1.5);
@@ -1472,7 +1472,7 @@ namespace backimpact
          dLeft += iRadius * (3.0 * i);
          dTop +=  iRadius * (d3Sqrt * (j));
       }
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       dRight  = dLeft + iRadius * 2.05  + 1;
       dBottom = dTop + iRadius * sqrt(3.1) + 1;
       rectangle.left = (int) dLeft;
@@ -1491,7 +1491,7 @@ namespace backimpact
    }
 
 
-   void transition_effect::tool_001::GetRotateHexagon(int i, int j, ::double_point * lppoint)
+   void transition_effect::tool_001::GetRotateHexagon(int i, int j, ::f64_point * lppoint)
    {
 
       GetRotateHexagon(m_iRadius, i, j, m_phi, lppoint);

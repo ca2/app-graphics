@@ -48,7 +48,7 @@
     <ClInclude Include="backimpact\_.h">
       <Filter>Header Files\backimpact</Filter>
     </ClInclude>
-    <ClInclude Include="gcom\double3d_point.h">
+    <ClInclude Include="gcom\f64_point3d.h">
       <Filter>Header Files\gcom</Filter>
     </ClInclude>
     <ClInclude Include="gcom\pixel_explosion.h">

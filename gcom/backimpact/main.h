@@ -83,7 +83,7 @@ namespace backimpact
 
       void defer_check_layout();
 
-      virtual bool update_buffer(const ::int_rectangle & rectangle);
+      virtual bool update_buffer(const ::i32_rectangle & rectangle);
 
       virtual void on_after_image_loaded();
 

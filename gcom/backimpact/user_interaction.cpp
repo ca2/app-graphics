@@ -94,7 +94,7 @@ namespace backimpact
    }
 
 
-   void user_interaction::backimpact_get_client_rect(::int_rectangle & rect)
+   void user_interaction::backimpact_get_client_rect(::i32_rectangle & rect)
    {
 
       rect = this->rectangle();
@@ -110,7 +110,7 @@ namespace backimpact
    }
 
 
-   void user_interaction::backimpact_update_screen(int_rectangle_array & recta, unsigned int uRedraw)
+   void user_interaction::backimpact_update_screen(i32_rectangle_array & recta, ::u32 uRedraw)
    {
       
       __UNREFERENCED_PARAMETER(recta);
@@ -128,7 +128,7 @@ namespace backimpact
    }
 
    
-   void user_interaction::backimpact_update_screen(const ::int_rectangle & rectangle, unsigned int uRedraw)
+   void user_interaction::backimpact_update_screen(const ::i32_rectangle & rectangle, ::u32 uRedraw)
    {
       
       __UNREFERENCED_PARAMETER(rectangle);
@@ -289,7 +289,7 @@ namespace backimpact
                   ::draw2d::save_context k(pgraphics);
 
                   //::draw2d::region_pointer rgn(e_create);
-//                     ::int_rectangle rectangle(pgcom->m_rectangleFinalPlacement);
+//                     ::i32_rectangle rectangle(pgcom->m_rectangleFinalPlacement);
 //                     client_to_screen(rectangle);
 //                     rectangle.offset(pgraphics->get_origin());
 //                                 //rgn->create_rect(rectangle);
@@ -624,7 +624,7 @@ void user_interaction::backimpact_post_message(wparam wparam,lparam lparam)
 }
 
 
-bool user_interaction::update_buffer(const ::int_rectangle & rectangle)
+bool user_interaction::update_buffer(const ::i32_rectangle & rectangle)
 {
 
    main * pmain = get_main();
@@ -946,13 +946,13 @@ bool user_interaction::is_enabled()
 }
 
 
-void user_interaction::backimpact_render(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleParam)
+void user_interaction::backimpact_render(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
 {
 
    if (!m_bEnableShowGcomBackground)
       return;
 
-   ::int_rectangle rectangle(rectangleParam);
+   ::i32_rectangle rectangle(rectangleParam);
 
    backimpact_render(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height());
 
@@ -1003,9 +1003,9 @@ void user_interaction::backimpact_render(::draw2d::graphics_pointer & pgraphics,
 
    }
 
-   ::image::image_source imagesource(dcTransfer, double_rectangle_dimension(x,y, w,h));
+   ::image::image_source imagesource(dcTransfer, f64_rectangle_dimension(x,y, w,h));
 
-   auto rectangle = double_rectangle_dimension(x,y, w,h);
+   auto rectangle = f64_rectangle_dimension(x,y, w,h);
 
    ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1048,7 +1048,7 @@ bool user_interaction::backimpact_get_destroy()
 }
 
 
-//void user_interaction::backimpact_get_client_rect(::int_rectangle * lprect)
+//void user_interaction::backimpact_get_client_rect(::i32_rectangle * lprect)
 //{
 
 //   __UNREFERENCED_PARAMETER(lprect);
@@ -1056,7 +1056,7 @@ bool user_interaction::backimpact_get_destroy()
 //}
 
 
-//void user_interaction::backimpact_client_to_screen(::int_rectangle * lprect)
+//void user_interaction::backimpact_client_to_screen(::i32_rectangle * lprect)
 //{
 
 //   __UNREFERENCED_PARAMETER(lprect);
@@ -1064,7 +1064,7 @@ bool user_interaction::backimpact_get_destroy()
 //}
 
 
-//void user_interaction::backimpact_update_screen(int_rectangle_array & recta,unsigned int uRedraw)
+//void user_interaction::backimpact_update_screen(i32_rectangle_array & recta,::u32 uRedraw)
 //{
 
 //   __UNREFERENCED_PARAMETER(recta);
@@ -1079,7 +1079,7 @@ bool user_interaction::backimpact_get_destroy()
 //}
 
 
-//void user_interaction::backimpact_update_screen(const ::int_rectangle & rectangle,unsigned int uRedraw)
+//void user_interaction::backimpact_update_screen(const ::i32_rectangle & rectangle,::u32 uRedraw)
 //{
 
 //   __UNREFERENCED_PARAMETER(rectangle);

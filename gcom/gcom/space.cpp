@@ -18,7 +18,7 @@ namespace gcom
 
    }
 
-   void space::align(::int_rectangle * lprectalign, ::int_rectangle * lprectspace, ::e_align ealign, double dRate)
+   void space::align(::i32_rectangle * lprectalign, ::i32_rectangle * lprectspace, ::e_align ealign, ::f64 dRate)
    {
       int cx = 0;
       int cy = 0;
@@ -65,7 +65,7 @@ namespace gcom
    }
 
 
-   void space::deviate(::int_rectangle * lprectDeviate, ::int_rectangle * lprectspace, e_direction edirection, double dRate)
+   void space::deviate(::i32_rectangle * lprectDeviate, ::i32_rectangle * lprectspace, e_direction edirection, ::f64 dRate)
    {
 
       int greekdeltax = lprectspace->right - lprectspace->left;
@@ -112,7 +112,7 @@ namespace gcom
 
    }
 
-   void space::slice(::int_rectangle * lprectSliced1, ::int_rectangle * lprectSlicing, e_direction edirection, double dRate, double dRateEx)
+   void space::slice(::i32_rectangle * lprectSliced1, ::i32_rectangle * lprectSlicing, e_direction edirection, ::f64 dRate, ::f64 dRateEx)
    {
       int cx = lprectSlicing->right - lprectSlicing->left;
       int cy = lprectSlicing->bottom - lprectSlicing->top;
@@ -174,7 +174,7 @@ namespace gcom
    }
 
 
-   void space::slice(::int_rectangle * lprectSliced1, ::int_rectangle * lprectSliced2, ::int_rectangle * lprectSliced3, ::int_rectangle * lprectSlicing, e_direction edirection, double dRate, double dRateEx)
+   void space::slice(::i32_rectangle * lprectSliced1, ::i32_rectangle * lprectSliced2, ::i32_rectangle * lprectSliced3, ::i32_rectangle * lprectSlicing, e_direction edirection, ::f64 dRate, ::f64 dRateEx)
    {
 
       slice(lprectSliced1, lprectSlicing, edirection, dRate, dRateEx);
@@ -244,7 +244,7 @@ namespace gcom
    }
 
 
-   void space::get_center(::int_point * lppoint, ::int_rectangle * lprect)
+   void space::get_center(::i32_point * lppoint, ::i32_rectangle * lprect)
    {
 
       lppoint->x = (lprect->left + lprect->right) / 2;
@@ -253,10 +253,10 @@ namespace gcom
    }
 
 
-   void space::scale(::int_rectangle * lprectScaling, double dRate)
+   void space::scale(::i32_rectangle * lprectScaling, ::f64 dRate)
    {
 
-      ::int_point point;
+      ::i32_point point;
       get_center(&point, lprectScaling);
       int cx = lprectScaling->right - lprectScaling->left;
       int cy = lprectScaling->bottom - lprectScaling->top;
@@ -272,13 +272,13 @@ namespace gcom
    }
 
 
-   void space::wipe_in(::int_rectangle * lprect1, ::int_rectangle * lprect2, ::int_rectangle * lprect3, ::int_rectangle * lprect4, ::int_rectangle * lprect, double dRate, double dRateEx)
+   void space::wipe_in(::i32_rectangle * lprect1, ::i32_rectangle * lprect2, ::i32_rectangle * lprect3, ::i32_rectangle * lprect4, ::i32_rectangle * lprect, ::f64 dRate, ::f64 dRateEx)
    {
 
-      ::int_rectangle rectangleIn(*lprect);
+      ::i32_rectangle rectangleIn(*lprect);
       scale(&rectangleIn, dRate);
 
-      ::int_rectangle rectangleOut(*lprect);
+      ::i32_rectangle rectangleOut(*lprect);
       scale(&rectangleOut, dRateEx);
 
       lprect1->left     = rectangleIn.left;

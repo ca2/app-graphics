@@ -19,7 +19,7 @@ namespace backimpact
       enum_image_placement          m_eimageplacement;
       string                        m_strNextImagePath;
       string                        m_strCurrentImagePath;
-      ::int_rectangle               m_rectangle;
+      ::i32_rectangle               m_rectangle;
 
 
       data();

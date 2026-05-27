@@ -19,7 +19,7 @@ namespace backimpact
       enum_image_placement                m_eplacement;
 
       happening                           m_happeningImageChangeFinish;
-      unsigned int                        m_dwLoadCounter;
+      ::u32                        m_dwLoadCounter;
       class ::time                        m_timeBackgroundLastChange;
       class ::time                        m_timeBackgroundPreTransitionStart;
       bool                                m_bLastLoadImageSynch;
