@@ -22,7 +22,7 @@ namespace gcom
    {
       int cx = 0;
       int cy = 0;
-      switch(ealign)
+      switch(ealign.m_cflag)
       {
       case e_align_bottom_left:
          cx = lprectspace->left - lprectalign->left;

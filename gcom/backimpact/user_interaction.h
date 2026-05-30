@@ -116,7 +116,7 @@ namespace backimpact
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
-      //      virtual void on_timer(::timer * ptimer) override;
+      //      void operator()(::timer * ptimer) override;
 
 
       virtual void initialize_timer();

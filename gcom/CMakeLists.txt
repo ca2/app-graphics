@@ -32,7 +32,7 @@ list(APPEND library_source
         gcom/_.h
         #   gcom/_const.h
         #gcom/#_library.h
-        gcom/double3d_point.h
+        gcom/f64_point3d.h
         gcom/ipp.cpp
         gcom/pixel_explosion.cpp
         gcom/pixel_explosion.h
