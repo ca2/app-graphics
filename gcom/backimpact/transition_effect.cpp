@@ -651,35 +651,46 @@ namespace backimpact
 
       synchronous_lock sl2Buffer(pgcom->m_pmutex2Buffer, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::draw2d::graphics_pointer dcBack = pgcom->GetBackDC();
+      auto pimageBack = pgcom->get_image(e_image_back);
 
-      ::draw2d::graphics_pointer dcBuffer = pgcom->GetBufferDC();
+      auto pimageBuffer = pgcom->get_image(e_image_buffer);
 
-      ::draw2d::graphics_pointer dcSource = pgcom->GetSourceDC();
+      auto pimageSource = pgcom->get_image(e_image_source);
 
-      ::draw2d::graphics_pointer dcFrame1 = pgcom->GetFrame1DC();
+      auto pimageFrame1 = pgcom->get_image(e_image_frame1);
 
-      ::draw2d::bitmap_pointer bitmapBuffer = pgcom->GetBufferBitmap();
+      auto pgraphicsBack = pimageBack->acquire_graphics();
 
-      ::image::image_pointer pimageBack = pgcom->get_image(e_image_back);
+      auto pgraphicsBuffer = pimageBuffer->acquire_graphics();
 
-      ::image::image_pointer pimageSource = pgcom->get_image(e_image_source);
+      auto pgraphicsSource = pimageBuffer->acquire_graphics();
 
-      if(dcBack.is_null() || dcBack->get_os_data() == nullptr)
+      auto pgraphicsFrame1 = pimageFrame1->acquire_graphics();
+
+      if(pimageBack.nok())
       {
+         
          End();
+
          return;
-      }
-      if(dcBuffer->get_os_data() == nullptr)
-      {
-         End();
-         return;
+
       }
 
-      ::draw2d::save_context k(dcBack);
-      ::draw2d::save_context k2(dcBuffer);
-//      dcBack->SelectClipRgn(nullptr);
-      //    dcBuffer->SelectClipRgn(nullptr);
+      if(pimageBuffer.nok())
+      {
+
+         End();
+
+         return;
+
+      }
+
+      ::draw2d::save_context k(pgraphicsBack);
+      
+      ::draw2d::save_context k2(pgraphicsBuffer);
+
+//      pgraphicsBack->SelectClipRgn(nullptr);
+      //    pgraphicsBuffer->SelectClipRgn(nullptr);
 
       //if(!bitmapBuffer->is_set(::draw2d::e_default_object))
       //{
@@ -728,24 +739,24 @@ namespace backimpact
       {
          if(m_ptool001->m_iStep == m_ptool001->m_iStepCount / 2)
          {
-            //dcBack->fill_rectangle(100, 10, 50, 50, argb(20, 30, 40, 20));
+            //pgraphicsBack->fill_rectangle(100, 10, 50, 50, argb(20, 30, 40, 20));
 
             rectangleUpdate = rectangleX;
 
             {
 
-               ::image::image_source imagesource(dcBuffer, rectangleUpdate);
+               ::image::image_source imagesource(pgraphicsBuffer, rectangleUpdate);
 
                ::image::image_drawing_options imagedrawingoptions(rectangleUpdate);
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               dcBack->draw(imagedrawing);
+               pgraphicsBack->draw(imagedrawing);
 
             }
 
             /*                  drawpimage->draw(
-                              dcBack,
+                              pgraphicsBack,
                               rectangleUpdate.left, rectangleUpdate.top,
                               rectangleUpdate.width(), rectangleUpdate.height(),
                               pgcom->get_image(e_image_buffer),
@@ -789,8 +800,8 @@ namespace backimpact
             //::draw2d::region_pointer rgnClip(e_create);
             //rgnClip->create_polygon(pointa, 4, ::draw2d::e_fill_mode_winding);
 
-            //dcBack->SelectClipRgn(nullptr);
-            dcBack->intersect_clip(m_ptool001->m_polygon);
+            //pgraphicsBack->SelectClipRgn(nullptr);
+            pgraphicsBack->intersect_clip(m_ptool001->m_polygon);
 
             ::get_bounding_box(rectangleUpdate, m_ptool001->m_polygon.data(), 4);
 
@@ -801,24 +812,24 @@ namespace backimpact
 
             {
 
-               ::image::image_source imagesource(dcBuffer, rectangleUpdate);
+               ::image::image_source imagesource(pgraphicsBuffer, rectangleUpdate);
 
                ::image::image_drawing_options imagedrawingoptions(rectangleUpdate);
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               dcBack->draw(imagedrawing);
+               pgraphicsBack->draw(imagedrawing);
 
             }
             /*drawpimage->draw(
-               dcBack,
+               pgraphicsBack,
                rectangleUpdate.left, rectangleUpdate.top,
                rectangleUpdate.width(), rectangleUpdate.height(),
                pgcom->get_image(e_image_buffer),
                rectangleUpdate.left, rectangleUpdate.top,
                rectangleUpdate.width(), rectangleUpdate.height(),
                SRCCOPY);*/
-            dcBack->reset_clip();
+            pgraphicsBack->reset_clip();
             recta.add(rectangleUpdate);
          }
       }
@@ -845,7 +856,7 @@ namespace backimpact
             }
             m_ptool001->m_polygon.set_size(6);
             m_ptool001->GetRotateHexagon(point.x, point.y, m_ptool001->m_polygon.data());
-            dcBack->intersect_clip(m_ptool001->m_polygon);
+            pgraphicsBack->intersect_clip(m_ptool001->m_polygon);
             ::get_bounding_box(rectangleUpdate, m_ptool001->m_polygon.data(), 6);
 
             /*               if(lprect != nullptr)
@@ -855,17 +866,17 @@ namespace backimpact
 
             {
 
-               ::image::image_source imagesource(dcBuffer, rectangleUpdate);
+               ::image::image_source imagesource(pgraphicsBuffer, rectangleUpdate);
 
                ::image::image_drawing_options imagedrawingoptions(rectangleUpdate);
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               dcBack->draw(imagedrawing);
+               pgraphicsBack->draw(imagedrawing);
 
             }
 
-            dcBack->reset_clip();
+            pgraphicsBack->reset_clip();
          }
          recta.add(rectangleUpdate);
       }
@@ -962,34 +973,34 @@ namespace backimpact
 
                ppathClip->add_ellipse(ellipse);
 
-               dcBack->intersect_clip(ppathClip);
+               pgraphicsBack->intersect_clip(ppathClip);
 
                {
 
-                  ::image::image_source imagesource(dcBuffer, rectangleUpdate);
+                  ::image::image_source imagesource(pgraphicsBuffer, rectangleUpdate);
 
                   ::image::image_drawing_options imagedrawingoptions(rectangleUpdate);
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  dcBack->draw(imagedrawing);
+                  pgraphicsBack->draw(imagedrawing);
 
                }
 
-               dcBack->reset_clip();
+               pgraphicsBack->reset_clip();
 
             }
             else
             {
                {
 
-                  ::image::image_source imagesource(dcBuffer, rectangleUpdate);
+                  ::image::image_source imagesource(pgraphicsBuffer, rectangleUpdate);
 
                   ::image::image_drawing_options imagedrawingoptions(rectangleUpdate);
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  dcBack->draw(imagedrawing);
+                  pgraphicsBack->draw(imagedrawing);
 
                }
 
@@ -1025,11 +1036,11 @@ namespace backimpact
 
          rectangleUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
 
-         dcBack->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         pgraphicsBack->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          {
 
-            ::image::image_source imagesource(dcBuffer);
+            ::image::image_source imagesource(pgraphicsBuffer);
 
             ::image::image_drawing_options imagedrawingoptions(rectangleUpdate);
 
@@ -1037,7 +1048,7 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
@@ -1159,7 +1170,9 @@ namespace backimpact
 
                         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                        pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+                        auto pgraphicsImage = pimage->acquire_graphics();
+
+                        pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                         pimage->draw(imagedrawing);
 
@@ -1191,7 +1204,9 @@ namespace backimpact
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pimageBack->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+                  auto pgraphicsImageBack = pimageBack->acquire_graphics();
+
+                  pgraphicsImageBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
                   pimageBack->draw(imagedrawing);
 
@@ -1275,11 +1290,11 @@ namespace backimpact
 
             ::image::image_drawing_options imagedrawingoptions(rectangleX);
 
-            dcBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
+            pgraphicsBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
@@ -1295,11 +1310,11 @@ namespace backimpact
 
             imagedrawingoptions.opacity(dAlpha);
 
-            dcBack->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pgraphicsBack->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
@@ -1337,13 +1352,13 @@ namespace backimpact
 
          {
 
-            ::image::image_source imagesource(dcBuffer, rectangle);
+            ::image::image_source imagesource(pgraphicsBuffer, rectangle);
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
@@ -1390,37 +1405,37 @@ namespace backimpact
 
          {
 
-            ::image::image_source imagesource(dcBuffer, rectangleA);
+            ::image::image_source imagesource(pgraphicsBuffer, rectangleA);
 
             ::image::image_drawing_options imagedrawingoptions(rectangleA);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
          {
 
-            ::image::image_source imagesource(dcBuffer, rectangleB);
+            ::image::image_source imagesource(pgraphicsBuffer, rectangleB);
 
             ::image::image_drawing_options imagedrawingoptions(rectangleB);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
          {
 
-            ::image::image_source imagesource(dcBuffer, rectangleC);
+            ::image::image_source imagesource(pgraphicsBuffer, rectangleC);
 
             ::image::image_drawing_options imagedrawingoptions(rectangleC);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
@@ -1446,7 +1461,7 @@ namespace backimpact
          ::gcom::space space;
          space.scale(&rectangle, dRate);
 
-         ::image::image_source imagesource(dcBuffer, rectangle);
+         ::image::image_source imagesource(pgraphicsBuffer, rectangle);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1488,49 +1503,49 @@ namespace backimpact
 
          {
 
-            ::image::image_source imagesource(dcBuffer, rectangleA);
+            ::image::image_source imagesource(pgraphicsBuffer, rectangleA);
 
             ::image::image_drawing_options imagedrawingoptions(rectangleA);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
          {
 
-            ::image::image_source imagesource(dcBuffer, rectangleB);
+            ::image::image_source imagesource(pgraphicsBuffer, rectangleB);
 
             ::image::image_drawing_options imagedrawingoptions(rectangleB);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
          {
 
-            ::image::image_source imagesource(dcBuffer, rectangleC);
+            ::image::image_source imagesource(pgraphicsBuffer, rectangleC);
 
             ::image::image_drawing_options imagedrawingoptions(rectangleC);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
          {
 
-            ::image::image_source imagesource(dcBuffer, rectangleD);
+            ::image::image_source imagesource(pgraphicsBuffer, rectangleD);
 
             ::image::image_drawing_options imagedrawingoptions(rectangleD);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
@@ -1559,13 +1574,13 @@ namespace backimpact
          rectangle.bottom -= (long) greekdeltay;
 
 
-         ::image::image_source imagesource(dcBuffer, rectangle);
+         ::image::image_source imagesource(pgraphicsBuffer, rectangle);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         dcBack->draw(imagedrawing);
+         pgraphicsBack->draw(imagedrawing);
 
          recta.add(rectangle);
 
@@ -1589,13 +1604,13 @@ namespace backimpact
          rectangle.left += (long) greekdeltax;
          rectangle.right -= (long) greekdeltax;
 
-         ::image::image_source imagesource(dcBuffer, rectangle);
+         ::image::image_source imagesource(pgraphicsBuffer, rectangle);
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         dcBack->draw(imagedrawing);
+         pgraphicsBack->draw(imagedrawing);
 
          recta.add(rectangle);
 
@@ -1633,15 +1648,15 @@ namespace backimpact
 
          rectangle.intersect(rectangle, rectangleBound);
 
-         dcBack->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pgraphicsBack->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-         //dcBack->set_origin(0, 0);
+         //pgraphicsBack->set_origin(0, 0);
 
          //pimageSource->get_graphics()->set_origin(0, 0);
 
-         dcBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pgraphicsBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         dcBack->reset_clip();
+         pgraphicsBack->reset_clip();
 
          f64_rectangle rectangleSource(
             0,
@@ -1655,7 +1670,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         dcBack->draw(imagedrawing);
+         pgraphicsBack->draw(imagedrawing);
 
          recta.add(rectangle);
 
@@ -1682,15 +1697,15 @@ namespace backimpact
 
          space.scale(&rectangle, dRate);
 
-         ::image::image_source imagesource(dcBuffer, rectangle);
+         ::image::image_source imagesource(pgraphicsBuffer, rectangle);
 
          ::image::image_drawing_options imagedrawingoptions(rectangleX);
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         dcBack->draw(imagedrawing);
+         pgraphicsBack->draw(imagedrawing);
 
-         dcBack->reset_clip();
+         pgraphicsBack->reset_clip();
 
          recta.add(rectangleX);
 
@@ -1829,13 +1844,13 @@ namespace backimpact
 
                                  image5.get_graphics()->set_interpolation_mode(0);
                                  image6.get_graphics()->set_interpolation_mode(0);
-                                 dcBuffer->set_interpolation_mode(0);
-                                 dcFrame1.set_interpolation_mode(0);
+                                 pgraphicsBuffer->set_interpolation_mode(0);
+                                 pgraphicsFrame1.set_interpolation_mode(0);
 
                                  image5.get_graphics()->StretchBlt(
                                     0, 0,
                                     xPixelMod, yPixelMod,
-                                    dcBuffer,
+                                    pgraphicsBuffer,
                                     finalX, finalY,
                                     finalW, finalH,
                                     SRCCOPY);
@@ -1843,7 +1858,7 @@ namespace backimpact
                                  image6.get_graphics()->StretchBlt(
                                     0, 0,
                                     xPixelMod, yPixelMod,
-                                    &dcFrame1,
+                                    &pgraphicsFrame1,
                                     finalX, finalY,
                                     finalW, finalH,
                                     SRCCOPY);
@@ -1870,12 +1885,12 @@ namespace backimpact
                                     xPixelMod, yPixelMod,
                                     SRCCOPY);
 
-                                 pimage->g()->set_interpolation_mode(0);
-                                 pimage2->get_graphics()->set_interpolation_mode(0);
+                                 pgraphicsImage->set_interpolation_mode(0);
+                                 pgraphicsImage2->set_interpolation_mode(0);
                                  image3.get_graphics()->set_interpolation_mode(0);
                                  image4.get_graphics()->set_interpolation_mode(0);
 
-                                 pimage->g()->StretchBlt(
+                                 pgraphicsImage->StretchBlt(
                                     0, 0,
                                     xPixelMod, yPixelMod,
                                     image3.get_graphics(),
@@ -1883,7 +1898,7 @@ namespace backimpact
                                     finalW, finalH,
                                     SRCCOPY);
 
-                                 pimage2->get_graphics()->StretchBlt(
+                                 pgraphicsImage2->StretchBlt(
                                     0, 0,
                                     xPixelMod, yPixelMod,
                                     image4.get_graphics(),
@@ -1895,7 +1910,7 @@ namespace backimpact
 
                {
 
-                  ::image::image_source imagesource(dcFrame1);
+                  ::image::image_source imagesource(pgraphicsFrame1);
 
                   f64_rectangle rectangle(::f64_size(finalW, finalH));
 
@@ -1903,7 +1918,9 @@ namespace backimpact
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pimage->g()->draw(imagedrawing);
+                  auto pgraphicsImage = pimage->acquire_graphics();
+
+                  pgraphicsImage->draw(imagedrawing);
 
                }
 
@@ -1927,7 +1944,7 @@ namespace backimpact
 
                {
 
-                  ::image::image_source imagesource(dcBuffer, f64_rectangle(i32_point(finalX, finalY), ::i64_size(finalW, finalH)));
+                  ::image::image_source imagesource(pgraphicsBuffer, f64_rectangle(i32_point(finalX, finalY), ::i64_size(finalW, finalH)));
 
                   f64_rectangle rectangle(::i64_size(finalW, finalH));
 
@@ -1997,7 +2014,7 @@ namespace backimpact
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               dcBack->draw(imagedrawing);
+               pgraphicsBack->draw(imagedrawing);
 
             }
 
@@ -2053,9 +2070,11 @@ namespace backimpact
          pimage2->create({wWindow, hWindow});
          //image3.create({wWindow, hWindow});
 
-         pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         auto pgraphicsImage1 = pimage1->acquire_graphics();
 
-         pimage1->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+         pgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -2071,15 +2090,17 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage1->get_graphics()->draw(imagedrawing);
+            pgraphicsImage1->draw(imagedrawing);
 
          }
 
-         pimage2->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         auto pgraphicsImage2 = pimage2->acquire_graphics();
+
+         pgraphicsImage2->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          {
 
-            ::image::image_source imagesource(dcBuffer, f64_rectangle_dimension(x1, y1, wWindow, hWindow));
+            ::image::image_source imagesource(pgraphicsBuffer, f64_rectangle_dimension(x1, y1, wWindow, hWindow));
 
             auto rectangle = f64_rectangle_dimension(0, 0, wWindow, hWindow);
 
@@ -2087,7 +2108,7 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage2->get_graphics()->draw(imagedrawing);
+            pgraphicsImage2->draw(imagedrawing);
 
          }
 
@@ -2098,7 +2119,7 @@ namespace backimpact
          pimage2->mult_alpha();
 
          /*drawpimage->draw(
-            pimage1->get_graphics(),
+            pgraphicsImage1,
             0, 0,
             wWindow, hWindow,
             imageT2,
@@ -2107,7 +2128,7 @@ namespace backimpact
             pimage->width() - 2 * yOff -1, 0);*/
 
 
-         /*dc2.BitBlt(0, 0, wWindow, hWindow, pimage1->get_graphics(), 0, 0);
+         /*dc2.BitBlt(0, 0, wWindow, hWindow, pgraphicsImage1, 0, 0);
          dc2.BitBlt(0, 0, wWindow, hWindow, nullptr, 0, 0, DSTINVERT);
 
          dc3.fill_rectangle(0, 0, wWindow, hWindow, 0xff000000);
@@ -2127,7 +2148,7 @@ namespace backimpact
 
 //                  ::image::image_pointer pimageBuffer = pgcom->get_image(100);
          /*StretchDIBits(
-            pimage1->get_graphics(),
+            pgraphicsImage1,
             0, 0,
             wWindow, hWindow,
             x1, y1,
@@ -2139,14 +2160,14 @@ namespace backimpact
 
 
 
-         //dcBack->BitBlt(x1, y1, wWindow, hWindow, &dcFrame1, x1, y1);
-         //dcBack->BitBlt(x1, y1, wWindow, hWindow, pimage1->get_graphics(),
+         //pgraphicsBack->BitBlt(x1, y1, wWindow, hWindow, &pgraphicsFrame1, x1, y1);
+         //pgraphicsBack->BitBlt(x1, y1, wWindow, hWindow, pgraphicsImage1,
          // x1, y1);
 
-         //dcBack->BitBlt(x1, y1, wWindow, hWindow, pimage1->get_graphics(),
+         //pgraphicsBack->BitBlt(x1, y1, wWindow, hWindow, pgraphicsImage1,
          // x1, y1);
 
-         dcBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pgraphicsBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          {
 
@@ -2158,20 +2179,20 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcBack->draw(imagedrawing);
+            pgraphicsBack->draw(imagedrawing);
 
          }
 
 
          /*drawpimage->draw(
-            dcBack,
+            pgraphicsBack,
             x1, y1,
             d, d,
             pimage1,
             0, 0,
             d, d,
             DDF_HALFTONE);*/
-         //dcBack->BitBlt(xm - r, ym - r, 2 * r, 2 * r, pimage1->get_graphics(), 0, 0);
+         //pgraphicsBack->BitBlt(xm - r, ym - r, 2 * r, 2 * r, pgraphicsImage1, 0, 0);
          rectangleUpdate.set(x1, y1, x2, y2);
          recta.add(rectangleUpdate);
       }
@@ -2183,20 +2204,22 @@ namespace backimpact
 
       synchronous_lock synchronouslock(pgcom->m_pmutex4Transfer, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::draw2d::graphics_pointer dcTransfer = pgcom->GetTransferDC();
+      //auto pgraphicsTransfer = pgcom->GetTransferDC();
 
-      //dcBack->set_origin(0, 0);
+      auto pgraphicsTransfer = pgcom->m_pgraphicsScreen;
 
-      //dcTransfer->set_origin(0, 0);
+      //pgraphicsBack->set_origin(0, 0);
+
+      //pgraphicsTransfer->set_origin(0, 0);
 
       for(int i = 0; i < recta.get_size(); i++)
       {
 
          ::i32_rectangle rectangleTransfer = recta[i];
 
-         //dcTransfer->draw(rectangleTransfer, dcBack, rectangleTransfer.top_left());
+         //pgraphicsTransfer->draw(rectangleTransfer, pgraphicsBack, rectangleTransfer.top_left());
 
-         ::image::image_source imagesource(dcBack, rectangleTransfer);
+         ::image::image_source imagesource(pgraphicsBack, rectangleTransfer);
 
          ::image::image_drawing_options imagedrawingoptions(rectangleTransfer);
 
@@ -2204,7 +2227,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         dcTransfer->draw(imagedrawing);
+         pgraphicsTransfer->draw(imagedrawing);
 
       }
 
@@ -2372,9 +2395,13 @@ namespace backimpact
 
       single_lock sl1Back(pgcom->m_pmutex1Back, false);
 
-      ::draw2d::graphics_pointer dcFrame1 = pgcom->GetFrame1DC();
+      auto pimageFrame1 = pgcom->get_image(e_image_frame1);
 
-      ::draw2d::graphics_pointer dcTransfer = pgcom->GetTransferDC();
+      auto pimageTransfer = pgcom->get_image(e_image_transfer);
+
+      auto pgraphicsFrame1 = pimageFrame1->acquire_graphics();
+
+      auto pgraphicsTransfer = pimageTransfer->acquire_graphics();
 
       user_interaction * puserinteraction = pmain->get_user_interaction();
 
@@ -2390,10 +2417,10 @@ namespace backimpact
 
          synchronous_lock slTransfer(pgcom->m_pmutex4Transfer, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         if (dcTransfer.is_set() && dcTransfer->get_os_data() != nullptr)
+         if (pimageTransfer.ok())
          {
 
-            ::image::image_source imagesource(dcTransfer);
+            ::image::image_source imagesource(pgraphicsTransfer);
 
             f64_rectangle rectangle(rectangleX.size());
 
@@ -2401,7 +2428,7 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            dcFrame1->draw(imagedrawing);
+            pgraphicsFrame1->draw(imagedrawing);
 
          }
 

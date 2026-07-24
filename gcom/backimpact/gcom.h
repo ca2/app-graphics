@@ -2,6 +2,7 @@
 
 
 #include "helper.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 
 
 namespace backimpact
@@ -14,8 +15,8 @@ namespace backimpact
    public:
 
 
-      class ::time                             m_timeGcomBackgroundUpdate;
-      ::draw2d::graphics_pointer             m_dcScreen;
+      class ::time                           m_timeGcomBackgroundUpdate;
+      ::draw2d::graphics_pointer             m_pgraphicsScreen;
       ::i32_rectangle                        m_rectangleFinalPlacement;
 
 
@@ -54,24 +55,24 @@ namespace backimpact
       // and the final background buffer.
       bool ApplyImagePlacementSettings();
 
-      ::draw2d::graphics_pointer GetTransferDC(); // m_dcBackImpact2
-      ::draw2d::graphics_pointer GetFrame1DC(); // m_dcBackImpact2
-      ::draw2d::graphics_pointer GetBufferDC(); // m_dcBackImpact2
-      ::draw2d::graphics_pointer GetSourceDC(); // m_dcBackImpactSource
-      ::draw2d::graphics_pointer GetScreenDC(); // m_dcBackImpactSource
+      //::draw2d::graphics_pointer GetTransferDC(); // m_dcBackImpact2
+      //::draw2d::graphics_pointer GetFrame1DC(); // m_dcBackImpact2
+      //::draw2d::graphics_pointer GetBufferDC(); // m_dcBackImpact2
+      //::draw2d::graphics_pointer GetSourceDC(); // m_dcBackImpactSource
+      //::draw2d::graphics_pointer GetScreenDC(); // m_dcBackImpactSource
 
       ::image::image_pointer get_image(enum_image eimage);
 
-      ::draw2d::bitmap_pointer GetTransferBitmap(); // m_bmpBackImpact2
-      ::draw2d::bitmap_pointer GetFrame1Bitmap(); // m_bmpBackImpact2
-      ::draw2d::bitmap_pointer GetBufferBitmap(); // m_bmpBackImpact2
-      ::draw2d::bitmap_pointer GetSourceBitmap(); // m_bmpBackImpactSource
+      //::draw2d::bitmap_pointer GetTransferBitmap(); // m_bmpBackImpact2
+      //::draw2d::bitmap_pointer GetFrame1Bitmap(); // m_bmpBackImpact2
+      //::draw2d::bitmap_pointer GetBufferBitmap(); // m_bmpBackImpact2
+      //::draw2d::bitmap_pointer GetSourceBitmap(); // m_bmpBackImpactSource
 
       virtual void on_create_image(::image::image *pimage,  enum_image eimage);
 
 
-      ::draw2d::bitmap_pointer GetBackBitmap(); // m_bmpBackImpact
-      ::draw2d::graphics_pointer GetBackDC(); // m_dcBackImpact
+      //::draw2d::bitmap_pointer GetBackBitmap(); // m_bmpBackImpact
+      ///::draw2d::graphics_pointer GetBackDC(); // m_dcBackImpact
 
 //         // Back tools keep the current background snapshot
 //         ::draw2d::graphics_pointer               m_dcBack;

@@ -13,7 +13,9 @@
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/graphics_pointer.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/image.h"
 #include "aura/platform/application.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame_interaction.h"
@@ -812,21 +814,21 @@ void user_interaction::image_change_post_event(enum_happening ehappening)
 }
 
 
-::draw2d::graphics_pointer user_interaction::GetTransferDC()
-{
-
-   main * pmain = get_main();
-
-   if (pmain == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   return pmain->GetTransferDC();
-
-}
+//::draw2d::graphics_pointer user_interaction::GetTransferDC()
+//{
+//
+//   main * pmain = get_main();
+//
+//   if (pmain == nullptr)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pmain->GetTransferDC();
+//
+//}
 
 
 ::particle * user_interaction::get_transfer_mutex()
@@ -987,23 +989,27 @@ void user_interaction::backimpact_render(::draw2d::graphics_pointer & pgraphics,
 
    single_lock synchronouslock(pgcom->m_pmutex4Transfer,true);
 
-   ::draw2d::graphics_pointer dcTransfer = pgcom->GetTransferDC();
+   auto pimageTransfer = pgcom->get_image(e_image_transfer);
 
-   if (dcTransfer.is_null())
+   //::draw2d::graphics_pointer dcTransfer = pgcom->GetTransferDC();
+
+   auto pgraphicsTransfer = pimageTransfer;
+
+   if (pgraphicsTransfer.is_null())
    {
 
       return;
 
    }
 
-   if (dcTransfer->get_os_data() == nullptr)
+   if (pimageTransfer.nok())
    {
 
       return;
 
    }
 
-   ::image::image_source imagesource(dcTransfer, f64_rectangle_dimension(x,y, w,h));
+   ::image::image_source imagesource(pgraphicsTransfer, f64_rectangle_dimension(x, y, w, h));
 
    auto rectangle = f64_rectangle_dimension(x,y, w,h);
 

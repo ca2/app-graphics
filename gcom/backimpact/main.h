@@ -50,7 +50,7 @@ namespace backimpact
 
       ::pointer< ::particle > get_transfer_mutex();
 
-      ::draw2d::graphics_pointer GetTransferDC();
+      ::image::image_pointer get_transfer_image();
 
 
       bool is_initialized();

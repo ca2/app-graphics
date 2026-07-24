@@ -4,6 +4,7 @@
 #include "image_change.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/windowing/windowing.h"
@@ -42,101 +43,101 @@ namespace backimpact
 
       //}
 
-      constructø(m_dcScreen);
+      constructø(m_pgraphicsScreen);
 
       //return estatus;
 
    }
 
 
-   ::draw2d::graphics_pointer gcom::GetScreenDC()
-   {
+   //::draw2d::graphics_pointer gcom::GetScreenDC()
+   //{
 
-      return m_dcScreen;
+   //   return m_pgraphicsScreen;
 
-   }
-
-
-   ::draw2d::graphics_pointer gcom::GetBackDC()
-   {
-
-      return get_image(e_image_back)->g();
-
-   }
+   //}
 
 
-   ::draw2d::graphics_pointer gcom::GetTransferDC()
-   {
+   //::draw2d::graphics_pointer gcom::GetBackDC()
+   //{
 
-      get_image(e_image_transfer)->dc_select();
+   //   return get_image(e_image_back)->owned_graphics();
 
-      return get_image(e_image_transfer)->get_graphics();
-
-   }
+   //}
 
 
-   ::draw2d::graphics_pointer gcom::GetFrame1DC()
-   {
+   //::draw2d::graphics_pointer gcom::GetTransferDC()
+   //{
 
-      return get_image(e_image_frame1)->g();
+   //   get_image(e_image_transfer)->dc_select();
 
-   }
+   //   return get_image(e_image_transfer)->owned_graphics();
 
-
-   ::draw2d::graphics_pointer gcom::GetBufferDC()
-   {
-
-      return get_image(e_image_buffer)->g();
-
-   }
+   //}
 
 
-   ::draw2d::graphics_pointer gcom::GetSourceDC()
-   {
+   //::draw2d::graphics_pointer gcom::GetFrame1DC()
+   //{
 
-      return get_image(e_image_source)->g();
+   //   return get_image(e_image_frame1)->owned_graphics();
 
-   }
-
-
-   ::draw2d::bitmap_pointer gcom::GetBackBitmap()
-   {
-
-      return get_image(e_image_back)->g();
-
-   }
+   //}
 
 
-   ::draw2d::bitmap_pointer gcom::GetTransferBitmap()
-   {
+   //::draw2d::graphics_pointer gcom::GetBufferDC()
+   //{
 
-      return get_image(e_image_transfer)->get_bitmap();
+   //   return get_image(e_image_buffer)->owned_graphics();
 
-   }
-
-
-   ::draw2d::bitmap_pointer gcom::GetFrame1Bitmap()
-   {
-
-      return get_image(e_image_frame1)->get_bitmap();
-
-   }
+   //}
 
 
-   ::draw2d::bitmap_pointer gcom::GetBufferBitmap()
-   {
+   //::draw2d::graphics_pointer gcom::GetSourceDC()
+   //{
 
-      return get_image(e_image_buffer)->get_bitmap();
+   //   return get_image(e_image_source)->owned_graphics();
 
-   }
+   //}
 
 
-   ::draw2d::bitmap_pointer gcom::GetSourceBitmap()
-   {
+   //::draw2d::bitmap_pointer gcom::GetBackBitmap()
+   //{
 
-      return get_image(e_image_source)->get_bitmap();
+   //   return get_image(e_image_back)->owned_graphics();
 
-   }
+   //}
+
+
+   //::draw2d::bitmap_pointer gcom::GetTransferBitmap()
+   //{
+
+   //   return get_image(e_image_transfer)->get_bitmap();
+
+   //}
+
+
+   //::draw2d::bitmap_pointer gcom::GetFrame1Bitmap()
+   //{
+
+   //   return get_image(e_image_frame1)->get_bitmap();
+
+   //}
+
+
+   //::draw2d::bitmap_pointer gcom::GetBufferBitmap()
+   //{
+
+   //   return get_image(e_image_buffer)->get_bitmap();
+
+   //}
+
+
+   //::draw2d::bitmap_pointer gcom::GetSourceBitmap()
+   //{
+
+   //   return get_image(e_image_source)->get_bitmap();
+
+   //}
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -250,32 +251,39 @@ namespace backimpact
 
       single_lock sl3Source(m_pmutex3Source, true);
 
-      ::draw2d::graphics_pointer dcBuffer = GetBufferDC();
+      //::draw2d::graphics_pointer dcBuffer = GetBufferDC();
 
-      ::draw2d::graphics_pointer dcSource = GetSourceDC();
+      //::draw2d::graphics_pointer dcSource = GetSourceDC();
+      auto pimageBuffer = get_image(e_image_buffer);
 
-      if (dcSource.is_null())
+      auto pimageSource = get_image(e_image_source);
+
+      auto pgraphicsBuffer = pimageBuffer->acquire_graphics();
+
+      auto pgraphicsSource = pimageBuffer->acquire_graphics();
+
+      if (pimageBuffer.nok())
       {
 
          return false;
 
       }
 
-      if (dcSource->get_os_data() == nullptr)
+      if (pimageSource.nok())
       {
 
          return false;
 
       }
 
-      if (dcBuffer.is_null())
+      if (pgraphicsSource.is_null())
       {
 
          return false;
 
       }
 
-      if (dcBuffer->get_os_data() == nullptr)
+      if (pgraphicsBuffer.is_null())
       {
 
          return false;
@@ -285,15 +293,15 @@ namespace backimpact
       try
       {
 
-         ::draw2d::bitmap_pointer bmpSource = GetSourceBitmap();
+         //auto pimageSource = GetSourceBitmap();
 
-         if(bmpSource->m_osdata[0] != nullptr && get_image(e_image_source)->area() > 0)
+         //if(bmpSource->m_osdata[0] != nullptr && get_image(e_image_source)->area() > 0)
          {
 
             if(pmain->is_full_screen())
             {
 
-               dcBuffer->fill_rectangle(rectangleX, get_image(e_image_source)->GetAverageColor());
+               pgraphicsBuffer->fill_rectangle(rectangleX, get_image(e_image_source)->GetAverageColor());
 
             }
             else
@@ -303,7 +311,7 @@ namespace backimpact
 
             }
 
-            ::i32_size sizeSource = bmpSource->get_size();
+            ::i32_size sizeSource = pimageSource->get_size();
 
 
             int finalX = 0;
@@ -368,7 +376,7 @@ namespace backimpact
                      
                      int iY = iYOffset + iH * j;
 
-                     ::image::image_source imagesource(dcBuffer);
+                     ::image::image_source imagesource(pimageSource);
 
                      auto rectangle = f32_rectangle_dimension(iX, iY, iW, iH);
 
@@ -376,7 +384,7 @@ namespace backimpact
 
                      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
                      
-                     dcBuffer->draw(imagedrawing);
+                     pgraphicsBuffer->draw(imagedrawing);
 
                   }
 
@@ -398,14 +406,14 @@ namespace backimpact
                int srcW = sizeSource.cx;
                int srcH = sizeSource.cy;
 
-               dcBuffer->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+               pgraphicsBuffer->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
 
                {
 
                   auto rectangleSource = f64_rectangle_dimension(srcX, srcY, srcW, srcH);
 
-                  ::image::image_source imagesource(dcSource, rectangleSource);
+                  ::image::image_source imagesource(pgraphicsSource, rectangleSource);
 
                   auto rectangleTarget = f64_rectangle_dimension(finalX, finalY, finalW, finalH);
 
@@ -413,7 +421,7 @@ namespace backimpact
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  dcBuffer->draw(imagedrawing);
+                  pgraphicsBuffer->draw(imagedrawing);
 
                }
 
@@ -426,7 +434,9 @@ namespace backimpact
 
             get_image(e_image_final)->create(m_rectangleFinalPlacement.size());
 
-            get_image(e_image_final)->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+            auto pgraphicsImageFinal = get_image(e_image_final)->acquire_graphics();
+
+            pgraphicsImageFinal->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
             {
 
@@ -436,7 +446,7 @@ namespace backimpact
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               get_image(e_image_final)->g()->draw(imagedrawing);
+               pgraphicsImageFinal->draw(imagedrawing);
 
             }
 
@@ -467,17 +477,16 @@ namespace backimpact
       single_lock sl2Buffer(m_pmutex2Buffer, true);
       single_lock sl3Source(m_pmutex3Source, true);
 
+      ::draw2d::graphics_pointer pgraphicsScreen    = m_pgraphicsScreen;
 
-      ::draw2d::graphics_pointer spgraphicsScreen    = GetScreenDC();
-
-      if(spgraphicsScreen->get_os_data() != nullptr)
+      if (pgraphicsScreen->get_os_data() != nullptr)
       {
 
-         spgraphicsScreen->DeleteDC();
+         pgraphicsScreen->DeleteDC();
 
       }
 
-      spgraphicsScreen->create_compatible_graphics(nullptr);
+      pgraphicsScreen->create_compatible_graphics(nullptr);
 
       get_image(e_image_back)->create({ cx, cy }); // Back
       get_image(e_image_back)->clear(::color::transparent);
@@ -501,12 +510,12 @@ namespace backimpact
 
 #ifdef WINDOWS_DESKTOP
 
-      ::draw2d::bitmap_pointer bmpSource = GetSourceBitmap();
+      auto pimageSource = get_image(e_image_source);
 
-      if (bmpSource)
+      if (pimageSource.ok())
       {
 
-         ::i32_size size = bmpSource->get_size();
+         ::i32_size size = pimageSource->get_size();
 
          auto psession = session();
 

@@ -729,9 +729,11 @@ namespace backimpact
    }
 
 
-   ::draw2d::graphics_pointer main::GetTransferDC()
+   ::image::image_pointer main::get_transfer_image()
    {
-      return get_gcom()->GetTransferDC();
+
+      return get_gcom()->get_image(e_image_transfer);
+
    }
 
 
