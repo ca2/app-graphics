@@ -485,8 +485,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({ cx1, cy1 });
-         pimage3->create({ cx1, cy1 });
+         pimage2->create_as_descriptor({ cx1, cy1 });
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 
@@ -628,8 +628,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 
@@ -784,8 +784,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 
@@ -940,8 +940,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
       int s1 = rand() * 1 / RAND_MAX + 1;
@@ -1208,8 +1208,8 @@ namespace backimpact
          cy1 = cy / 5;
       }
 
-      pimage1->create({cx1, cy1});
-      pimage2->create({cx, cy});
+      pimage1->create_as_descriptor({cx1, cy1});
+      pimage2->create_as_descriptor({cx, cy});
 
       m_explosion.create(cx1, cy1, pimage1->scan_size(), pimage1->color_indexes());
       m_explosion.Reset();
@@ -1528,8 +1528,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
       int s1 = rand() * 1 / RAND_MAX + 1;
@@ -1768,8 +1768,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 
@@ -2141,8 +2141,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 
@@ -2566,8 +2566,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 
@@ -3077,10 +3077,10 @@ namespace backimpact
          m_tool1.m_dMinSize = 0;
          int cx1 = m_tool1.m_size.cx / 4;
          int cy1 = m_tool1.m_size.cy / 4;
-         pimage1->create({cx1, cy1});
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
-         pimage4->create({cx1, cy1});
+         pimage1->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
+         pimage4->create_as_descriptor({cx1, cy1});
          m_tool1.m_dAlpha = 0;
          m_water.create(cx1, cy1, pimageBack->color_indexes());
          auto pgraphicsImage4 = pimage4->acquire_graphics();
@@ -3258,9 +3258,9 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
-         pimage4->create({ m_tool1.m_size.cx, m_tool1.m_size.cy });
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
+         pimage4->create_as_descriptor({m_tool1.m_size.cx, m_tool1.m_size.cy});
       }
 
       if(m_iVisual == VisualEffectRotateEx6)
@@ -3532,8 +3532,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 
@@ -4090,10 +4090,10 @@ namespace backimpact
          m_tool1.m_dMinSize = 0;
          int cx1 = m_tool1.m_size.cx / 4;
          int cy1 = m_tool1.m_size.cy / 4;
-         pimage1->create({cx1, cy1});
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
-         pimage4->create({cx1, cy1});
+         pimage1->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
+         pimage4->create_as_descriptor({cx1, cy1});
          m_tool1.m_dAlpha = 0;
 
          m_explosion.m_density = 1.5;
@@ -4259,10 +4259,10 @@ namespace backimpact
          m_tool1.m_dMinSize = 0;
          int cx1 = m_tool1.m_size.cx / 4;
          int cy1 = m_tool1.m_size.cy / 4;
-         pimage1->create({cx1, cy1});
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
-         pimage4->create({cx1, cy1});
+         pimage1->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
+         pimage4->create_as_descriptor({cx1, cy1});
          m_tool1.m_dAlpha = 0;
 
          m_explosion.m_density = 1.5;
@@ -4429,10 +4429,10 @@ namespace backimpact
          m_tool1.m_dMinSize = 0;
          int cx1 = m_tool1.m_size.cx / 4;
          int cy1 = m_tool1.m_size.cy / 4;
-         pimage1->create({cx1, cy1});
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
-         pimage4->create({cx1, cy1});
+         pimage1->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
+         pimage4->create_as_descriptor({cx1, cy1});
          m_tool1.m_dAlpha = 0;
 
          m_explosion.m_density = 1.8;
@@ -4615,8 +4615,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
          pimage2->clear(::color::transparent);
          pimage3->clear(::color::transparent);
       }
@@ -5092,8 +5092,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 
@@ -5604,9 +5604,9 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
-         pimage4->create({ m_tool1.m_size.cx, m_tool1.m_size.cy });
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
+         pimage4->create_as_descriptor({m_tool1.m_size.cx, m_tool1.m_size.cy});
       }
 
       if(m_iVisual == VisualEffectExpand6)
@@ -5880,8 +5880,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 
@@ -6453,8 +6453,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create({cx1, cy1});
-         pimage3->create({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1});
+         pimage3->create_as_descriptor({cx1, cy1});
       }
 
 //         int s1 = rand() * 1 / RAND_MAX + 1;

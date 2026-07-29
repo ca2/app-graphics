@@ -432,7 +432,7 @@ namespace backimpact
 
             }
 
-            get_image(e_image_final)->create(m_rectangleFinalPlacement.size());
+            get_image(e_image_final)->create_as_descriptor(m_rectangleFinalPlacement.size());
 
             auto pgraphicsImageFinal = get_image(e_image_final)->acquire_graphics();
 
@@ -488,16 +488,16 @@ namespace backimpact
 
       pgraphicsScreen->create_compatible_graphics(nullptr);
 
-      get_image(e_image_back)->create({ cx, cy }); // Back
+      get_image(e_image_back)->create_as_descriptor({cx, cy}); // Back
       get_image(e_image_back)->clear(::color::transparent);
 
-      get_image(e_image_buffer)->create({ cx, cy }); // buffer
+      get_image(e_image_buffer)->create_as_descriptor({cx, cy}); // buffer
       get_image(e_image_buffer)->clear(::color::transparent);
 
-      get_image(e_image_transfer)->create({ cx, cy }); // Transfer
+      get_image(e_image_transfer)->create_as_descriptor({cx, cy}); // Transfer
       get_image(e_image_transfer)->clear(::color::transparent);
 
-      get_image(e_image_frame1)->create({ cx, cy }); // Frame1
+      get_image(e_image_frame1)->create_as_descriptor({cx, cy}); // Frame1
       get_image(e_image_frame1)->clear(::color::transparent);
 
    }
@@ -627,7 +627,7 @@ namespace backimpact
       case e_image_radial_center_alpha:
       {
          // Radial Fill (Center Full alpha, Radius = 256 pixels)
-         pimage->create({ 512, 512 });
+         pimage->create_as_descriptor({512, 512});
          pimage->RadialFill(255, 0, 0, 0,
                           0, 0, 0, 0,
                           256, 256, 256);
@@ -636,7 +636,7 @@ namespace backimpact
       case e_image_radial_border_alpha:
       {
          // Radial Fill (Border Full alpha, Radius = 256 pixels)
-         pimage->create({ 511, 511 });
+         pimage->create_as_descriptor({511, 511});
          pimage->RadialFill(0, 0, 0, 0,
                           255, 0, 0, 0, 255, 255, 256);
       }
