@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "image_change.h"
 #include "transition_effect.h"
 #include "user_interaction.h"

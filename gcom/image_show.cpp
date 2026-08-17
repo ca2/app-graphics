@@ -1,5 +1,5 @@
 // Created by Camilo!! <3tbs, Mummi and bilbo!! 2020-12-10 22:25 BRT CWB
-#include "framework.h"
+#include "platform.h"
 #include "image_show.h"
 #include "acme/platform/system.h"
 #include "aura/graphics/image/image.h"

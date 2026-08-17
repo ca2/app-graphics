@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "thread.h"
 #include "main.h"
 #include "user_interaction.h"

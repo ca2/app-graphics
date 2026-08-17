@@ -79,7 +79,7 @@
     <ClInclude Include="backimpact\user_interaction.h" />
     <ClInclude Include="backimpact\visual_effect.h" />
     <ClInclude Include="backimpact\_.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="gcom\double3d_point.h" />
     <ClInclude Include="gcom\pixel_explosion.h" />
     <ClInclude Include="gcom\slide.h" />
@@ -104,7 +104,7 @@
     <ClCompile Include="backimpact\transition_effect_tool001.cpp" />
     <ClCompile Include="backimpact\user_interaction.cpp" />
     <ClCompile Include="backimpact\visual_effect.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">Create</PrecompiledHeader>

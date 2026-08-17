@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 30/10/16.
 //  Copyright (c) 2016 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#include "framework.h"
+#include "platform.h"
 
 #include "aura/graphics/image/context.h"
 #include "aura/message/user.h"

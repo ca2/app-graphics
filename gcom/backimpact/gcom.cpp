@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "user_interaction.h"
 #include "gcom.h"
 #include "image_change.h"
@@ -486,7 +486,9 @@ namespace backimpact
 
       }
 
-      pgraphicsScreen->create_compatible_graphics(nullptr);
+      //pgraphicsScreen->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
+
+      pgraphicsScreen->create_memory_graphics({}, nullptr);
 
       get_image(e_image_back)->create_as_descriptor({cx, cy}); // Back
       get_image(e_image_back)->clear(::color::transparent);

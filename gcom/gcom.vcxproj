@@ -1334,7 +1334,7 @@
     <ClCompile Include="backimpact\transition_effect_tool001.cpp" />
     <ClCompile Include="backimpact\user_interaction.cpp" />
     <ClCompile Include="backimpact\visual_effect.cpp" />
-    <ClCompile Include="framework.cpp">
+    <ClCompile Include="platform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugAsan|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
@@ -1373,7 +1373,7 @@
     <ClInclude Include="backimpact\transition_effect.h" />
     <ClInclude Include="backimpact\user_interaction.h" />
     <ClInclude Include="backimpact\visual_effect.h" />
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="gcom\f64_point3d.h" />
     <ClInclude Include="gcom\slide_drawer.h" />
     <ClInclude Include="gcom\_constant.h" />

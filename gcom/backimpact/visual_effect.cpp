@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "user_interaction.h"
 #include "gcom.h"
 #include "acme/graphics/draw2d/color.h"
@@ -3149,11 +3149,11 @@ namespace backimpact
       pimage4->fill_channel(0, ::color::e_channel_opacity);
       pimage2->fill_channel(0, ::color::e_channel_opacity);
 
-      auto mapImage4 = pimage4->map();
+      auto ppixmapImage4 = pimage4->map();
 
-      auto mapImage2 = pimage2->map();
+      auto ppixmapImage2 = pimage2->map();
 
-      m_water.to(mapImage4.data(), mapImage2.data());
+      m_water.to(ppixmapImage4->data(), ppixmapImage2->data());
 
       pimage4->fill_channel(255, ::color::e_channel_opacity);
       pimage2->fill_channel(255, ::color::e_channel_opacity);
@@ -4150,11 +4150,11 @@ namespace backimpact
 
       ::collection::index iReturnPoint = ptransitioneffect->m_ptool001->m_iStepCount * 5 / 21;
 
-      auto mapImage4 = pimage4->map();
+      auto ppixmapImage4 = pimage4->map();
 
-      auto mapImage3 = pimage4->map();
+      auto ppixmapImage3 = pimage4->map();
 
-      m_explosion.to(mapImage4.data(), mapImage3.data());
+      m_explosion.to(ppixmapImage4->data(), ppixmapImage3->data());
 
       /*int mod = maximum(1, (int) m_tool1.m_dMod);
       if((m_tool1.m_iFrame % mod) == 0)
@@ -4336,11 +4336,11 @@ namespace backimpact
 
       ::collection::index iReturnPoint = ptransitioneffect->m_ptool001->m_iStepCount * 5 / 21;
 
-      auto mapImage4 = pimage4->map();
+      auto ppixmapImage4 = pimage4->map();
 
-      auto mapImage2 = pimage2->map();
+      auto ppixmapImage2 = pimage2->map();
 
-      m_explosion.to(mapImage4.data(), mapImage2.data());
+      m_explosion.to(ppixmapImage4->data(), ppixmapImage2->data());
 
       /*int mod = maximum(1, (int) m_tool1.m_dMod);
       if((m_tool1.m_iFrame % mod) == 0)
@@ -4510,11 +4510,11 @@ namespace backimpact
 
       ::collection::index iReturnPoint = ptransitioneffect->m_ptool001->m_iStepCount * 5 / 21;
 
-      auto mapImage4 = pimage4->map();
+      auto ppixmapImage4 = pimage4->map();
 
-      auto mapImage3 = pimage3->map();
+      auto ppixmapImage3 = pimage3->map();
 
-      m_explosion.to(mapImage4.data(), mapImage3.data());
+      m_explosion.to(ppixmapImage4->data(), ppixmapImage3->data());
 
       /*int mod = maximum(1, (int) m_tool1.m_dMod);
       if((m_tool1.m_iFrame % mod) == 0)

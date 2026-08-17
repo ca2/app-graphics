@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "slide.h"
 #include "slide_drawer.h"
 #include "acme/parallelization/synchronous_lock.h"

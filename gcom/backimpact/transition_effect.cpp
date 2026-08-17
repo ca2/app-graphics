@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "transition_effect.h"
 #include "visual_effect.h"
 #include "gcom.h"
@@ -1652,7 +1652,7 @@ namespace backimpact
 
          //pgraphicsBack->set_origin(0, 0);
 
-         //pimageSource->get_graphics()->set_origin(0, 0);
+         //pgraphicsImageSource->set_origin(0, 0);
 
          pgraphicsBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -1830,9 +1830,9 @@ namespace backimpact
 
                                  ::image::image_pointer pimage6 = pgcom->get_image(6);
 
-                                 pimage->create(xPixelMod, yPixelMod);
+                                 pimage->create_as_descriptor(xPixelMod, yPixelMod);
 
-                                 pimage2->create(xPixelMod, yPixelMod);
+                                 pimage2->create_as_descriptor(xPixelMod, yPixelMod);
 
                                  image3.create(finalW, finalH);
 

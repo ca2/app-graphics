@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26B4CE7B5322B7E5BB700A74 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F768F0C427D23CD74E58D26 /* framework.cpp */; };
-		F5BA8789F0F49665BDC35A4C /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = E178FC88D727FBF63A6DD1C7 /* framework.h */; };
+		26B4CE7B5322B7E5BB700A74 /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F768F0C427D23CD74E58D26 /* platform.cpp */; };
+		F5BA8789F0F49665BDC35A4C /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = E178FC88D727FBF63A6DD1C7 /* platform.h */; };
 		2CC40B0AE54B4BB76C320675 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F013F681CBC0DAAFCD40C18 /* graphics.h */; };
 		726E2CFCB02DEB47BFC84BC0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AFCE799A20635A432CED5908 /* libacme.dylib */; };
 		34727E0608D8D36A8A4C42FB /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E15322F3A0BF4F4B1F95822 /* libapex.dylib */; };
@@ -21,7 +21,7 @@
 		7D8113B6FCC9408F36B9F538 /* gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 75BBF017B29D684A57F09E97 /* gcom.h */; };
 		AA6672EFD4B91C011BE0E3DA /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62088CF0AD8B1BB91A16A442 /* data.cpp */; };
 		DAA12E8221A291C8B5B01CDA /* data.h in Headers */ = {isa = PBXBuildFile; fileRef = C802A37E998556420D616234 /* data.h */; };
-		ED4530F922BE31C520B955DF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F768F0C427D23CD74E58D26 /* framework.cpp */; };
+		ED4530F922BE31C520B955DF /* platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F768F0C427D23CD74E58D26 /* platform.cpp */; };
 		3FF561A400311323613661B6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F4F61A35C72D7DA62EEB5C0 /* libaura.dylib */; };
 		8C66A67C1EEEF75785C01B7B /* space.h in Headers */ = {isa = PBXBuildFile; fileRef = C23223F98F49BB92E80D8234 /* space.h */; };
 		7CD38CA95EBCCC3CF0F948F9 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 0463BAAB88CC88BB59818FE8 /* _.h */; };
@@ -119,8 +119,8 @@
 		B0309372DD963BB1B32F08E2 /* app_iosTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "app_iosTests-Info.plist"; sourceTree = "<group>"; };
 		2C9EA2A5130E36C47A5558E7 /* app_iosTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = app_iosTests.m; sourceTree = "<group>"; };
 		7E9F30623C0C8482467780E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7F768F0C427D23CD74E58D26 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		E178FC88D727FBF63A6DD1C7 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		7F768F0C427D23CD74E58D26 /* platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform.cpp; sourceTree = "<group>"; };
+		E178FC88D727FBF63A6DD1C7 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		4F013F681CBC0DAAFCD40C18 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		28081DB2B7692F7ECF2AC417 /* app_core_hellomultiverse_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = app_core_hellomultiverse_iosTests.m; path = ../../../../../Users/user/.Trash/app_core_hellomultiverse_iosTests.m; sourceTree = "<group>"; };
 		AFCE799A20635A432CED5908 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -279,8 +279,8 @@
 				638DE3EFBACDF8CFDE45ACE7 /* _____debug.xcconfig */,
 				207533B096B53DC9C2F04210 /* _____release.xcconfig */,
 				80F68A431F47C016449AA77F /* _.h */,
-				7F768F0C427D23CD74E58D26 /* framework.cpp */,
-				E178FC88D727FBF63A6DD1C7 /* framework.h */,
+				7F768F0C427D23CD74E58D26 /* platform.cpp */,
+				E178FC88D727FBF63A6DD1C7 /* platform.h */,
 				4F013F681CBC0DAAFCD40C18 /* graphics.h */,
 				5D98DFDFB1A04972CF993048 /* image_show.cpp */,
 				AA5475766C9710929E62ECD6 /* image_show.h */,
@@ -343,7 +343,7 @@
 				41234A8AB44D0582A0EE73BF /* space_util.h in Headers */,
 				4A6C764EEECF4F43CFA4B06E /* double3d_point.h in Headers */,
 				361049167EEDA7672CFD69B3 /* _.h in Headers */,
-				F5BA8789F0F49665BDC35A4C /* framework.h in Headers */,
+				F5BA8789F0F49665BDC35A4C /* platform.h in Headers */,
 				A4FB34F9A2E5C2854A454D6E /* image_show.h in Headers */,
 				8C66A67C1EEEF75785C01B7B /* space.h in Headers */,
 				DAA12E8221A291C8B5B01CDA /* data.h in Headers */,
@@ -534,7 +534,7 @@
 				E20C2535F9C208488B4BF2AD /* transition_effect.cpp in Sources */,
 				7A4ABE2AD5CFA7A9B8FABCB2 /* user_interaction.cpp in Sources */,
 				B1A79DE85C7DC05694B04881 /* visual_effect.cpp in Sources */,
-				ED4530F922BE31C520B955DF /* framework.cpp in Sources */,
+				ED4530F922BE31C520B955DF /* platform.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,7 +563,7 @@
 				AA6672EFD4B91C011BE0E3DA /* data.cpp in Sources */,
 				6ABE09D5CDE9B8E38A83BA93 /* util.cpp in Sources */,
 				47E559FB54D275AC166BCE3D /* helper.cpp in Sources */,
-				26B4CE7B5322B7E5BB700A74 /* framework.cpp in Sources */,
+				26B4CE7B5322B7E5BB700A74 /* platform.cpp in Sources */,
 				21A492AC8D9946E598CF7A1F /* impact.cpp in Sources */,
 				F828ED81B1F5D285B78C285D /* pixel_explosion.cpp in Sources */,
 				5634742296F9C81C7D7B5796 /* space.cpp in Sources */,
@@ -748,7 +748,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -840,7 +840,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREFIX_HEADER = platform.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

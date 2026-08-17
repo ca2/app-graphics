@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "pixel_explosion.h"
 #include <math.h>
 #include "acme/graphics/image/image32.h"

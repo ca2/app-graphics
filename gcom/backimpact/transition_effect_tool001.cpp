@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "platform.h"
 #include "transition_effect.h"
 #include "gcom.h"
 #include "acme/platform/system.h"
