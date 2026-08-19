@@ -531,7 +531,9 @@ namespace backimpact
          //if(m_iGrowColor <= -100)
          // m_iGrowColor = 1;
       }
-      pimage2->rotate(pimage3, radians(m_dAngle), 1.009);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage3=pimage3->map();
+      ppixmapImage2->rotate(ppixmapImage3, radians(m_dAngle), 1.009);
          //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
 
 
@@ -552,7 +554,9 @@ namespace backimpact
          0, 0,
          50);*/
 
-      pimage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
+      //auto ppixmapImage2 = pimage2->map();
+
+      ppixmapImage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -680,7 +684,9 @@ namespace backimpact
       {
          dAngle = -10.111 - dAngleOffset;
       }
-      pimage2->rotate(pimage1, radians(dAngle), 1.009);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.009);
 
       auto pgraphicsImage1 = pimage1->acquire_graphics();
 
@@ -711,8 +717,8 @@ namespace backimpact
       bf.SourceConstantAlpha = 10;
       //   bf.AlphaFormat = AC_SRC_ALPHA;
       bf.AlphaFormat = 0;*/
-
-      pimage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
+      //auto ppixmapImage2=pimage2->map();
+      ppixmapImage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -843,7 +849,9 @@ namespace backimpact
       {
          dAngle = -10.111 - dAngleOffset;
       }
-      pimage2->rotate(pimage1, radians(dAngle), 1.009);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.009);
 
       auto pgraphicsImage1 = pimage1->acquire_graphics();
 
@@ -870,8 +878,8 @@ namespace backimpact
          pgraphicsImage2,
          0, 0,
          50);*/
-
-      pimage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
+      //auto ppixmapImage2=pimage2->map();
+      ppixmapImage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -1051,7 +1059,9 @@ namespace backimpact
 
          dAngle = -10.111 - dAngleOffset;
       }
-      pimage2->rotate(pimage1, radians(dAngle), 1.009);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.009);
 
       auto pgraphicsImage1 = pimage1->acquire_graphics();
 
@@ -1092,7 +1102,7 @@ namespace backimpact
          0, 0,
          50);*/
 
-      pimage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
+      ppixmapImage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -1211,7 +1221,9 @@ namespace backimpact
       pimage1->create_as_descriptor({cx1, cy1});
       pimage2->create_as_descriptor({cx, cy});
 
-      m_explosion.create(cx1, cy1, pimage1->scan_size(), pimage1->color_indexes());
+      auto ppixmapImage1=pimage1->map();
+
+      m_explosion.create(cx1, cy1, ppixmapImage1->scan_size(), ppixmapImage1->color_indexes());
       m_explosion.Reset();
 
 
@@ -1648,7 +1660,9 @@ namespace backimpact
 
          dAngle = -10.111 - dAngleOffset;
       }
-      pimage2->rotate(pimage1, radians(dAngle), 1.009);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.009);
       //pimage2->rotate(pimage1, dAngle, 0.9);
       //pimage2->Paste(pimage1);
 
@@ -1693,8 +1707,8 @@ namespace backimpact
          pgraphicsImage2,
          0, 0,
          50);*/
-
-      pimage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
+      //auto ppixmapImage2=pimage2->map();
+      ppixmapImage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -1745,7 +1759,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -1922,7 +1937,9 @@ namespace backimpact
          dAngle = -0.111 - dAngleOffset;
       }
       //pimage2->rotate(pimage1, dAngle, 1.009);
-      pimage2->Rotate034(pimage1, dAngle, 0.8);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->Rotate034(ppixmapImage1, dAngle, 0.8);
       //pimage2->Paste(pimage1);
       //   pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4}, m_color & ::opacity(bA));
 
@@ -2010,7 +2027,7 @@ namespace backimpact
          0, 0,
          50);*/
 
-      pimage2->channel_multiply(0.7, ::color::e_channel_opacity);
+      ppixmapImage2->channel_multiply(0.7, ::color::e_channel_opacity);
 
       {
 
@@ -2113,7 +2130,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -2334,7 +2352,9 @@ namespace backimpact
 
          dAngle = -0.111 - dAngleOffset;
       }
-      pimage2->rotate(pimage1, radians(dAngle), 1.05);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.05);
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
       //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
@@ -2417,7 +2437,7 @@ namespace backimpact
          0, 0,
          50);*/
 
-      pimage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
+      ppixmapImage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -2538,7 +2558,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -2767,7 +2788,9 @@ namespace backimpact
          //dAngle = -10.111 - dAngleOffset;
          dAngle = -m_dAngleOffset;
       }
-      pimage2->rotate(pimage1, radians(dAngle), 1.09);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.09);
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
       //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
@@ -3013,7 +3036,7 @@ namespace backimpact
          0, 0,
          50);*/
 
-      pimage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
+      ppixmapImage2->channel_multiply(10.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -3082,7 +3105,8 @@ namespace backimpact
          pimage3->create_as_descriptor({cx1, cy1});
          pimage4->create_as_descriptor({cx1, cy1});
          m_tool1.m_dAlpha = 0;
-         m_water.create(cx1, cy1, pimageBack->color_indexes());
+         auto ppixmapImageBack=pimageBack->map();
+         m_water.create(cx1, cy1, ppixmapImageBack->color_indexes());
          auto pgraphicsImage4 = pimage4->acquire_graphics();
          pgraphicsImage4->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
@@ -3145,18 +3169,19 @@ namespace backimpact
          pimage4->draw(imagedrawing);
 
       }
+      auto ppixmapImage4=pimage4->map();
+      auto ppixmapImage2=pimage2->map();
+      ppixmapImage4->fill_channel(0, ::color::e_channel_opacity);
+      ppixmapImage2->fill_channel(0, ::color::e_channel_opacity);
 
-      pimage4->fill_channel(0, ::color::e_channel_opacity);
-      pimage2->fill_channel(0, ::color::e_channel_opacity);
+      //auto ppixmapImage4 = pimage4->map();
 
-      auto ppixmapImage4 = pimage4->map();
-
-      auto ppixmapImage2 = pimage2->map();
+      //auto ppixmapImage2 = pimage2->map();
 
       m_water.to(ppixmapImage4->data(), ppixmapImage2->data());
 
-      pimage4->fill_channel(255, ::color::e_channel_opacity);
-      pimage2->fill_channel(255, ::color::e_channel_opacity);
+      ppixmapImage4->fill_channel(255, ::color::e_channel_opacity);
+      ppixmapImage2->fill_channel(255, ::color::e_channel_opacity);
 
       int mod = maximum(1, (int) m_tool1.m_dMod);
       if((m_tool1.m_iFrame % mod) == 0)
@@ -3214,7 +3239,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -3265,8 +3291,8 @@ namespace backimpact
 
       if(m_iVisual == VisualEffectRotateEx6)
       {
-         pimage2->fill_byte(0);
-         pimage3->fill_byte(0);
+         pimage2->clear_transparent();
+         pimage3->clear_transparent();
       }
 
       StepGrow034(
@@ -3437,9 +3463,12 @@ namespace backimpact
 
          dAngle = -1.511 - dAngleOffset;
       }
-      pimage2->Rotate034(pimage1, dAngle, 0.95);
 
-      pimage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->Rotate034(ppixmapImage1, dAngle, 0.95);
+
+      ppixmapImage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -3490,7 +3519,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -4014,7 +4044,9 @@ namespace backimpact
 
          dAngle = -1.511 - dAngleOffset;
       }
-      pimage2->Rotate034(pimage1, dAngle, 0.95);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->Rotate034(ppixmapImage1, dAngle, 0.95);
 
 
       /*imaging.bitmap_blend(
@@ -4024,7 +4056,7 @@ namespace backimpact
          0, 0,
          50);*/
 
-      pimage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
+      ppixmapImage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -4098,7 +4130,8 @@ namespace backimpact
 
          m_explosion.m_density = 1.5;
          m_explosion.m_minradius = 0.0;
-         m_explosion.create(cx1, cy1, pimage1->scan_size(), pimage1->color_indexes());
+         auto ppixmapImage1 = pimage1->map();
+         m_explosion.create(cx1, cy1, ppixmapImage1->scan_size(), ppixmapImage1->color_indexes());
          m_explosion.Reset();
 
          auto pgraphicsImage1 = pimage1->acquire_graphics();
@@ -4122,7 +4155,7 @@ namespace backimpact
          auto pgraphicsImage3 = pimage3->acquire_graphics();
 
          pgraphicsImage3->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
-         pimage3->clear(::color::transparent);
+         pgraphicsImage3->clear(::color::transparent);
          auto pgraphicsImage4 = pimage4->acquire_graphics();
          pgraphicsImage4->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
@@ -4267,7 +4300,8 @@ namespace backimpact
 
          m_explosion.m_density = 1.5;
          m_explosion.m_minradius = 0.0;
-         m_explosion.create(cx1, cy1, pimage1->scan_size(), pimage1->color_indexes());
+         auto ppixmapImage1 = pimage1->map();
+         m_explosion.create(cx1, cy1, ppixmapImage1->scan_size(), ppixmapImage1->color_indexes());
          m_explosion.Reset();
 
          auto pgraphicsImage1 = pimage1->acquire_graphics();
@@ -4437,7 +4471,8 @@ namespace backimpact
 
          m_explosion.m_density = 1.8;
          m_explosion.m_minradius = 1.7;
-         m_explosion.create(cx1, cy1, pimage1->scan_size(), pimage1->color_indexes());
+         auto ppixmapImage1 = pimage1->map();
+         m_explosion.create(cx1, cy1, ppixmapImage1->scan_size(), ppixmapImage1->color_indexes());
          m_explosion.Reset();
 
          auto pgraphicsImage1 = pimage1->acquire_graphics();
@@ -4481,7 +4516,9 @@ namespace backimpact
       //int cx1 = pimage1->width();
       //int cy1 = pimage1->height();
 
-      pimage3->clear(::color::transparent);
+      auto ppixmaoImage3 = pimage3->map();
+
+      ppixmaoImage3->clear(::color::transparent);
 
       {
 
@@ -4586,8 +4623,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         pimage1->map();
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -4617,8 +4654,8 @@ namespace backimpact
       {
          pimage2->create_as_descriptor({cx1, cy1});
          pimage3->create_as_descriptor({cx1, cy1});
-         pimage2->clear(::color::transparent);
-         pimage3->clear(::color::transparent);
+         pimage2->acquire_graphics()->clear(::color::transparent);
+         pimage3->acquire_graphics()->clear(::color::transparent);
       }
 
 //      int iRand123 = rand();
@@ -4810,7 +4847,9 @@ namespace backimpact
          //dAngle = -10.111 - dAngleOffset;
          dAngle = -m_dAngleOffset;
       }
-      pimage2->Rotate034(pimage1, dAngle, 1.09);
+      auto ppixmapImage2=pimage2->map();
+      auto ppixmapImage1=pimage1->map();
+      ppixmapImage2->Rotate034(ppixmapImage1, dAngle, 1.09);
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
       //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
@@ -5024,7 +5063,9 @@ namespace backimpact
          0, 0,
          50);*/
 
-      pimage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
+      //auto ppixmapImage2 = pimage2->map();
+
+      ppixmapImage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -5064,7 +5105,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -5508,7 +5550,9 @@ namespace backimpact
          0, 0,
          50);*/
 
-      pimage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
+      auto ppixmapImage2 = pimage2->map();
+
+      ppixmapImage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -5560,7 +5604,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -5611,8 +5656,8 @@ namespace backimpact
 
       if(m_iVisual == VisualEffectExpand6)
       {
-         pimage2->fill_byte(0);
-         pimage3->fill_byte(0);
+         pimage2->clear_transparent();
+         pimage3->clear_transparent();
       }
 
       StepGrow034(
@@ -5784,8 +5829,9 @@ namespace backimpact
       //}
       //pimage2->Rotate034(pimage1, dAngle, 0.95);
 
+      auto ppixmapImage2 = pimage2->map();
 
-      pimage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
+      ppixmapImage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -5835,7 +5881,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -6373,8 +6420,8 @@ namespace backimpact
          pgraphicsImage2,
          0, 0,
          50);*/
-
-      pimage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
+      auto ppixmapImage2=pimage2->map();
+      ppixmapImage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
 
       {
 
@@ -6425,7 +6472,8 @@ namespace backimpact
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimage1 = pgcom->get_image(e_image_temp1);
-         m_color = pimage1->GetPixel(
+         auto ppixmapImage1=pimage1->map();
+         m_color = ppixmapImage1->GetPixel(
                          pimage1->width() / 2,
                          pimage1->height() / 2);
       }
@@ -6861,7 +6909,9 @@ namespace backimpact
          0, 0,
          50);*/
 
-      pimage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
+      auto ppixmapImage2 = pimage2->map();
+
+      ppixmapImage2->channel_multiply(127.0 / 255.0, ::color::e_channel_opacity);
 
       {
 

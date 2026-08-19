@@ -301,7 +301,9 @@ namespace backimpact
             if(pmain->is_full_screen())
             {
 
-               pgraphicsBuffer->fill_rectangle(rectangleX, get_image(e_image_source)->GetAverageColor());
+               auto ppixmapImageSource = get_image(e_image_source)->map();
+
+               pgraphicsBuffer->fill_rectangle(rectangleX, ppixmapImageSource->GetAverageColor());
 
             }
             else
@@ -491,16 +493,16 @@ namespace backimpact
       pgraphicsScreen->create_memory_graphics({}, nullptr);
 
       get_image(e_image_back)->create_as_descriptor({cx, cy}); // Back
-      get_image(e_image_back)->clear(::color::transparent);
+      get_image(e_image_back)->acquire_graphics()->clear(::color::transparent);
 
       get_image(e_image_buffer)->create_as_descriptor({cx, cy}); // buffer
-      get_image(e_image_buffer)->clear(::color::transparent);
+      get_image(e_image_buffer)->acquire_graphics()->clear(::color::transparent);
 
       get_image(e_image_transfer)->create_as_descriptor({cx, cy}); // Transfer
-      get_image(e_image_transfer)->clear(::color::transparent);
+      get_image(e_image_transfer)->acquire_graphics()->clear(::color::transparent);
 
       get_image(e_image_frame1)->create_as_descriptor({cx, cy}); // Frame1
-      get_image(e_image_frame1)->clear(::color::transparent);
+      get_image(e_image_frame1)->acquire_graphics()->clear(::color::transparent);
 
    }
 
@@ -630,7 +632,8 @@ namespace backimpact
       {
          // Radial Fill (Center Full alpha, Radius = 256 pixels)
          pimage->create_as_descriptor({512, 512});
-         pimage->RadialFill(255, 0, 0, 0,
+         auto ppixmapImage = pimage->map();
+         ppixmapImage->RadialFill(255, 0, 0, 0,
                           0, 0, 0, 0,
                           256, 256, 256);
       }
@@ -639,7 +642,8 @@ namespace backimpact
       {
          // Radial Fill (Border Full alpha, Radius = 256 pixels)
          pimage->create_as_descriptor({511, 511});
-         pimage->RadialFill(0, 0, 0, 0,
+         auto ppixmapImage = pimage->map();
+         ppixmapImage->RadialFill(0, 0, 0, 0,
                           255, 0, 0, 0, 255, 255, 256);
       }
       break;

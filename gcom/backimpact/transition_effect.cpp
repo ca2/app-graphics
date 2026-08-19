@@ -1958,7 +1958,9 @@ namespace backimpact
 
                }
 
-               pimage->pixelate(iSize);
+               auto ppixmapImage = pimage->map();
+
+               ppixmapImage->pixelate(iSize);
 
             }
 
@@ -2112,11 +2114,15 @@ namespace backimpact
 
          }
 
-         pimage2->fill_channel(255, ::color::e_channel_opacity);
+         auto ppixmapImage1 = pimage1->map();
 
-         pimage2->channel_from(::color::e_channel_opacity,  pimage1);
+         auto ppixmapImage2 = pimage2->map();
 
-         pimage2->mult_alpha();
+         ppixmapImage2->fill_channel(255, ::color::e_channel_opacity);
+
+         ppixmapImage2->channel_from(::color::e_channel_opacity,  ppixmapImage1);
+
+         ppixmapImage2->mult_alpha();
 
          /*drawpimage->draw(
             pgraphicsImage1,
