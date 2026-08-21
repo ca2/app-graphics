@@ -3218,9 +3218,9 @@ namespace backimpact
 
       auto pgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      //pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
-      pimageBack->stretch_image(pimage2);
+      pgraphicsImageBack->stretch_image(pimage2, VISUAL_EFFECT_STRETCH_MODE);
 
       recta.add(m_tool1.m_rectangleX);
 
