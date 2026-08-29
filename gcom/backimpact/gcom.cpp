@@ -481,12 +481,12 @@ namespace backimpact
 
       ::draw2d::graphics_pointer pgraphicsScreen    = m_pgraphicsScreen;
 
-      if (pgraphicsScreen->get_os_data() != nullptr)
-      {
+      //if (pgraphicsScreen->get_os_data() != nullptr)
+      //{
 
-         pgraphicsScreen->DeleteDC();
+      //   pgraphicsScreen->DeleteDC();
 
-      }
+      //}
 
       //pgraphicsScreen->create_memory_graphics({}, nullptr); // create_compatible_graphics(nullptr);
 
