@@ -57,8 +57,8 @@ namespace backimpact
       virtual bool _0723TransferVoid();
 
       virtual ::color::color get_background_color();
-      void backimpact_render(::draw2d::graphics_pointer & pgraphics, int x, int y, int w, int h);
-      void backimpact_render(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      void backimpact_render(::draw2d::graphics_pointer & pdraw2dgraphics, int x, int y, int w, int h);
+      void backimpact_render(::draw2d::graphics_pointer & pdraw2dgraphics, const ::i32_rectangle & rectangle);
       void enable(bool bEnable = true);
       bool is_enabled();
       void get_current_image_path(string & str);
@@ -122,7 +122,7 @@ namespace backimpact
       virtual void initialize_timer();
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       
       virtual class ::time  backimpact_get_background_update_time();
@@ -132,7 +132,7 @@ namespace backimpact
       //virtual void install_message_routing(::channel* pchannel) override;
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      virtual void on_layout(::draw2d::graphics_pointer& pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer& pdraw2dgraphics) override;
 
 
    };

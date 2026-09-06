@@ -263,7 +263,7 @@ namespace backimpact
 
 
 
-   void user_interaction::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void user_interaction::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       auto rectangleX = this->rectangle();
@@ -288,23 +288,23 @@ namespace backimpact
                if(pbackimpactmain->is_initialized())
                {
 
-                  ::draw2d::save_context k(pgraphics);
+                  ::draw2d::save_context k(pdraw2dgraphics);
 
                   //::draw2d::region_pointer rgn(e_create);
 //                     ::i32_rectangle rectangle(pgcom->m_rectangleFinalPlacement);
 //                     client_to_screen(rectangle);
-//                     rectangle.offset(pgraphics->get_origin());
+//                     rectangle.offset(pdraw2dgraphics->get_origin());
 //                                 //rgn->create_rect(rectangle);
-//                     pgraphics->IntersectClipRect(rectangle);
+//                     pdraw2dgraphics->IntersectClipRect(rectangle);
 
-                  ::backimpact::user_interaction::backimpact_render(pgraphics,rectangleX);
-                  ///pgraphics->SelectClipRgn(nullptr);
+                  ::backimpact::user_interaction::backimpact_render(pdraw2dgraphics,rectangleX);
+                  ///pdraw2dgraphics->SelectClipRgn(nullptr);
 
                }
             }
             else
             {
-               //pgraphics->fill_rectangle(rectangleX, rgb(200, 220, 180));
+               //pdraw2dgraphics->fill_rectangle(rectangleX, rgb(200, 220, 180));
             }
          }
 
@@ -948,7 +948,7 @@ bool user_interaction::is_enabled()
 }
 
 
-void user_interaction::backimpact_render(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
+void user_interaction::backimpact_render(::draw2d::graphics_pointer & pdraw2dgraphics,const ::i32_rectangle & rectangleParam)
 {
 
    if (!m_bEnableShowGcomBackground)
@@ -956,12 +956,12 @@ void user_interaction::backimpact_render(::draw2d::graphics_pointer & pgraphics,
 
    ::i32_rectangle rectangle(rectangleParam);
 
-   backimpact_render(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height());
+   backimpact_render(pdraw2dgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height());
 
 }
 
 
-void user_interaction::backimpact_render(::draw2d::graphics_pointer & pgraphics,  int x,int y, int w, int h)
+void user_interaction::backimpact_render(::draw2d::graphics_pointer & pdraw2dgraphics,  int x,int y, int w, int h)
 {
 
    if (!m_bEnableShowGcomBackground)
@@ -1017,7 +1017,7 @@ void user_interaction::backimpact_render(::draw2d::graphics_pointer & pgraphics,
 
    ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-   pgraphics->draw(imagedrawing);
+   pdraw2dgraphics->draw(imagedrawing);
 
 }
 
@@ -1188,7 +1188,7 @@ bool user_interaction::_0723TransferVoid()
    }
 
       
-   void user_interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void user_interaction::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       main * pmain = get_main();
@@ -1200,7 +1200,7 @@ bool user_interaction::_0723TransferVoid()
 
       }
 
-      //::user::box::on_layout(pgraphics);
+      //::user::box::on_layout(pdraw2dgraphics);
 
    }
 

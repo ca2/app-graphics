@@ -56,7 +56,7 @@ namespace gcom
 
       virtual bool gcom_slide_show_step();
 
-      void draw(::draw2d::graphics_pointer & pgraphics);
+      void draw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       pointer_array < slide > get_drawable();
 

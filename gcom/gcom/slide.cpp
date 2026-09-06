@@ -179,7 +179,7 @@ namespace gcom
    }
 
 
-   void slide_show::draw(::draw2d::graphics_pointer & pgraphics)
+   void slide_show::draw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -195,7 +195,7 @@ namespace gcom
 
          auto pslide = slidea[i];
 
-         pdrawer->slide_draw(pgraphics, pslide);
+         pdrawer->slide_draw(pdraw2dgraphics, pslide);
 
       }
 

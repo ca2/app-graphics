@@ -16,7 +16,7 @@ namespace gcom
    public:
 
 
-      virtual void slide_draw(::draw2d::graphics_pointer & pgraphics, slide* pslide) = 0;
+      virtual void slide_draw(::draw2d::graphics_pointer & pdraw2dgraphics, slide* pslide) = 0;
 
    };
 

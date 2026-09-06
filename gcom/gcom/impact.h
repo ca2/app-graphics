@@ -36,15 +36,15 @@ namespace gcom
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
-      virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics);
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 //      ::user::document * get_document();
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_layout(::draw2d::graphics_pointer & pdraw2dgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);

@@ -100,17 +100,17 @@ namespace gcom
    }
 
 
-   void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::backimpact::user_interaction::_001OnDraw(pgraphics);
+      ::backimpact::user_interaction::_001OnDraw(pdraw2dgraphics);
 
-      //_006OnDraw(pgraphics);
+      //_006OnDraw(pdraw2dgraphics);
 
    }
 
 
-   void impact::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_006OnDraw(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
 
@@ -134,7 +134,7 @@ namespace gcom
 
       }
 
-      //backimpact::user::impact::backimpact_render(pgraphics, rectangleX);
+      //backimpact::user::impact::backimpact_render(pdraw2dgraphics, rectangleX);
 
    }
 
@@ -150,10 +150,10 @@ namespace gcom
 
 
 
-   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pdraw2dgraphics)
    {
 
-      ::backimpact::user_interaction::on_layout(pgraphics);
+      ::backimpact::user_interaction::on_layout(pdraw2dgraphics);
 
    }
 
