@@ -187,11 +187,11 @@ namespace backimpact
          
 #else
 
-         //auto pgraphicsImageTarget = pimageTarget->acquire_graphics();
+         //auto pdraw2dgraphicsImageTarget = pimageTarget->acquire_graphics();
 
-         auto pgraphicsImageTarget = pimageTarget->acquire_graphics();
+         auto pdraw2dgraphicsImageTarget = pimageTarget->acquire_graphics();
          
-         pgraphicsImageTarget->set_interpolation_mode(::draw2d::e_interpolation_mode_nearest_neighbor);
+         pdraw2dgraphicsImageTarget->set_interpolation_mode(::draw2d::e_interpolation_mode_nearest_neighbor);
 
          {
 
@@ -202,9 +202,11 @@ namespace backimpact
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            auto pdraw2dgraphicsImageTarget = pimageTarget->acquire_graphics();
       
             //return 
-            pimageTarget->draw(imagedrawing);
+            pdraw2dgraphicsImageTarget->draw(imagedrawing);
 
             return true;
 
@@ -445,9 +447,9 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         auto pgraphicsImageTransfer = pimageTransfer->acquire_graphics();
+         auto pdraw2dgraphicsImageTransfer = pimageTransfer->acquire_graphics();
 
-         pgraphicsImageTransfer->draw(imagedrawing);
+         pdraw2dgraphicsImageTransfer->draw(imagedrawing);
 
       }
 
@@ -497,7 +499,7 @@ namespace backimpact
 
 #endif
 
-{
+      {
 
          ::image::image_source imagesource(pimageBuffer);
 
@@ -507,7 +509,9 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimage3->draw(imagedrawing);
+         auto pdraw2dgraphicsImage3 = pimage3->acquire_graphics();
+
+         pdraw2dgraphicsImage3->draw(imagedrawing);
 
       }
 
@@ -534,23 +538,23 @@ namespace backimpact
       auto ppixmapImage2=pimage2->map();
       auto ppixmapImage3=pimage3->map();
       ppixmapImage2->rotate(ppixmapImage3, radians(m_dAngle), 1.009);
-         //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
+         //pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
 
 
          //// top
-         //pgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1, m_color & ::opacity(bA));
+         //pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1, m_color & ::opacity(bA));
          //// left
-         //pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1, m_color & ::opacity(bA));
+         //pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1, m_color & ::opacity(bA));
          //// bottom
-         //pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1, m_color & ::opacity(bA));
+         //pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1, m_color & ::opacity(bA));
          //// right
-         //pgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1, m_color & ::opacity(bA));*/
+         //pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1, m_color & ::opacity(bA));*/
 
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -560,6 +564,8 @@ namespace backimpact
 
       {
 
+         auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
+
          ::image::image_source imagesource(pimage2);
 
          auto rectangle = f64_rectangle_dimension(0, 0, cx1, cy1);
@@ -568,15 +574,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         auto pgraphicsImage1 = pimage1->acquire_graphics();
-
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -588,7 +592,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -664,9 +668,9 @@ namespace backimpact
       //::f64 dmax = maximum(cx, cy);abs
 
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -688,25 +692,25 @@ namespace backimpact
       auto ppixmapImage1=pimage1->map();
       ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.009);
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-      pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4 }, m_color & ::opacity(bA));
 
 
       // top
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1 }, m_color & ::opacity(bA));
       // left
-      pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
       // bottom
-      pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1 }, m_color & ::opacity(bA));
       // right
-      pgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
 
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -730,15 +734,15 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         auto pgraphicsImage1 = pimage1->acquire_graphics();
+         auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -750,7 +754,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -829,9 +833,9 @@ namespace backimpact
       //::f64 dmax = maximum(cx, cy);abs
 
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -853,29 +857,29 @@ namespace backimpact
       auto ppixmapImage1=pimage1->map();
       ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.009);
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-      pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4 }, m_color & ::opacity(bA));
 
 
       // top
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1 }, m_color & ::opacity(bA));
       // left
-      pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
       // bottom
-      pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1 }, m_color & ::opacity(bA));
       // right
-      pgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
 
 
-      pgraphicsImage1->fill_rectangle({ c1, c2, c3, c4 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ c1, c2, c3, c4 }, m_color & ::opacity(bA));
 
-      pgraphicsImage1->fill_rectangle({ cx1 - c1, cy1 - c2, c3, c4 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - c1, cy1 - c2, c3, c4 }, m_color & ::opacity(bA));
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
       //auto ppixmapImage2=pimage2->map();
@@ -891,13 +895,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -909,7 +913,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -1032,9 +1036,9 @@ namespace backimpact
       //::f64 dmin = minimum(cx, cy);
       //::f64 dmax = maximum(cx, cy);abs
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -1063,19 +1067,19 @@ namespace backimpact
       auto ppixmapImage1=pimage1->map();
       ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.009);
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-      pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4 }, m_color & ::opacity(bA));
 
 
       // top
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1 }, m_color & ::opacity(bA));
       // left
-      pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
       // bottom
-      pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1 }, m_color & ::opacity(bA));
       // right
-      pgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
 
 
       {
@@ -1088,17 +1092,17 @@ namespace backimpact
 
          pbrush->create_solid(m_color.opaque());
 
-         pgraphicsImage1->set(pbrush);
-         //pgraphicsImage1->fill_rectangle({ x, y, c3, c4, m_color & ::opacity(bA));
-         //pgraphicsImage1->fill_rectangle({ cx1 - x, cy1 - y, c3, c4, m_color & ::opacity(bA));
-         pgraphicsImage1->fill_ellipse(x1, y1, x1 + c3, y1 + c3);
-         pgraphicsImage1->fill_ellipse(x2 - c3, y2 - c3, x2, y2);
+         pdraw2dgraphicsImage1->set(pbrush);
+         //pdraw2dgraphicsImage1->fill_rectangle({ x, y, c3, c4, m_color & ::opacity(bA));
+         //pdraw2dgraphicsImage1->fill_rectangle({ cx1 - x, cy1 - y, c3, c4, m_color & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_ellipse(x1, y1, x1 + c3, y1 + c3);
+         pdraw2dgraphicsImage1->fill_ellipse(x2 - c3, y2 - c3, x2, y2);
       }
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -1114,13 +1118,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -1132,7 +1136,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -1633,9 +1637,9 @@ namespace backimpact
       //::f64 dmin = minimum(cx, cy);
       //::f64 dmax = maximum(cx, cy);abs
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -1666,21 +1670,21 @@ namespace backimpact
       //pimage2->rotate(pimage1, dAngle, 0.9);
       //pimage2->Paste(pimage1);
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-      pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4 }, m_color & ::opacity(bA));
 
 
       // top
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1 }, m_color & ::opacity(bA));
       // left
-      pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
       // bottom
-      pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1 }, m_color & ::opacity(bA));
       // right
-      pgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1 }, m_color & ::opacity(bA));
 
-      auto pgraphicsImage2 = pimage2->acquire_graphics();
+      auto pdraw2dgraphicsImage2 = pimage2->acquire_graphics();
 
 
       {
@@ -1692,19 +1696,19 @@ namespace backimpact
          int y2 = cy1 - y1 - r;
          auto pbrush = createø < ::draw2d::brush >();
          pbrush->create_solid(colorStrong.opaque());
-         pgraphicsImage2->set(pbrush);
-         //pgraphicsImage1->fill_rectangle({ x, y, c3, c4, m_color & ::opacity(bA));
-         //pgraphicsImage1->fill_rectangle({ cx1 - x, cy1 - y, c3, c4, m_color & ::opacity(bA));
-         pgraphicsImage2->fill_ellipse(x1, y1, x1 + d, y1 + d);
-         pgraphicsImage2->fill_ellipse(x2 - d, y1, x2, y1 + d);
-         pgraphicsImage2->fill_ellipse(x1, y2 - d, x1 + d, y2);
-         pgraphicsImage2->fill_ellipse(x2 - d, y2 - d, x2, y2);
+         pdraw2dgraphicsImage2->set(pbrush);
+         //pdraw2dgraphicsImage1->fill_rectangle({ x, y, c3, c4, m_color & ::opacity(bA));
+         //pdraw2dgraphicsImage1->fill_rectangle({ cx1 - x, cy1 - y, c3, c4, m_color & ::opacity(bA));
+         pdraw2dgraphicsImage2->fill_ellipse(x1, y1, x1 + d, y1 + d);
+         pdraw2dgraphicsImage2->fill_ellipse(x2 - d, y1, x2, y1 + d);
+         pdraw2dgraphicsImage2->fill_ellipse(x1, y2 - d, x1 + d, y2);
+         pdraw2dgraphicsImage2->fill_ellipse(x2 - d, y2 - d, x2, y2);
       }
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
       //auto ppixmapImage2=pimage2->map();
@@ -1720,13 +1724,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagedrawing);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -1738,7 +1742,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -1902,9 +1906,9 @@ namespace backimpact
       //::f64 dmin = minimum(cx, cy);
       //::f64 dmax = maximum(cx, cy);abs
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -1941,17 +1945,17 @@ namespace backimpact
       auto ppixmapImage1=pimage1->map();
       ppixmapImage2->Rotate034(ppixmapImage1, dAngle, 0.8);
       //pimage2->Paste(pimage1);
-      //   pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4}, m_color & ::opacity(bA));
+      //   pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4}, m_color & ::opacity(bA));
 
 
       // top
-      /*pgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1}, m_color & ::opacity(bA));
+      /*pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 - 1, 1}, m_color & ::opacity(bA));
       // left
-      pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1}, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 - 1}, m_color & ::opacity(bA));
       // bottom
-      pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1}, m_color & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 - 1, 1}, m_color & ::opacity(bA));
       // right
-      pgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1}, m_color & ::opacity(bA));*/
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 2, 0, 1, cy1 - 1}, m_color & ::opacity(bA));*/
 
 
       {
@@ -1976,7 +1980,7 @@ namespace backimpact
          ::draw2d::brush_pointer brush5(e_create, this);
          brush5->create_solid(colorStrong5.opaque());
 
-         auto pgraphicsImage2 = pimage2->acquire_graphics();
+         auto pdraw2dgraphicsImage2 = pimage2->acquire_graphics();
 
          for(int i = 0; i < m_colortrack1a.get_size(); i++)
          {
@@ -1988,42 +1992,42 @@ namespace backimpact
             {
             case 0:
             {
-               pgraphicsImage2->set(brush1);
-               pgraphicsImage2->set(ppen1);
+               pdraw2dgraphicsImage2->set(brush1);
+               pdraw2dgraphicsImage2->set(ppen1);
             }
             break;
             case 1:
             {
-               pgraphicsImage2->set(brush2);
-               pgraphicsImage2->set(ppen2);
+               pdraw2dgraphicsImage2->set(brush2);
+               pdraw2dgraphicsImage2->set(ppen2);
             }
             break;
             case 2:
             {
-               pgraphicsImage2->set(brush3);
-               pgraphicsImage2->set(ppen3);
+               pdraw2dgraphicsImage2->set(brush3);
+               pdraw2dgraphicsImage2->set(ppen3);
             }
             case 3:
             {
-               pgraphicsImage2->set(brush4);
-               pgraphicsImage2->set(ppen4);
+               pdraw2dgraphicsImage2->set(brush4);
+               pdraw2dgraphicsImage2->set(ppen4);
             }
             case 4:
             {
-               pgraphicsImage2->set(brush5);
-               pgraphicsImage2->set(ppen5);
+               pdraw2dgraphicsImage2->set(brush5);
+               pdraw2dgraphicsImage2->set(ppen5);
             }
             break;
             }
-            pgraphicsImage2->ellipse(x1, y1, x1 + d, y1 + d);
+            pdraw2dgraphicsImage2->ellipse(x1, y1, x1 + d, y1 + d);
          }
 
       }
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -2039,15 +2043,15 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         auto pgraphicsImage1 = pimage1->acquire_graphics();
+         auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -2059,7 +2063,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -2320,9 +2324,9 @@ namespace backimpact
       //::f64 dmin = minimum(cx, cy);
       //::f64 dmax = maximum(cx, cy);abs
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -2357,22 +2361,22 @@ namespace backimpact
       ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.05);
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
-      //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
       // top
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1 }, colorStrong1 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1 }, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1 }, colorStrong1 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1 }, colorStrong2 & ::opacity(bA));
       // left
-      pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2 }, colorStrong3 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1 }, colorStrong4 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2 }, colorStrong3 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1 }, colorStrong4 & ::opacity(bA));
       // bottom
-      pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1 }, colorStrong5 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1 }, colorStrong6 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1 }, colorStrong5 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1 }, colorStrong6 & ::opacity(bA));
       // right
-      pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2 }, colorStrong7 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1 }, colorStrong8 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2 }, colorStrong7 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1 }, colorStrong8 & ::opacity(bA));
 
 
       /*   {
@@ -2396,34 +2400,34 @@ namespace backimpact
                {
                case 0:
                   {
-                     pgraphicsImage1->set(brush1);
-                     pgraphicsImage1->set(ppen1);
+                     pdraw2dgraphicsImage1->set(brush1);
+                     pdraw2dgraphicsImage1->set(ppen1);
                   }
                   break;
                case 1:
                   {
-                     pgraphicsImage1->set(brush2);
-                     pgraphicsImage1->set(ppen2);
+                     pdraw2dgraphicsImage1->set(brush2);
+                     pdraw2dgraphicsImage1->set(ppen2);
                   }
                   break;
                case 2:
                   {
-                     pgraphicsImage1->set(brush3);
-                     pgraphicsImage1->set(ppen3);
+                     pdraw2dgraphicsImage1->set(brush3);
+                     pdraw2dgraphicsImage1->set(ppen3);
                   }
                case 3:
                   {
-                     pgraphicsImage1->set(brush4);
-                     pgraphicsImage1->set(ppen4);
+                     pdraw2dgraphicsImage1->set(brush4);
+                     pdraw2dgraphicsImage1->set(ppen4);
                   }
                case 4:
                   {
-                     pgraphicsImage1->set(brush5);
-                     pgraphicsImage1->set(ppen5);
+                     pdraw2dgraphicsImage1->set(brush5);
+                     pdraw2dgraphicsImage1->set(ppen5);
                   }
                   break;
                }
-               pgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
+               pdraw2dgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
@@ -2431,9 +2435,9 @@ namespace backimpact
 
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -2449,13 +2453,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -2467,7 +2471,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -2750,12 +2754,12 @@ namespace backimpact
 
       if(m_bGrowColor0)
       {
-         //pgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
+         //pdraw2dgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
       }
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -2793,35 +2797,35 @@ namespace backimpact
       ppixmapImage2->rotate(ppixmapImage1, radians(dAngle), 1.09);
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
-      //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
 
 
       // top
-      /*   pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /*   pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
          // left
-         pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
          // bottom
-         pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
          // right
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
       auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-      pgraphicsImage1->set(ppen1);
+      pdraw2dgraphicsImage1->set(ppen1);
       int margin = 10;
       int w = margin * 2;
 
       ::i32_point pointLast(margin, margin);
       ::i32_point pointNow;
-      //pgraphicsImage1->set_current_point(margin, margin);
+      //pdraw2dgraphicsImage1->set_current_point(margin, margin);
 
       int imax = cx1 - margin;
       int jmax = cx1 / 2;
@@ -2843,7 +2847,7 @@ namespace backimpact
          }
          pointNow.x=i;
          pointNow.y = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
-         pgraphicsImage1->line(pointLast, pointNow);
+         pdraw2dgraphicsImage1->line(pointLast, pointNow);
          pointLast = pointNow;
          j++;
       }
@@ -2859,20 +2863,20 @@ namespace backimpact
          }
          pointNow.x = i;
          pointNow.y = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
-         pgraphicsImage1->line(pointLast, pointNow);
+         pdraw2dgraphicsImage1->line(pointLast, pointNow);
          pointLast = pointNow;
          j--;
       }
 
       pointLast.x =margin;
       pointLast.y =cy1-margin;
-      //pgraphicsImage1->set_current_point(margin, cy1 - margin);
+      //pdraw2dgraphicsImage1->set_current_point(margin, cy1 - margin);
 
       for(i = margin; i < jmax; i++)
       {
          pointNow.x = i;
          pointNow.y = cy1 - margin + ((rand() - rhalf) * j * w / rmax);
-         pgraphicsImage1->line(pointLast, pointNow);
+         pdraw2dgraphicsImage1->line(pointLast, pointNow);
          pointLast = pointNow;
          j++;
       }
@@ -2880,14 +2884,14 @@ namespace backimpact
       {
          pointNow.x = i;
          pointNow.y = cy1 - margin + ((rand() - rhalf) * j * w / rmax);
-         pgraphicsImage1->line(pointLast, pointNow );
+         pdraw2dgraphicsImage1->line(pointLast, pointNow );
          pointLast = pointNow;
          j--;
       }
 
       pointLast.x = margin;
       pointLast.y = margin;
-      //pgraphicsImage1->set_current_point(margin, margin);
+      //pdraw2dgraphicsImage1->set_current_point(margin, margin);
 
       // vertical
       imax = cy1 - margin;
@@ -2909,7 +2913,7 @@ namespace backimpact
          }
          pointNow.x = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
          pointNow.y = i;
-         pgraphicsImage1->line(pointLast, pointNow);
+         pdraw2dgraphicsImage1->line(pointLast, pointNow);
          pointLast = pointNow;
          j++;
       }
@@ -2925,20 +2929,20 @@ namespace backimpact
          }
          pointNow.x = r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax);
          pointNow.y = i;
-         pgraphicsImage1->line(pointLast, pointNow);
+         pdraw2dgraphicsImage1->line(pointLast, pointNow);
          pointLast=pointNow;
          j--;
       }
 
       pointLast.x=cx1-margin;
       pointLast.y = margin;
-      //pgraphicsImage1->set_current_point(cx1 - margin, margin);
+      //pdraw2dgraphicsImage1->set_current_point(cx1 - margin, margin);
 
       for(i = margin; i < jmax; i++)
       {
          pointNow.x=cx1 - margin + ((rand() - rhalf) * j * w / rmax);
             pointNow.y=i;
-         pgraphicsImage1->line(pointLast, pointNow);
+         pdraw2dgraphicsImage1->line(pointLast, pointNow);
          pointLast=pointNow;
          j++;
       }
@@ -2946,13 +2950,13 @@ namespace backimpact
       {
          pointNow.x=cx1 - margin + ((rand() - rhalf) * j * w / rmax);
          pointNow.y=i;
-         pgraphicsImage1->line(pointLast, pointNow);
+         pdraw2dgraphicsImage1->line(pointLast, pointNow);
          pointLast=pointNow;
          j--;
       }
 
-      //pgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
-      //pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
+      //pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
 
       {
          int x2 = cx1 / 2;
@@ -2961,17 +2965,17 @@ namespace backimpact
          int h2 = cy1 / 2 - 1;
 
          // top
-         pgraphicsImage1->fill_rectangle({ 0, 0, w2, 1 }, colorStrong2 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ x2, 0, w2, 1 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, w2, 1 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ x2, 0, w2, 1 }, colorStrong2 & ::opacity(bA));
          // left
-         pgraphicsImage1->fill_rectangle({ 0,  0, 1, h2 }, colorStrong2 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ 0, y2, 1, h2 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0,  0, 1, h2 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, y2, 1, h2 }, colorStrong2 & ::opacity(bA));
          // bottom
-         pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, w2, 1 }, colorStrong2 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ x2, cy1 - 1, w2, 1 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, w2, 1 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ x2, cy1 - 1, w2, 1 }, colorStrong2 & ::opacity(bA));
          // right
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, h2 }, colorStrong2 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, y2, 1, h2 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, h2 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, y2, 1, h2 }, colorStrong2 & ::opacity(bA));
       }
 
       /*   {
@@ -2995,34 +2999,34 @@ namespace backimpact
                {
                case 0:
                   {
-                     pgraphicsImage1->set(brush1);
-                     pgraphicsImage1->set(ppen1);
+                     pdraw2dgraphicsImage1->set(brush1);
+                     pdraw2dgraphicsImage1->set(ppen1);
                   }
                   break;
                case 1:
                   {
-                     pgraphicsImage1->set(brush2);
-                     pgraphicsImage1->set(ppen2);
+                     pdraw2dgraphicsImage1->set(brush2);
+                     pdraw2dgraphicsImage1->set(ppen2);
                   }
                   break;
                case 2:
                   {
-                     pgraphicsImage1->set(brush3);
-                     pgraphicsImage1->set(ppen3);
+                     pdraw2dgraphicsImage1->set(brush3);
+                     pdraw2dgraphicsImage1->set(ppen3);
                   }
                case 3:
                   {
-                     pgraphicsImage1->set(brush4);
-                     pgraphicsImage1->set(ppen4);
+                     pdraw2dgraphicsImage1->set(brush4);
+                     pdraw2dgraphicsImage1->set(ppen4);
                   }
                case 4:
                   {
-                     pgraphicsImage1->set(brush5);
-                     pgraphicsImage1->set(ppen5);
+                     pdraw2dgraphicsImage1->set(brush5);
+                     pdraw2dgraphicsImage1->set(ppen5);
                   }
                   break;
                }
-               pgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
+               pdraw2dgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
@@ -3030,9 +3034,9 @@ namespace backimpact
 
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -3048,13 +3052,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -3066,7 +3070,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -3078,7 +3082,7 @@ namespace backimpact
 
    void visual_effect::RenderRain1(i32_rectangle_array & recta)
    {
-      
+
       main * pmain = helper_get_main();
 
       transition_effect * ptransitioneffect = pmain->get_transition_effect();
@@ -3093,22 +3097,28 @@ namespace backimpact
       auto pimage3 = pgcom->get_image(e_image_temp3);
       auto pimage4 = pgcom->get_image(e_image_temp4);
       auto pimageBuffer = pgcom->get_image(e_image_buffer);
-      if(ptransitioneffect->m_ptool001->m_iStep == 1)
+      int cx1 = 0;
+      int cy1 = 0;
+      ::collection::index iReturnPoint = 0;
+
+      {
+      auto pdraw2dgraphicsImage4 = pimage4->acquire_graphics();
+
+      if (ptransitioneffect->m_ptool001->m_iStep == 1)
       {
          auto pimageFrame1 = pgcom->get_image(e_image_frame1);
          m_tool1.m_dMod = 4.2;
          m_tool1.m_dMinSize = 0;
          int cx1 = m_tool1.m_size.cx / 4;
          int cy1 = m_tool1.m_size.cy / 4;
-         pimage1->create_as_descriptor({cx1, cy1});
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
-         pimage4->create_as_descriptor({cx1, cy1});
+         pimage1->create_as_descriptor({ cx1, cy1 });
+         pimage2->create_as_descriptor({ cx1, cy1 });
+         pimage3->create_as_descriptor({ cx1, cy1 });
+         pimage4->create_as_descriptor({ cx1, cy1 });
          m_tool1.m_dAlpha = 0;
-         auto ppixmapImageBack=pimageBack->map();
+         auto ppixmapImageBack = pimageBack->map();
          m_water.create(cx1, cy1, ppixmapImageBack->color_indexes());
-         auto pgraphicsImage4 = pimage4->acquire_graphics();
-         pgraphicsImage4->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage4->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -3120,13 +3130,13 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage4->draw(imagedrawing);
+            pdraw2dgraphicsImage4->draw(imagedrawing);
 
          }
 
-         auto pgraphicsImage3 = pimage3->acquire_graphics();
-         
-         pgraphicsImage3->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         auto pdraw2dgraphicsImage3 = pimage3->acquire_graphics();
+
+         pdraw2dgraphicsImage3->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -3138,22 +3148,22 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage3->draw(imagedrawing);
+            pdraw2dgraphicsImage3->draw(imagedrawing);
 
          }
 
       }
-      int cx1 = pimage1->width();
-      int cy1 = pimage1->height();
+      cx1 = pimage1->width();
+      cy1 = pimage1->height();
 
 
 
-      //pgraphicsImage4->BitBlt(0, 0, cx1, cy1, pgraphicsImage3, 0, 0);
+      //pdraw2dgraphicsImage4->BitBlt(0, 0, cx1, cy1, pdraw2dgraphicsImage3, 0, 0);
 
 
-      ::collection::index iReturnPoint = ptransitioneffect->m_ptool001->m_iStepCount * 5 / 21;
+      iReturnPoint = ptransitioneffect->m_ptool001->m_iStepCount * 5 / 21;
 
-      if(ptransitioneffect->m_ptool001->m_iStep >= iReturnPoint * 2)
+      if (ptransitioneffect->m_ptool001->m_iStep >= iReturnPoint * 2)
       {
 
          ::image::image_source imagesource(pimage3);
@@ -3166,9 +3176,11 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimage4->draw(imagedrawing);
+         pdraw2dgraphicsImage4->draw(imagedrawing);
 
       }
+
+   }
       auto ppixmapImage4=pimage4->map();
       auto ppixmapImage2=pimage2->map();
       ppixmapImage4->fill_channel(0, ::color::e_channel_opacity);
@@ -3216,11 +3228,11 @@ namespace backimpact
       }
       m_tool1.m_iPage ^= 1;
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      //pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      //pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
-      pgraphicsImageBack->stretch_image(pimage2, VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->stretch_image(pimage2, VISUAL_EFFECT_STRETCH_MODE);
 
       recta.add(m_tool1.m_rectangleX);
 
@@ -3376,24 +3388,24 @@ namespace backimpact
          j++;
       }
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
       //bool bWhite;
       //bWhite = false;
       if(m_iVisual == VisualEffectRotateEx5)
       {
-         pgraphicsImage1->set(ppenWhite);
+         pdraw2dgraphicsImage1->set(ppenWhite);
          for(i = margin1 + 1; i < imax; i++)
          {
-            pgraphicsImage1->line(m_pointa[i-1], m_pointa[i]);
+            pdraw2dgraphicsImage1->line(m_pointa[i-1], m_pointa[i]);
          }
       }
-      pgraphicsImage1->set(ppen1);
+      pdraw2dgraphicsImage1->set(ppen1);
       for(i = margin1+1; i < imax; i++)
       {
-         pgraphicsImage1->line(m_pointa[i-1], m_pointa[i]);
+         pdraw2dgraphicsImage1->line(m_pointa[i-1], m_pointa[i]);
       }
 
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 0, 0, 0));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 0, 0, 0));
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
@@ -3404,9 +3416,9 @@ namespace backimpact
       {
          KEEP(pmain->get_user_interaction()->m_bTransferVoid);
 
-         auto pgraphicsImage4 = pimage4->acquire_graphics();
+         auto pdraw2dgraphicsImage4 = pimage4->acquire_graphics();
 
-         pgraphicsImage4->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage4->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -3418,12 +3430,12 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage4->draw(imagedrawing);
+            pdraw2dgraphicsImage4->draw(imagedrawing);
 
          }
 
          pmain->get_user_interaction()->backimpact_feedback(pimage4);
-         pgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -3435,7 +3447,7 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage1->draw(imagedrawing);
+            pdraw2dgraphicsImage1->draw(imagedrawing);
 
          }
 
@@ -3480,13 +3492,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -3498,7 +3510,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -3725,12 +3737,12 @@ namespace backimpact
 
       if(m_bGrowColor0)
       {
-         //pgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
+         //pdraw2dgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
       }
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -3804,21 +3816,21 @@ namespace backimpact
 
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
-      //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
 
 
       // top
-      /*   pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /*   pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
          // left
-         pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
          // bottom
-         pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
          // right
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
 
@@ -3875,35 +3887,35 @@ namespace backimpact
          m_pointa[i].y = maximum(- j * w, minimum( j * w, m_pointa[i].y + offset));
          j--;
       }
-      pgraphicsImage1->set(ppenWhite);
-      pgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
+      pdraw2dgraphicsImage1->set(ppenWhite);
+      pdraw2dgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       for(i = margin1; i < imax; i++)
       {
-         pgraphicsImage1->line_to(m_pointa[i].x, m_pointa[i].y);
+         pdraw2dgraphicsImage1->line_to(m_pointa[i].x, m_pointa[i].y);
       }
-      pgraphicsImage1->set(ppen1);
-      pgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
+      pdraw2dgraphicsImage1->set(ppen1);
+      pdraw2dgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       for(i = margin1; i < imax; i++)
       {
-         pgraphicsImage1->line_to(m_pointa[i].x, m_pointa[i].y);
+         pdraw2dgraphicsImage1->line_to(m_pointa[i].x, m_pointa[i].y);
       }
 
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1, argb(255, 34, 34, 34), 10);
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1, argb(255, 34, 34, 34), 10);
 
-         pgraphicsImage1->set_current_point(margin1, cy1 - margin2);
+         pdraw2dgraphicsImage1->set_current_point(margin1, cy1 - margin2);
 
          for(i = margin1; i < jmax; i++)
          {
-            pgraphicsImage1->line_to(i, cy1 - margin2 + ((rand() - rhalf) * j * w / rmax));
+            pdraw2dgraphicsImage1->line_to(i, cy1 - margin2 + ((rand() - rhalf) * j * w / rmax));
             j++;
          }
          for(; i < imax; i++)
          {
-            pgraphicsImage1->line_to(i, cy1 - margin2 + ((rand() - rhalf) * j * w / rmax));
+            pdraw2dgraphicsImage1->line_to(i, cy1 - margin2 + ((rand() - rhalf) * j * w / rmax));
             j--;
          }
 
-         pgraphicsImage1->set_current_point(margin2, margin1);
+         pdraw2dgraphicsImage1->set_current_point(margin2, margin1);
 
          // vertical
          imax = cy1 - margin1;
@@ -3923,7 +3935,7 @@ namespace backimpact
             {
                r2 = (rand() - rhalf) * j * 5 / rmax;
             }
-            pgraphicsImage1->line_to(r1 + r2 + margin2 + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(r1 + r2 + margin2 + ((rand() - rhalf) * j * w / rmax), i);
             j++;
          }
          for(; i < imax; i++)
@@ -3936,41 +3948,41 @@ namespace backimpact
             {
                r2 = (rand() - rhalf) * j * 5 / rmax;
             }
-            pgraphicsImage1->line_to(r1 + r2 + margin2 + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(r1 + r2 + margin2 + ((rand() - rhalf) * j * w / rmax), i);
             j--;
          }
 
-         pgraphicsImage1->set_current_point(cx1 - margin2, margin1);
+         pdraw2dgraphicsImage1->set_current_point(cx1 - margin2, margin1);
 
          for(i = margin1; i < jmax; i++)
          {
-            pgraphicsImage1->line_to(cx1 - margin2 + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(cx1 - margin2 + ((rand() - rhalf) * j * w / rmax), i);
             j++;
          }
          for(; i < imax; i++)
          {
-            pgraphicsImage1->line_to(cx1 - margin2 + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(cx1 - margin2 + ((rand() - rhalf) * j * w / rmax), i);
             j--;
          }*/
 
-      //pgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
-      //pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
+      //pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
 
       // top
-      /* pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
-       pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /* pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
        // left
-       pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
-       pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
        // bottom
-       pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
-       pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
        // right
-       pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
-       pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
 
 
-      //   pgraphicsImage1->fill_rectangle(0, 0, cx1 / 2, cy1 / 2, 0);*/
+      //   pdraw2dgraphicsImage1->fill_rectangle(0, 0, cx1 / 2, cy1 / 2, 0);*/
       /*   {
             ::draw2d::pen_pointer ppen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
             ::draw2d::brush_pointer brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
@@ -3992,34 +4004,34 @@ namespace backimpact
                {
                case 0:
                   {
-                     pgraphicsImage1->set(brush1);
-                     pgraphicsImage1->set(ppen1);
+                     pdraw2dgraphicsImage1->set(brush1);
+                     pdraw2dgraphicsImage1->set(ppen1);
                   }
                   break;
                case 1:
                   {
-                     pgraphicsImage1->set(brush2);
-                     pgraphicsImage1->set(ppen2);
+                     pdraw2dgraphicsImage1->set(brush2);
+                     pdraw2dgraphicsImage1->set(ppen2);
                   }
                   break;
                case 2:
                   {
-                     pgraphicsImage1->set(brush3);
-                     pgraphicsImage1->set(ppen3);
+                     pdraw2dgraphicsImage1->set(brush3);
+                     pdraw2dgraphicsImage1->set(ppen3);
                   }
                case 3:
                   {
-                     pgraphicsImage1->set(brush4);
-                     pgraphicsImage1->set(ppen4);
+                     pdraw2dgraphicsImage1->set(brush4);
+                     pdraw2dgraphicsImage1->set(ppen4);
                   }
                case 4:
                   {
-                     pgraphicsImage1->set(brush5);
-                     pgraphicsImage1->set(ppen5);
+                     pdraw2dgraphicsImage1->set(brush5);
+                     pdraw2dgraphicsImage1->set(ppen5);
                   }
                   break;
                }
-               pgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
+               pdraw2dgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
@@ -4050,9 +4062,9 @@ namespace backimpact
 
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -4068,15 +4080,15 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         auto pgraphicsImage1 = pimage1->acquire_graphics();
+         auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -4088,7 +4100,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -4134,9 +4146,9 @@ namespace backimpact
          m_explosion.create(cx1, cy1, ppixmapImage1->scan_size(), ppixmapImage1->color_indexes());
          m_explosion.Reset();
 
-         auto pgraphicsImage1 = pimage1->acquire_graphics();
+         auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-         pgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -4148,16 +4160,16 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage1->draw(imagedrawing);
+            pdraw2dgraphicsImage1->draw(imagedrawing);
 
          }
 
-         auto pgraphicsImage3 = pimage3->acquire_graphics();
+         auto pdraw2dgraphicsImage3 = pimage3->acquire_graphics();
 
-         pgraphicsImage3->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
-         pgraphicsImage3->clear(::color::transparent);
-         auto pgraphicsImage4 = pimage4->acquire_graphics();
-         pgraphicsImage4->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage3->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage3->clear(::color::transparent);
+         auto pdraw2dgraphicsImage4 = pimage4->acquire_graphics();
+         pdraw2dgraphicsImage4->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -4169,7 +4181,7 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage4->draw(imagedrawing);
+            pdraw2dgraphicsImage4->draw(imagedrawing);
 
          }
 
@@ -4232,6 +4244,8 @@ namespace backimpact
 
       {
 
+         auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
+
          ::image::image_source imagesource(pimage3);
 
          f64_rectangle rectangle(::i64_size(cx1, cy1));
@@ -4242,13 +4256,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -4260,7 +4274,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -4304,13 +4318,13 @@ namespace backimpact
          m_explosion.create(cx1, cy1, ppixmapImage1->scan_size(), ppixmapImage1->color_indexes());
          m_explosion.Reset();
 
-         auto pgraphicsImage1 = pimage1->acquire_graphics();
+         auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-         pgraphicsImage1->fill_rectangle(::f64_rectangle_dimension(0, 0, cx1, cy1), argb(0, 0, 0, 0));
+         pdraw2dgraphicsImage1->fill_rectangle(::f64_rectangle_dimension(0, 0, cx1, cy1), argb(0, 0, 0, 0));
 
-         auto pgraphicsImage3 = pimage3->acquire_graphics();
+         auto pdraw2dgraphicsImage3 = pimage3->acquire_graphics();
 
-         pgraphicsImage3->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage3->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -4322,7 +4336,7 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage3->draw(imagedrawing);
+            pdraw2dgraphicsImage3->draw(imagedrawing);
 
          }
 
@@ -4339,9 +4353,9 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         auto pgraphicsImage4 = pimage4->acquire_graphics();
+         auto pdraw2dgraphicsImage4 = pimage4->acquire_graphics();
 
-         pgraphicsImage4->draw(imagedrawing);
+         pdraw2dgraphicsImage4->draw(imagedrawing);
 
 
       }
@@ -4360,11 +4374,11 @@ namespace backimpact
 
 
 
-//      pimage4->draw(imagedrawing);
+//      pdraw2dgraphicsImage4->draw(imagedrawing);
 //      psystem->imaging().bitmap_blend(
-//      pgraphicsImage4,
+//      pdraw2dgraphicsImage4,
 //      ::i32_point(), ,
-//      pgraphicsImage1,
+//      pdraw2dgraphicsImage1,
 //      ::i32_point(),
 //      (::u8) );
 
@@ -4414,9 +4428,9 @@ namespace backimpact
       //pgraphicsBack->fill_rectangle(0, 0, cx, cy, argb(255, 0, 0, 0));
       //pgraphicsBack->fill_rectangle(100, 100, cx, cy, argb(255, 255, 255, 255));
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -4428,7 +4442,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -4475,9 +4489,9 @@ namespace backimpact
          m_explosion.create(cx1, cy1, ppixmapImage1->scan_size(), ppixmapImage1->color_indexes());
          m_explosion.Reset();
 
-         auto pgraphicsImage1 = pimage1->acquire_graphics();
+         auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-         pgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -4489,13 +4503,13 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage1->draw(imagedrawing);
+            pdraw2dgraphicsImage1->draw(imagedrawing);
 
          }
 
-         auto pgraphicsImage3 = pimage3->acquire_graphics();
+         auto pdraw2dgraphicsImage3 = pimage3->acquire_graphics();
 
-         pgraphicsImage3->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage3->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -4507,7 +4521,7 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage3->draw(imagedrawing);
+            pdraw2dgraphicsImage3->draw(imagedrawing);
 
          }
 
@@ -4522,6 +4536,8 @@ namespace backimpact
 
       {
 
+         auto pdraw2dgraphicsImage4 = pimage1->acquire_graphics();
+
          ::image::image_source imagesource(pimageBuffer);
 
          f64_rectangle rectangle(pimage4->size());
@@ -4530,7 +4546,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimage4->draw(imagedrawing);
+         pdraw2dgraphicsImage4->draw(imagedrawing);
 
       }
 
@@ -4539,9 +4555,9 @@ namespace backimpact
 #endif
 
       /*psystem->imaging().bitmap_blend(
-         pgraphicsImage4,
+         pdraw2dgraphicsImage4,
          0, 0, cx1, cy1,
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0,
          (::u8) maximum(minimum(255, m_tool1.m_dAlpha), 0));*/
 
@@ -4589,9 +4605,9 @@ namespace backimpact
       }
       m_tool1.m_iPage ^= 1;
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -4603,7 +4619,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -4817,7 +4833,7 @@ namespace backimpact
 
       if(m_bGrowColor0)
       {
-         //pgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
+         //pdraw2dgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
       }
 
 //         int c1 = rand() * 3 / RAND_MAX;
@@ -4852,33 +4868,33 @@ namespace backimpact
       ppixmapImage2->Rotate034(ppixmapImage1, dAngle, 1.09);
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
-      //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
 
 
       // top
-      /*   pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /*   pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
          // left
-         pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
          // bottom
-         pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
          // right
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
       auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
-      pgraphicsImage1->set(ppen1);
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
+      pdraw2dgraphicsImage1->set(ppen1);
       int marginx = cx1 / 12;
       int marginy = cy1 * 5 / 11;
       int w = marginx * 2;
       ::i32_point pointLast (marginx, marginy);
-      //pgraphicsImage1->set_current_point(marginx, marginy);
+      //pdraw2dgraphicsImage1->set_current_point(marginx, marginy);
 
       int imax = cx1 - marginx;
       int jmax = cx1 / 2;
@@ -4898,7 +4914,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pgraphicsImage1->process_line(pointLast, ::i32_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
@@ -4911,26 +4927,26 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pgraphicsImage1->process_line(pointLast, ::i32_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
-      //pgraphicsImage1->set_current_point(marginx, cy1 - marginy);
+      //pdraw2dgraphicsImage1->set_current_point(marginx, cy1 - marginy);
       pointLast.x= marginx;
       pointLast.y = cy1-marginy;
 
       for(i = marginx; i < jmax; i++)
       {
-         pgraphicsImage1->process_line(pointLast, ::i32_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
       {
-         pgraphicsImage1->process_line(pointLast, ::i32_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
-      //pgraphicsImage1->set_current_point(marginx, marginy);
+      //pdraw2dgraphicsImage1->set_current_point(marginx, marginy);
       pointLast.x=marginx;
       pointLast.y =marginy;
 
@@ -4952,7 +4968,7 @@ namespace backimpact
           {
              r2 = (rand() - rhalf) * j * 5 / rmax;
           }
-          pgraphicsImage1->line_to(r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax), i);
+          pdraw2dgraphicsImage1->line_to(r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax), i);
           j++;
        }
        for(; i < imax; i++)
@@ -4965,41 +4981,41 @@ namespace backimpact
           {
              r2 = (rand() - rhalf) * j * 5 / rmax;
           }
-          pgraphicsImage1->line_to(r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax), i);
+          pdraw2dgraphicsImage1->line_to(r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax), i);
           j--;
        }*/
 
       /*
-         pgraphicsImage1->set_current_point(cx1 - margin, margin);
+         pdraw2dgraphicsImage1->set_current_point(cx1 - margin, margin);
 
          for(i = margin; i < jmax; i++)
          {
-            pgraphicsImage1->line_to(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i);
             j++;
          }
          for(; i < imax; i++)
          {
-            pgraphicsImage1->line_to(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i);
             j--;
          }*/
 
-      //pgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
-      //pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
+      //pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
 
       // top
-      /*pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /*pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
       // left
-      pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
       // bottom
-      pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
       // right
-      pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));*/
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));*/
 
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 0, 0, 0));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 0, 0, 0));
 
       /*   {
             ::draw2d::pen_pointer ppen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
@@ -5022,34 +5038,34 @@ namespace backimpact
                {
                case 0:
                   {
-                     pgraphicsImage1->set(brush1);
-                     pgraphicsImage1->set(ppen1);
+                     pdraw2dgraphicsImage1->set(brush1);
+                     pdraw2dgraphicsImage1->set(ppen1);
                   }
                   break;
                case 1:
                   {
-                     pgraphicsImage1->set(brush2);
-                     pgraphicsImage1->set(ppen2);
+                     pdraw2dgraphicsImage1->set(brush2);
+                     pdraw2dgraphicsImage1->set(ppen2);
                   }
                   break;
                case 2:
                   {
-                     pgraphicsImage1->set(brush3);
-                     pgraphicsImage1->set(ppen3);
+                     pdraw2dgraphicsImage1->set(brush3);
+                     pdraw2dgraphicsImage1->set(ppen3);
                   }
                case 3:
                   {
-                     pgraphicsImage1->set(brush4);
-                     pgraphicsImage1->set(ppen4);
+                     pdraw2dgraphicsImage1->set(brush4);
+                     pdraw2dgraphicsImage1->set(ppen4);
                   }
                case 4:
                   {
-                     pgraphicsImage1->set(brush5);
-                     pgraphicsImage1->set(ppen5);
+                     pdraw2dgraphicsImage1->set(brush5);
+                     pdraw2dgraphicsImage1->set(ppen5);
                   }
                   break;
                }
-               pgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
+               pdraw2dgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
@@ -5057,9 +5073,9 @@ namespace backimpact
 
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -5077,13 +5093,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
 
       // call ipp here
-      //pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      //pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       //pimageBack->stretch(::f64_rectangle(pimageBack->size()), pimage1);
 
@@ -5292,12 +5308,12 @@ namespace backimpact
 
       if(m_bGrowColor0)
       {
-         //pgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
+         //pdraw2dgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
       }
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -5333,33 +5349,33 @@ namespace backimpact
       //pimage2->rotate(pimage1, dAngle, 1.09);
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
-      //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
 
 
       // top
-      /*   pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /*   pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
          // left
-         pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
          // bottom
-         pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
          // right
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
       auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
-      pgraphicsImage1->set(ppen1);
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
+      pdraw2dgraphicsImage1->set(ppen1);
       int margin = 10;
       int w = margin * 2;
       ::i32_point pointLast;
       pointLast.x=margin;
       pointLast.y=margin;
-      //pgraphicsImage1->set_current_point(margin, margin);
+      //pdraw2dgraphicsImage1->set_current_point(margin, margin);
 
       int imax = cx1 - margin;
       int jmax = cx1 / 2;
@@ -5379,7 +5395,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pgraphicsImage1->process_line(pointLast, ::i32_point(i, r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(i, r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
@@ -5392,28 +5408,28 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pgraphicsImage1->process_line(pointLast, ::i32_point(i, r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(i, r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
       pointLast.x=margin;
       pointLast.y = cy1-margin;
-      //pgraphicsImage1->set_current_point(margin, cy1 - margin);
+      //pdraw2dgraphicsImage1->set_current_point(margin, cy1 - margin);
 
       for(i = margin; i < jmax; i++)
       {
-         pgraphicsImage1->process_line(pointLast, ::i32_point(i, cy1 - margin + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(i, cy1 - margin + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
       {
-         pgraphicsImage1->process_line(pointLast, ::i32_point(i, cy1 - margin + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(i, cy1 - margin + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
       pointLast.x=margin;
       pointLast.y=margin;
-      //pgraphicsImage1->set_current_point(margin, margin);
+      //pdraw2dgraphicsImage1->set_current_point(margin, margin);
 
       // vertical
       imax = cy1 - margin;
@@ -5433,7 +5449,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pgraphicsImage1->process_line(pointLast, ::i32_point(r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax), i));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax), i));
          j++;
       }
       for(; i < imax; i++)
@@ -5446,27 +5462,27 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pgraphicsImage1->process_line(pointLast, ::i32_point(r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax), i));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(r1 + r2 + margin + ((rand() - rhalf) * j * w / rmax), i));
          j--;
       }
 
       pointLast.x = cx1-margin;
       pointLast.y =margin;
-      //pgraphicsImage1->set_current_point(cx1 - margin, margin);
+      //pdraw2dgraphicsImage1->set_current_point(cx1 - margin, margin);
 
       for(i = margin; i < jmax; i++)
       {
-         pgraphicsImage1->process_line(pointLast, ::i32_point(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i));
          j++;
       }
       for(; i < imax; i++)
       {
-         pgraphicsImage1->process_line(pointLast, ::i32_point(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::i32_point(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i));
          j--;
       }
 
-      //pgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
-      //pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
+      //pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
 
       {
          int x2 = cx1 / 2;
@@ -5475,17 +5491,17 @@ namespace backimpact
          int h2 = cy1 / 2 - 1;
 
          // top
-         pgraphicsImage1->fill_rectangle({ 0, 0, w2, 1 } , colorStrong2 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ x2, 0, w2, 1 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, w2, 1 } , colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ x2, 0, w2, 1 }, colorStrong2 & ::opacity(bA));
          // left
-         pgraphicsImage1->fill_rectangle({ 0,  0, 1, h2 }, colorStrong2 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ 0, y2, 1, h2 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0,  0, 1, h2 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, y2, 1, h2 }, colorStrong2 & ::opacity(bA));
          // bottom
-         pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, w2, 1 }, colorStrong2 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ x2, cy1 - 1, w2, 1 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, w2, 1 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ x2, cy1 - 1, w2, 1 }, colorStrong2 & ::opacity(bA));
          // right
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, h2 }, colorStrong2 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, y2, 1, h2 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, h2 }, colorStrong2 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, y2, 1, h2 }, colorStrong2 & ::opacity(bA));
       }
 
       /*   {
@@ -5509,34 +5525,34 @@ namespace backimpact
                {
                case 0:
                   {
-                     pgraphicsImage1->set(brush1);
-                     pgraphicsImage1->set(ppen1);
+                     pdraw2dgraphicsImage1->set(brush1);
+                     pdraw2dgraphicsImage1->set(ppen1);
                   }
                   break;
                case 1:
                   {
-                     pgraphicsImage1->set(brush2);
-                     pgraphicsImage1->set(ppen2);
+                     pdraw2dgraphicsImage1->set(brush2);
+                     pdraw2dgraphicsImage1->set(ppen2);
                   }
                   break;
                case 2:
                   {
-                     pgraphicsImage1->set(brush3);
-                     pgraphicsImage1->set(ppen3);
+                     pdraw2dgraphicsImage1->set(brush3);
+                     pdraw2dgraphicsImage1->set(ppen3);
                   }
                case 3:
                   {
-                     pgraphicsImage1->set(brush4);
-                     pgraphicsImage1->set(ppen4);
+                     pdraw2dgraphicsImage1->set(brush4);
+                     pdraw2dgraphicsImage1->set(ppen4);
                   }
                case 4:
                   {
-                     pgraphicsImage1->set(brush5);
-                     pgraphicsImage1->set(ppen5);
+                     pdraw2dgraphicsImage1->set(brush5);
+                     pdraw2dgraphicsImage1->set(ppen5);
                   }
                   break;
                }
-               pgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
+               pdraw2dgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
@@ -5544,9 +5560,9 @@ namespace backimpact
 
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -5564,17 +5580,16 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
-
 
          ::image::image_source imagesource(pimage1);
 
@@ -5584,7 +5599,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -5741,26 +5756,26 @@ namespace backimpact
          j++;
       }
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
       //bool bWhite;
       //bWhite = false;
       if(m_iVisual == VisualEffectRotateEx5)
       {
-         pgraphicsImage1->set(ppenWhite);
-//         pgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
+         pdraw2dgraphicsImage1->set(ppenWhite);
+//         pdraw2dgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
          //for(i = margin1+1; i < imax; i++)
          //{
-            pgraphicsImage1->polyline(&m_pointa[margin1], imax-margin1-1);
+            pdraw2dgraphicsImage1->polyline(&m_pointa[margin1], imax-margin1-1);
          //}
       }
-      pgraphicsImage1->set(ppen1);
-      //pgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
+      pdraw2dgraphicsImage1->set(ppen1);
+      //pdraw2dgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       //for(i = margin1; i < imax; i++)
       //{
-         pgraphicsImage1->polyline(&m_pointa[margin1], imax-margin1-1);
+         pdraw2dgraphicsImage1->polyline(&m_pointa[margin1], imax-margin1-1);
       //}
 
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 0, 0, 0));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 0, 0, 0));
 
 #ifdef WINDOWS_DESKTOP
       //GdiFlush();
@@ -5773,6 +5788,8 @@ namespace backimpact
 
          {
 
+            auto pdraw2dgraphicsImage4 = pimage1->acquire_graphics();
+
             ::image::image_source imagesource(pimage1);
 
             f64_rectangle rectangle(pimage4->size());
@@ -5781,13 +5798,13 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage4->draw(imagedrawing);
+            pdraw2dgraphicsImage4->draw(imagedrawing);
 
          }
 
          pmain->get_user_interaction()->backimpact_feedback(pimage4);
 
-         pgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -5799,7 +5816,7 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pimage1->draw(imagedrawing);
+            pdraw2dgraphicsImage1->draw(imagedrawing);
 
          }
 
@@ -5843,13 +5860,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -5861,7 +5878,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 
@@ -6090,12 +6107,12 @@ namespace backimpact
 
       if(m_bGrowColor0)
       {
-         //pgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
+         //pdraw2dgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
       }
 
-      // ::draw2d::graphics_pointer pgraphicsImage3;
-      //pgraphicsImage3->CreateCompatibleDC(nullptr);
-      //pgraphicsImage3->set(pimage3->m_hbitmap);
+      // ::draw2d::graphics_pointer pdraw2dgraphicsImage3;
+      //pdraw2dgraphicsImage3->CreateCompatibleDC(nullptr);
+      //pdraw2dgraphicsImage3->set(pimage3->m_hbitmap);
 
       //   pimage3->stretch(imageBuffer);
 
@@ -6169,21 +6186,21 @@ namespace backimpact
 
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
-      //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
 
 
       // top
-      /*   pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /*   pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
          // left
-         pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
          // bottom
-         pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
          // right
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
       auto ppen1 = createø < ::draw2d::pen > ();
@@ -6239,38 +6256,38 @@ namespace backimpact
          j--;
       }
       
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-      pgraphicsImage1->set(ppenWhite);
-      //pgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
+      pdraw2dgraphicsImage1->set(ppenWhite);
+      //pdraw2dgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       //for(i = margin1; i < imax; i++)
       //{
-         pgraphicsImage1->polyline(&m_pointa[margin1], imax-margin1-1);
+         pdraw2dgraphicsImage1->polyline(&m_pointa[margin1], imax-margin1-1);
       //}
-      pgraphicsImage1->set(ppen1);
-      //pgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
+      pdraw2dgraphicsImage1->set(ppen1);
+      //pdraw2dgraphicsImage1->set_current_point(m_pointa[margin1].x, m_pointa[margin1].y);
       //for(i = margin1; i < imax; i++)
       //{
-         pgraphicsImage1->polyline(&m_pointa[margin1], imax-margin1-1);
+         pdraw2dgraphicsImage1->polyline(&m_pointa[margin1], imax-margin1-1);
       //}
 
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 34, 34, 34));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 34, 34, 34));
 
       /*
-         pgraphicsImage1->set_current_point(margin1, cy1 - margin2);
+         pdraw2dgraphicsImage1->set_current_point(margin1, cy1 - margin2);
 
          for(i = margin1; i < jmax; i++)
          {
-            pgraphicsImage1->line_to(i, cy1 - margin2 + ((rand() - rhalf) * j * w / rmax));
+            pdraw2dgraphicsImage1->line_to(i, cy1 - margin2 + ((rand() - rhalf) * j * w / rmax));
             j++;
          }
          for(; i < imax; i++)
          {
-            pgraphicsImage1->line_to(i, cy1 - margin2 + ((rand() - rhalf) * j * w / rmax));
+            pdraw2dgraphicsImage1->line_to(i, cy1 - margin2 + ((rand() - rhalf) * j * w / rmax));
             j--;
          }
 
-         pgraphicsImage1->set_current_point(margin2, margin1);
+         pdraw2dgraphicsImage1->set_current_point(margin2, margin1);
 
          // vertical
          imax = cy1 - margin1;
@@ -6290,7 +6307,7 @@ namespace backimpact
             {
                r2 = (rand() - rhalf) * j * 5 / rmax;
             }
-            pgraphicsImage1->line_to(r1 + r2 + margin2 + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(r1 + r2 + margin2 + ((rand() - rhalf) * j * w / rmax), i);
             j++;
          }
          for(; i < imax; i++)
@@ -6303,41 +6320,41 @@ namespace backimpact
             {
                r2 = (rand() - rhalf) * j * 5 / rmax;
             }
-            pgraphicsImage1->line_to(r1 + r2 + margin2 + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(r1 + r2 + margin2 + ((rand() - rhalf) * j * w / rmax), i);
             j--;
          }
 
-         pgraphicsImage1->set_current_point(cx1 - margin2, margin1);
+         pdraw2dgraphicsImage1->set_current_point(cx1 - margin2, margin1);
 
          for(i = margin1; i < jmax; i++)
          {
-            pgraphicsImage1->line_to(cx1 - margin2 + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(cx1 - margin2 + ((rand() - rhalf) * j * w / rmax), i);
             j++;
          }
          for(; i < imax; i++)
          {
-            pgraphicsImage1->line_to(cx1 - margin2 + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(cx1 - margin2 + ((rand() - rhalf) * j * w / rmax), i);
             j--;
          }*/
 
-      //pgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
-      //pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
+      //pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
 
       // top
-      /* pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
-       pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /* pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
        // left
-       pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
-       pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
        // bottom
-       pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
-       pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
        // right
-       pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
-       pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
+       pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
 
 
-      //   pgraphicsImage1->fill_rectangle(0, 0, cx1 / 2, cy1 / 2, 0);*/
+      //   pdraw2dgraphicsImage1->fill_rectangle(0, 0, cx1 / 2, cy1 / 2, 0);*/
       /*   {
             ::draw2d::pen_pointer ppen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
             ::draw2d::brush_pointer brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
@@ -6359,34 +6376,34 @@ namespace backimpact
                {
                case 0:
                   {
-                     pgraphicsImage1->set(brush1);
-                     pgraphicsImage1->set(ppen1);
+                     pdraw2dgraphicsImage1->set(brush1);
+                     pdraw2dgraphicsImage1->set(ppen1);
                   }
                   break;
                case 1:
                   {
-                     pgraphicsImage1->set(brush2);
-                     pgraphicsImage1->set(ppen2);
+                     pdraw2dgraphicsImage1->set(brush2);
+                     pdraw2dgraphicsImage1->set(ppen2);
                   }
                   break;
                case 2:
                   {
-                     pgraphicsImage1->set(brush3);
-                     pgraphicsImage1->set(ppen3);
+                     pdraw2dgraphicsImage1->set(brush3);
+                     pdraw2dgraphicsImage1->set(ppen3);
                   }
                case 3:
                   {
-                     pgraphicsImage1->set(brush4);
-                     pgraphicsImage1->set(ppen4);
+                     pdraw2dgraphicsImage1->set(brush4);
+                     pdraw2dgraphicsImage1->set(ppen4);
                   }
                case 4:
                   {
-                     pgraphicsImage1->set(brush5);
-                     pgraphicsImage1->set(ppen5);
+                     pdraw2dgraphicsImage1->set(brush5);
+                     pdraw2dgraphicsImage1->set(ppen5);
                   }
                   break;
                }
-               pgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
+               pdraw2dgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
@@ -6415,9 +6432,9 @@ namespace backimpact
 
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
       auto ppixmapImage2=pimage2->map();
@@ -6433,13 +6450,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -6451,7 +6468,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
 
       }
@@ -6663,7 +6680,7 @@ namespace backimpact
 
       if(m_bGrowColor0)
       {
-         //pgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
+         //pdraw2dgraphicsImage1->fill_rectangle(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
       }
 
 //         int c1 = rand() * 3 / RAND_MAX;
@@ -6696,34 +6713,34 @@ namespace backimpact
       //pimage2->Rotate034(pimage1, dAngle, 1.09);
       //pimage2->rotate(pimage1, dAngle, 1.009);
       //pimage2->Paste(pimage1);
-      //pgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ cxm - s1, cym - s2, s3, s4, m_color & ::opacity(bA));
 
 
       // top
-      /*   pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /*   pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong1 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
          // left
-         pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong3 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong4 & ::opacity(bA));
          // bottom
-         pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong5 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong6 & ::opacity(bA));
          // right
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
-         pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong7 & ::opacity(bA));
+         pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8 & ::opacity(bA));*/
 
       // top1
       auto ppen1 = createø < ::draw2d::pen > ();
       ppen1->create_solid(1, colorStrong1.opaque());
 
-      auto pgraphicsImage1 = pimage1->acquire_graphics();
+      auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-      pgraphicsImage1->set(ppen1);
+      pdraw2dgraphicsImage1->set(ppen1);
       int marginx = cx1 / 12;
       int marginy = cy1 * 5 / 11;
       int w = marginx * 2;
       ::f64_point pointLast(marginx, marginy);
-      //pgraphicsImage1->set_current_point(marginx, marginy);
+      //pdraw2dgraphicsImage1->set_current_point(marginx, marginy);
 
       int imax = cx1 - marginx;
       int jmax = cx1 / 2;
@@ -6743,7 +6760,7 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pgraphicsImage1->process_line(pointLast, ::f64_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::f64_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
@@ -6756,26 +6773,26 @@ namespace backimpact
          {
             r2 = (rand() - rhalf) * j * 5 / rmax;
          }
-         pgraphicsImage1->process_line(pointLast, ::f64_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::f64_point(i, r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
       pointLast.x = marginx;
       pointLast.y = cy1-marginy;
-      //pgraphicsImage1->set_current_point(marginx, cy1 - marginy);
+      //pdraw2dgraphicsImage1->set_current_point(marginx, cy1 - marginy);
 
       for(i = marginx; i < jmax; i++)
       {
-         pgraphicsImage1->process_line(pointLast, ::f64_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::f64_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
          j++;
       }
       for(; i < imax; i++)
       {
-         pgraphicsImage1->process_line(pointLast, ::f64_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
+         pdraw2dgraphicsImage1->process_line(pointLast, ::f64_point(i, cy1 - marginy + ((rand() - rhalf) * j * w / rmax)));
          j--;
       }
 
-      //pgraphicsImage1->set_current_point(marginx, marginy);
+      //pdraw2dgraphicsImage1->set_current_point(marginx, marginy);
 
       pointLast.x= marginx;
       pointLast.y = marginy;
@@ -6798,7 +6815,7 @@ namespace backimpact
           {
              r2 = (rand() - rhalf) * j * 5 / rmax;
           }
-          pgraphicsImage1->line_to(r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax), i);
+          pdraw2dgraphicsImage1->line_to(r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax), i);
           j++;
        }
        for(; i < imax; i++)
@@ -6811,41 +6828,41 @@ namespace backimpact
           {
              r2 = (rand() - rhalf) * j * 5 / rmax;
           }
-          pgraphicsImage1->line_to(r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax), i);
+          pdraw2dgraphicsImage1->line_to(r1 + r2 + marginy + ((rand() - rhalf) * j * w / rmax), i);
           j--;
        }*/
 
       /*
-         pgraphicsImage1->set_current_point(cx1 - margin, margin);
+         pdraw2dgraphicsImage1->set_current_point(cx1 - margin, margin);
 
          for(i = margin; i < jmax; i++)
          {
-            pgraphicsImage1->line_to(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i);
             j++;
          }
          for(; i < imax; i++)
          {
-            pgraphicsImage1->line_to(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i);
+            pdraw2dgraphicsImage1->line_to(cx1 - margin + ((rand() - rhalf) * j * w / rmax), i);
             j--;
          }*/
 
-      //pgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
-      //pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      //pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 * 2 / 3, cx1 / 2, 1, , bA);
+      //pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
 
       // top
-      /*pgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      /*pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, 0, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
       // left
-      pgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));
       // bottom
-      pgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, cy1 - 1, cx1 / 2, 1, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 / 2, cy1 - 1, cx1 / 2 - 1, 1, colorStrong2 & ::opacity(bA));
       // right
-      pgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
-      pgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));*/
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, 0, 1, cy1 / 2, colorStrong2 & ::opacity(bA));
+      pdraw2dgraphicsImage1->fill_rectangle({ cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2 & ::opacity(bA));*/
 
-      pgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 0, 0, 0));
+      pdraw2dgraphicsImage1->fill_rectangle({ 0, 0, cx1, cy1 }, argb(10, 0, 0, 0));
 
       /*   {
             ::draw2d::pen_pointer ppen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
@@ -6868,34 +6885,34 @@ namespace backimpact
                {
                case 0:
                   {
-                     pgraphicsImage1->set(brush1);
-                     pgraphicsImage1->set(ppen1);
+                     pdraw2dgraphicsImage1->set(brush1);
+                     pdraw2dgraphicsImage1->set(ppen1);
                   }
                   break;
                case 1:
                   {
-                     pgraphicsImage1->set(brush2);
-                     pgraphicsImage1->set(ppen2);
+                     pdraw2dgraphicsImage1->set(brush2);
+                     pdraw2dgraphicsImage1->set(ppen2);
                   }
                   break;
                case 2:
                   {
-                     pgraphicsImage1->set(brush3);
-                     pgraphicsImage1->set(ppen3);
+                     pdraw2dgraphicsImage1->set(brush3);
+                     pdraw2dgraphicsImage1->set(ppen3);
                   }
                case 3:
                   {
-                     pgraphicsImage1->set(brush4);
-                     pgraphicsImage1->set(ppen4);
+                     pdraw2dgraphicsImage1->set(brush4);
+                     pdraw2dgraphicsImage1->set(ppen4);
                   }
                case 4:
                   {
-                     pgraphicsImage1->set(brush5);
-                     pgraphicsImage1->set(ppen5);
+                     pdraw2dgraphicsImage1->set(brush5);
+                     pdraw2dgraphicsImage1->set(ppen5);
                   }
                   break;
                }
-               pgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
+               pdraw2dgraphicsImage1->rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
@@ -6903,9 +6920,9 @@ namespace backimpact
 
 
       /*imaging.bitmap_blend(
-         pgraphicsImage1,
+         pdraw2dgraphicsImage1,
          0, 0, cx1, cy1,
-         pgraphicsImage2,
+         pdraw2dgraphicsImage2,
          0, 0,
          50);*/
 
@@ -6923,13 +6940,13 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pgraphicsImage1->draw(imagedrawing);
+         pdraw2dgraphicsImage1->draw(imagedrawing);
 
       }
 
-      auto pgraphicsImageBack = pimageBack->acquire_graphics();
+      auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-      pgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
+      pdraw2dgraphicsImageBack->set_interpolation_mode(VISUAL_EFFECT_STRETCH_MODE);
 
       {
 
@@ -6941,7 +6958,7 @@ namespace backimpact
 
          ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         pimageBack->draw(imagedrawing);
+         pdraw2dgraphicsImageBack->draw(imagedrawing);
 
       }
 

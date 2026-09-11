@@ -1170,11 +1170,11 @@ namespace backimpact
 
                         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                        auto pgraphicsImage = pimage->acquire_graphics();
+                        auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-                        pgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+                        pdraw2dgraphicsImage->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                        pimage->draw(imagedrawing);
+                        pdraw2dgraphicsImage->draw(imagedrawing);
 
                      }
 
@@ -1204,11 +1204,11 @@ namespace backimpact
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  auto pgraphicsImageBack = pimageBack->acquire_graphics();
+                  auto pdraw2dgraphicsImageBack = pimageBack->acquire_graphics();
 
-                  pgraphicsImageBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
+                  pdraw2dgraphicsImageBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-                  pimageBack->draw(imagedrawing);
+                  pdraw2dgraphicsImageBack->draw(imagedrawing);
 
                   recta.add(rectangleUpdate);
 
@@ -1652,7 +1652,7 @@ namespace backimpact
 
          //pgraphicsBack->set_origin(0, 0);
 
-         //pgraphicsImageSource->set_origin(0, 0);
+         //pdraw2dgraphicsImageSource->set_origin(0, 0);
 
          pgraphicsBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -1885,12 +1885,12 @@ namespace backimpact
                                     xPixelMod, yPixelMod,
                                     SRCCOPY);
 
-                                 pgraphicsImage->set_interpolation_mode(0);
-                                 pgraphicsImage2->set_interpolation_mode(0);
+                                 pdraw2dgraphicsImage->set_interpolation_mode(0);
+                                 pdraw2dgraphicsImage2->set_interpolation_mode(0);
                                  image3.get_graphics()->set_interpolation_mode(0);
                                  image4.get_graphics()->set_interpolation_mode(0);
 
-                                 pgraphicsImage->StretchBlt(
+                                 pdraw2dgraphicsImage->StretchBlt(
                                     0, 0,
                                     xPixelMod, yPixelMod,
                                     image3.get_graphics(),
@@ -1898,7 +1898,7 @@ namespace backimpact
                                     finalW, finalH,
                                     SRCCOPY);
 
-                                 pgraphicsImage2->StretchBlt(
+                                 pdraw2dgraphicsImage2->StretchBlt(
                                     0, 0,
                                     xPixelMod, yPixelMod,
                                     image4.get_graphics(),
@@ -1918,9 +1918,9 @@ namespace backimpact
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  auto pgraphicsImage = pimage->acquire_graphics();
+                  auto pdraw2dgraphicsImage = pimage->acquire_graphics();
 
-                  pgraphicsImage->draw(imagedrawing);
+                  pdraw2dgraphicsImage->draw(imagedrawing);
 
                }
 
@@ -1954,7 +1954,9 @@ namespace backimpact
 
                   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pimage->draw(imagedrawing);
+                  auto pdraw2dgraphicsImage = pimage->acquire_graphics();
+
+                  pdraw2dgraphicsImage->draw(imagedrawing);
 
                }
 
@@ -2072,11 +2074,11 @@ namespace backimpact
          pimage2->create_as_descriptor({wWindow, hWindow});
          //image3.create({wWindow, hWindow});
 
-         auto pgraphicsImage1 = pimage1->acquire_graphics();
+         auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();
 
-         pgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pdraw2dgraphicsImage1->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         pgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+         pdraw2dgraphicsImage1->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
          {
 
@@ -2092,13 +2094,13 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphicsImage1->draw(imagedrawing);
+            pdraw2dgraphicsImage1->draw(imagedrawing);
 
          }
 
-         auto pgraphicsImage2 = pimage2->acquire_graphics();
+         auto pdraw2dgraphicsImage2 = pimage2->acquire_graphics();
 
-         pgraphicsImage2->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pdraw2dgraphicsImage2->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          {
 
@@ -2110,7 +2112,7 @@ namespace backimpact
 
             ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphicsImage2->draw(imagedrawing);
+            pdraw2dgraphicsImage2->draw(imagedrawing);
 
          }
 
@@ -2125,7 +2127,7 @@ namespace backimpact
          ppixmapImage2->mult_alpha();
 
          /*drawpimage->draw(
-            pgraphicsImage1,
+            pdraw2dgraphicsImage1,
             0, 0,
             wWindow, hWindow,
             imageT2,
@@ -2134,7 +2136,7 @@ namespace backimpact
             pimage->width() - 2 * yOff -1, 0);*/
 
 
-         /*dc2.BitBlt(0, 0, wWindow, hWindow, pgraphicsImage1, 0, 0);
+         /*dc2.BitBlt(0, 0, wWindow, hWindow, pdraw2dgraphicsImage1, 0, 0);
          dc2.BitBlt(0, 0, wWindow, hWindow, nullptr, 0, 0, DSTINVERT);
 
          dc3.fill_rectangle(0, 0, wWindow, hWindow, 0xff000000);
@@ -2154,7 +2156,7 @@ namespace backimpact
 
 //                  ::image::image_pointer pimageBuffer = pgcom->get_image(100);
          /*StretchDIBits(
-            pgraphicsImage1,
+            pdraw2dgraphicsImage1,
             0, 0,
             wWindow, hWindow,
             x1, y1,
@@ -2167,10 +2169,10 @@ namespace backimpact
 
 
          //pgraphicsBack->BitBlt(x1, y1, wWindow, hWindow, &pgraphicsFrame1, x1, y1);
-         //pgraphicsBack->BitBlt(x1, y1, wWindow, hWindow, pgraphicsImage1,
+         //pgraphicsBack->BitBlt(x1, y1, wWindow, hWindow, pdraw2dgraphicsImage1,
          // x1, y1);
 
-         //pgraphicsBack->BitBlt(x1, y1, wWindow, hWindow, pgraphicsImage1,
+         //pgraphicsBack->BitBlt(x1, y1, wWindow, hWindow, pdraw2dgraphicsImage1,
          // x1, y1);
 
          pgraphicsBack->set_alpha_mode(::draw2d::e_alpha_mode_set);
@@ -2198,7 +2200,7 @@ namespace backimpact
             0, 0,
             d, d,
             DDF_HALFTONE);*/
-         //pgraphicsBack->BitBlt(xm - r, ym - r, 2 * r, 2 * r, pgraphicsImage1, 0, 0);
+         //pgraphicsBack->BitBlt(xm - r, ym - r, 2 * r, 2 * r, pdraw2dgraphicsImage1, 0, 0);
          rectangleUpdate.set(x1, y1, x2, y2);
          recta.add(rectangleUpdate);
       }

@@ -436,9 +436,9 @@ namespace backimpact
 
             get_image(e_image_final)->create_as_descriptor(m_rectangleFinalPlacement.size());
 
-            auto pgraphicsImageFinal = get_image(e_image_final)->acquire_graphics();
+            auto pdraw2dgraphicsImageFinal = get_image(e_image_final)->acquire_graphics();
 
-            pgraphicsImageFinal->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+            pdraw2dgraphicsImageFinal->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
             {
 
@@ -448,7 +448,7 @@ namespace backimpact
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphicsImageFinal->draw(imagedrawing);
+               pdraw2dgraphicsImageFinal->draw(imagedrawing);
 
             }
 
