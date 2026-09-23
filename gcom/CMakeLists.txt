@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(gcom CXX)
 
 
+message("PROJECT_NAME = ${PROJECT_NAME}")
+
+
 set(LIBRARY_NAME ${PROJECT_NAME})
 
 
@@ -83,7 +86,7 @@ if(${WIN32})
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis berg)
-elseif(${LINUX} OR ${__BSD__} OR ${ANDROID})
+elseif(${LINUX} OR ${__BSD__} OR ${__ANDROID__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
