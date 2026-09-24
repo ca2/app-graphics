@@ -1147,7 +1147,7 @@ namespace backimpact
 
                   auto pimage = pgcom->get_image((enum_image)i);
 
-                  pimage->create_as_descriptor(pimageBuffer->size());
+                  pimage->create_as_descriptor(pimageBuffer->size(), draw2d()->main_draw2d_domain());
 
                   if (pimage.ok())
                   {
@@ -1906,7 +1906,7 @@ namespace backimpact
                                     finalW, finalH,
                                     SRCCOPY);*/
 
-               pimage->create_as_descriptor({finalW, finalH});
+               pimage->create_as_descriptor({finalW, finalH}, draw2d()->main_draw2d_domain());
 
                {
 
@@ -2070,8 +2070,8 @@ namespace backimpact
          ::image::image_pointer pimage2 = pgcom->get_image(e_image_temp2);
          //::image::image_pointer pimage3 = pgcom->get_image(e_image_temp3);
 
-         pimage1->create_as_descriptor({wWindow, hWindow});
-         pimage2->create_as_descriptor({wWindow, hWindow});
+         pimage1->create_as_descriptor({wWindow, hWindow}, draw2d()->main_draw2d_domain());
+         pimage2->create_as_descriptor({wWindow, hWindow}, draw2d()->main_draw2d_domain());
          //image3.create({wWindow, hWindow});
 
          auto pdraw2dgraphicsImage1 = pimage1->acquire_graphics();

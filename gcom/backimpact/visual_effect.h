@@ -50,63 +50,64 @@ namespace backimpact
 
       struct color_track1
       {
-         random_grow                   m_rndgrowDirectionLatency;
-         ::f64                        m_dDirection;
-         ::f64                        m_dDirectionAddUp;
-         i32_point                     m_pointColorTrack;
-         random_grow                   m_rndgrowVelocity;
-         ::f64                        m_dCos;
-         ::f64                        m_dSin;
-         ::f64                        m_dSize;
+         random_grow                      m_rndgrowDirectionLatency;
+         ::f64                            m_dDirection;
+         ::f64                            m_dDirectionAddUp;
+         i32_point                        m_pointColorTrack;
+         random_grow                      m_rndgrowVelocity;
+         ::f64                            m_dCos;
+         ::f64                            m_dSin;
+         ::f64                            m_dSize;
       };
 
 
-      int                              m_iVisual;
-      bool                             m_bGrowColor0;
-      ::color::color                   m_color;
-      int                              m_iGrowColor;
-      int                              m_iGrowMax;
-      ::f64                           m_dAngle;
+      int                                 m_iVisual;
+      bool                                m_bGrowColor0;
+      ::color::color                      m_color;
+      int                                 m_iGrowColor;
+      int                                 m_iGrowMax;
+      ::f64                               m_dAngle;
 
-      ::color::color                   m_color2;
-      int                              m_iGrowColor2;
-      int                              m_iGrowMax2;
+      ::color::color                      m_color2;
+      int                                 m_iGrowColor2;
+      int                                 m_iGrowMax2;
 
-      ::color::color                   m_color3;
-      int                              m_iGrowColor3;
-      int                              m_iGrowMax3;
+      ::color::color                      m_color3;
+      int                                 m_iGrowColor3;
+      int                                 m_iGrowMax3;
 
-      ::color::color                   m_color4;
-      int                              m_iGrowColor4;
-      int                              m_iGrowMax4;
+      ::color::color                      m_color4;
+      int                                 m_iGrowColor4;
+      int                                 m_iGrowMax4;
 
-      i32_point                        m_pointColorTrack;
-      random_grow                      m_rndgrowVelocity;
-      ::f64                           m_dDirection;
-      ::f64                           m_dDirectionAddUp;
-      random_grow                      m_rndgrowDirectionLatency;
+      i32_point                           m_pointColorTrack;
+      random_grow                         m_rndgrowVelocity;
+      ::f64                               m_dDirection;
+      ::f64                               m_dDirectionAddUp;
+      random_grow                         m_rndgrowDirectionLatency;
 
-      random_grow                      m_rndgrowAngleOffsetLatency;
-      ::f64                           m_dAngleOffset;
-      ::f64                           m_dAngleOffsetAddUp;
+      random_grow                         m_rndgrowAngleOffsetLatency;
+      ::f64                               m_dAngleOffset;
+      ::f64                               m_dAngleOffsetAddUp;
 
-      array < color_track1 >           m_colortrack1a;
+      array < color_track1 >              m_colortrack1a;
 
-      tool_001                         m_tool1;
+      tool_001                            m_tool1;
 
-      f64_point_array               m_pointa;
-      f64_point_array               m_pointa1;
-      f64_point_array               m_pointa2;
+      f64_point_array                     m_pointa;
+      f64_point_array                     m_pointa1;
+      f64_point_array                     m_pointa2;
 
-      ::gcom::pixel_explosion          m_explosion;
+      ::gcom::pixel_explosion             m_explosion;
 
 
-      draw2d::water_routine            m_water;
-      ::pointer<class resizer>       m_presizer;
+      draw2d::water_routine               m_water;
+      ::pointer<class resizer>            m_presizer;
+      ::pointer < ::draw2d::domain >      m_pdraw2ddomain;
 
 
       visual_effect();
-      virtual ~visual_effect();
+      ~visual_effect() override;
 
 
       virtual void initialize_backimpact_helper(main * pmain) override;

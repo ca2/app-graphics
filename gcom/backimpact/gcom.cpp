@@ -434,7 +434,7 @@ namespace backimpact
 
             }
 
-            get_image(e_image_final)->create_as_descriptor(m_rectangleFinalPlacement.size());
+            get_image(e_image_final)->create_as_descriptor(m_rectangleFinalPlacement.size(), draw2d_domain());
 
             auto pdraw2dgraphicsImageFinal = get_image(e_image_final)->acquire_graphics();
 
@@ -492,16 +492,16 @@ namespace backimpact
 
       pgraphicsScreen->create_memory_graphics({}, nullptr);
 
-      get_image(e_image_back)->create_as_descriptor({cx, cy}); // Back
+      get_image(e_image_back)->create_as_descriptor({cx, cy}, draw2d_domain()); // Back
       get_image(e_image_back)->acquire_graphics()->clear(::color::transparent);
 
-      get_image(e_image_buffer)->create_as_descriptor({cx, cy}); // buffer
+      get_image(e_image_buffer)->create_as_descriptor({cx, cy}, draw2d_domain()); // buffer
       get_image(e_image_buffer)->acquire_graphics()->clear(::color::transparent);
 
-      get_image(e_image_transfer)->create_as_descriptor({cx, cy}); // Transfer
+      get_image(e_image_transfer)->create_as_descriptor({cx, cy}, draw2d_domain()); // Transfer
       get_image(e_image_transfer)->acquire_graphics()->clear(::color::transparent);
 
-      get_image(e_image_frame1)->create_as_descriptor({cx, cy}); // Frame1
+      get_image(e_image_frame1)->create_as_descriptor({cx, cy}, draw2d_domain()); // Frame1
       get_image(e_image_frame1)->acquire_graphics()->clear(::color::transparent);
 
    }
@@ -631,7 +631,7 @@ namespace backimpact
       case e_image_radial_center_alpha:
       {
          // Radial Fill (Center Full alpha, Radius = 256 pixels)
-         pimage->create_as_descriptor({512, 512});
+         pimage->create_as_descriptor({512, 512}, draw2d_domain());
          auto ppixmapImage = pimage->map();
          ppixmapImage->RadialFill(255, 0, 0, 0,
                           0, 0, 0, 0,
@@ -641,7 +641,7 @@ namespace backimpact
       case e_image_radial_border_alpha:
       {
          // Radial Fill (Border Full alpha, Radius = 256 pixels)
-         pimage->create_as_descriptor({511, 511});
+         pimage->create_as_descriptor({511, 511}, draw2d_domain());
          auto ppixmapImage = pimage->map();
          ppixmapImage->RadialFill(0, 0, 0, 0,
                           255, 0, 0, 0, 255, 255, 256);

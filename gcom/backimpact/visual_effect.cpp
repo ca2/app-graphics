@@ -6,6 +6,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics_lease.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/image.h"
@@ -487,8 +488,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({ cx1, cy1 });
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({ cx1, cy1 }, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 
@@ -636,8 +637,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 
@@ -794,8 +795,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 
@@ -952,8 +953,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
       int s1 = rand() * 1 / RAND_MAX + 1;
@@ -1222,8 +1223,8 @@ namespace backimpact
          cy1 = cy / 5;
       }
 
-      pimage1->create_as_descriptor({cx1, cy1});
-      pimage2->create_as_descriptor({cx, cy});
+      pimage1->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+      pimage2->create_as_descriptor({cx, cy}, m_pdraw2ddomain);
 
       auto ppixmapImage1=pimage1->map();
 
@@ -1544,8 +1545,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
       int s1 = rand() * 1 / RAND_MAX + 1;
@@ -1787,8 +1788,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 
@@ -2163,8 +2164,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 
@@ -2591,8 +2592,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 
@@ -3111,10 +3112,10 @@ namespace backimpact
          m_tool1.m_dMinSize = 0;
          int cx1 = m_tool1.m_size.cx / 4;
          int cy1 = m_tool1.m_size.cy / 4;
-         pimage1->create_as_descriptor({ cx1, cy1 });
-         pimage2->create_as_descriptor({ cx1, cy1 });
-         pimage3->create_as_descriptor({ cx1, cy1 });
-         pimage4->create_as_descriptor({ cx1, cy1 });
+         pimage1->create_as_descriptor({ cx1, cy1 }, m_pdraw2ddomain);
+         pimage2->create_as_descriptor({ cx1, cy1 }, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({ cx1, cy1 }, m_pdraw2ddomain);
+         pimage4->create_as_descriptor({ cx1, cy1 }, m_pdraw2ddomain);
          m_tool1.m_dAlpha = 0;
          auto ppixmapImageBack = pimageBack->map();
          m_water.create(cx1, cy1, ppixmapImageBack->color_indexes());
@@ -3296,9 +3297,9 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
-         pimage4->create_as_descriptor({m_tool1.m_size.cx, m_tool1.m_size.cy});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage4->create_as_descriptor({m_tool1.m_size.cx, m_tool1.m_size.cy}, m_pdraw2ddomain);
       }
 
       if(m_iVisual == VisualEffectRotateEx6)
@@ -3574,8 +3575,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 
@@ -4134,10 +4135,10 @@ namespace backimpact
          m_tool1.m_dMinSize = 0;
          int cx1 = m_tool1.m_size.cx / 4;
          int cy1 = m_tool1.m_size.cy / 4;
-         pimage1->create_as_descriptor({cx1, cy1});
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
-         pimage4->create_as_descriptor({cx1, cy1});
+         pimage1->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage4->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
          m_tool1.m_dAlpha = 0;
 
          m_explosion.m_density = 1.5;
@@ -4306,10 +4307,10 @@ namespace backimpact
          m_tool1.m_dMinSize = 0;
          int cx1 = m_tool1.m_size.cx / 4;
          int cy1 = m_tool1.m_size.cy / 4;
-         pimage1->create_as_descriptor({cx1, cy1});
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
-         pimage4->create_as_descriptor({cx1, cy1});
+         pimage1->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage4->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
          m_tool1.m_dAlpha = 0;
 
          m_explosion.m_density = 1.5;
@@ -4477,10 +4478,10 @@ namespace backimpact
          m_tool1.m_dMinSize = 0;
          int cx1 = m_tool1.m_size.cx / 4;
          int cy1 = m_tool1.m_size.cy / 4;
-         pimage1->create_as_descriptor({cx1, cy1});
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
-         pimage4->create_as_descriptor({cx1, cy1});
+         pimage1->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage4->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
          m_tool1.m_dAlpha = 0;
 
          m_explosion.m_density = 1.8;
@@ -4668,8 +4669,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
          pimage2->acquire_graphics()->clear(::color::transparent);
          pimage3->acquire_graphics()->clear(::color::transparent);
       }
@@ -5150,8 +5151,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 
@@ -5664,9 +5665,9 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
-         pimage4->create_as_descriptor({m_tool1.m_size.cx, m_tool1.m_size.cy});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage4->create_as_descriptor({m_tool1.m_size.cx, m_tool1.m_size.cy}, m_pdraw2ddomain);
       }
 
       if(m_iVisual == VisualEffectExpand6)
@@ -5944,8 +5945,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 
@@ -6518,8 +6519,8 @@ namespace backimpact
 
       if(ptransitioneffect->m_ptool001->m_iStep == 1)
       {
-         pimage2->create_as_descriptor({cx1, cy1});
-         pimage3->create_as_descriptor({cx1, cy1});
+         pimage2->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
+         pimage3->create_as_descriptor({cx1, cy1}, m_pdraw2ddomain);
       }
 
 //         int s1 = rand() * 1 / RAND_MAX + 1;
