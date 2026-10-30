@@ -2,7 +2,7 @@
 #include "user_interaction.h"
 #include "data.h"
 #include "main.h"
-//#include "thread.h"
+#include "thread.h"
 #include "gcom.h"
 #include "transition_effect.h"
 #include "acme/constant/id.h"
