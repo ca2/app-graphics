@@ -14,7 +14,7 @@ namespace backimpact
    public:
 
 
-      ::pointer < ::mutex >                          m_pmutexBitmap;
+      ::pointer < ::parallelization::mutex >                          m_pmutexBitmap;
       ::pointer<class main>          m_pmain;
 
 
