@@ -23,10 +23,10 @@ namespace backimpact
       map_base < enum_image, ::image::image_pointer >      m_mapImage;
 
 
-      ::pointer < ::parallelization::mutex >                                m_pmutex1Back;
-      ::pointer < ::parallelization::mutex >                                m_pmutex2Buffer;
-      ::pointer < ::parallelization::mutex >                                m_pmutex3Source;
-      ::pointer < ::parallelization::mutex >                                m_pmutex4Transfer;
+      ::pointer < ::parallelization::mutex >               m_pmutex1Back;
+      ::pointer < ::parallelization::mutex >               m_pmutex2Buffer;
+      ::pointer < ::parallelization::mutex >               m_pmutex3Source;
+      ::pointer < ::parallelization::mutex >               m_pmutex4Transfer;
 
 
 
