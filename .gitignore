@@ -1,4 +1,6 @@
 time-*/
+# Local Xcode and CMake build output directories.
+build/
 workspace.xml
 cmake-build-*/
 cmake-time-*/
